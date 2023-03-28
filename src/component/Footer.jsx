@@ -2,7 +2,7 @@ import React from "react";
 import "./Style-footer.css";
 export default function Footer(){
     return(
-        <div className="Footer fixed-bottom ">
+        <div className="Footer">
             <div className="infomation row">
             <a href="#" className="navbar-brand col-sm-3" ><img src="https://upload.wikimedia.org/wikipedia/vi/thumb/d/df/Lamborghini_Logo.svg/1200px-Lamborghini_Logo.svg.png" alt="" width="100" height="100"/></a>
             <div className="inf col-sm-3">
