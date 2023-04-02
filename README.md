@@ -8,3 +8,7 @@
 4. Import vào file index.jx:
 - import 'bootstrap/dist/css/bootstrap.min.css';
 - import 'bootstrap/dist/js/bootstrap.bundle.min';
+
+# Chạy Project
+1. Mở terminal tại folder của project
+2. Gõ npm start rồi nhấn enter
