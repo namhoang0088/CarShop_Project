@@ -6,14 +6,16 @@ import Slide from './component/Slide';
 import TopProduct from './component/Home/TopProduct';
 import News from './component/Home/News';
 import Sidebar from './component/Product/Sidebar';
+import AdminHome from './Screen/Admin/Main_Page';
 export default function App(){
   return (
     <div className='Body'>
-      <Header />
+      {/* <Header />
       <Slide  />
       <TopProduct />
       <News />
-      <Footer />
+      <Footer /> */}
+      <AdminHome/>
     </div>
     );
 }
