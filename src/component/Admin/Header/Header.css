@@ -1,4 +1,10 @@
-.header-dropdown{
-  display: flex;
-  flex-direction: column;
+.Header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  height: 80px;
+  z-index: 999;
+  /* other styles */
 }

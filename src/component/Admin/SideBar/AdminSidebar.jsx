@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Content } from './styles'
+
 import { 
   FaTimes, 
   FaHome, 
@@ -31,6 +31,7 @@ const AdminSidebar = ({ active }) => {
         <SidebarItem Icon={FaIdCardAlt} Text="Employees" />
         <SidebarItem Icon={FaRegFileAlt} Text="Reports" />
         <SidebarItem Icon={FaRegSun} Text="Settings" />
+
     </div>
   )
 }
