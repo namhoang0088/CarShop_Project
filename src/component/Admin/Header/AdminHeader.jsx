@@ -2,7 +2,7 @@ import React from "react";
 import "./../../Style-header.css";
 import "./Header.css";
 import NotificationIcon from "../../Icon/Notification/NotificationIcon";
-export default function Header(){
+export default function AdminHeader(){
     const notificationCount = 3;
     return(
         <div className="Header">
@@ -30,4 +30,3 @@ export default function Header(){
         </div>
     )
 }
-
