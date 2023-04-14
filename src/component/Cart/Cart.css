@@ -1,0 +1,84 @@
+.Cart{
+    min-height: 100vh;
+    width: 100vw;
+    padding: 50px;
+}
+
+.Status{
+    background-color: white;
+    height: auto;
+    width: auto;
+    border-radius: 20px;
+    padding: 10px;
+    text-align: center;
+    align-items: center;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.Title{
+    width: 100%;
+    height: auto;
+    background-color: white;
+    text-align: center;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.Title p {
+    margin: 10px;
+    text-align: center;
+}
+
+.Product{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    background-color: white;
+    border-radius: 20px;
+    font-weight: bold;
+    margin: 20px;
+}
+
+.Product p {
+    margin: 10px;
+    text-align: center;
+}
+
+.Wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+input[type="checkbox"] {
+    transform: scale(2); /* Tăng kích thước lên gấp đôi */
+}
+
+
+.Pay{
+    width: 100%;
+    height: auto;
+    background-color: white;
+    text-align: center;
+    border-radius: 20px;
+    font-weight: bold;
+    padding: 20px;
+}
+
+.btn-pay {
+    background-color: #4CAF50; /* Màu xanh lá */
+    color: white; /* Chữ trắng */
+    border: none; /* Bỏ viền */
+    padding: 10px 20px; /* Kích thước nút */
+    font-size: 16px; /* Cỡ chữ */
+    cursor: pointer; /* Con trỏ chuột */
+    border-radius: 5px; /* Bo góc */
+    transition: background-color 0.3s; /* Hiệu ứng khi hover */
+  }
+  
+  .btn-pay:hover {
+    background-color: #3e8e41; /* Màu xanh lá tối */
+  }
