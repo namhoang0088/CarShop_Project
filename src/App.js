@@ -1,11 +1,11 @@
-import './App.css';
-import MainPage from './Screen/Admin/Main_Page/MainPage';
+import "./App.css";
 
-export default function App(){
+import Authentication from "./Screen/Authentication/Authentication";
+
+export default function App() {
   return (
-    <div className='Body'>
-      <MainPage/>
+    <div className="Body">
+      <Authentication />
     </div>
-    );
+  );
 }
-

@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import FormLogin from "../../component/Authentication/Login";
 
 function Authentication() {
-  return (
-    <div>Authentication</div>
-  )
+  return <FormLogin />;
 }
 
-export default Authentication
+export default Authentication;
