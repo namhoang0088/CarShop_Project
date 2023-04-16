@@ -1,8 +1,9 @@
 import React from "react";
-import FormLogin from "../../component/Authentication/Login";
+import AuthoMain from "../../component/Authentication/AuthenMain";
+import FullScreenBackground from "../../component/Background/FullScreenBackground";
 
 function Authentication() {
-  return <FormLogin />;
+  return <AuthoMain />;
 }
 
 export default Authentication;

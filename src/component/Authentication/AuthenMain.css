@@ -1,0 +1,18 @@
+#logo {
+    height: 380px;
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    margin-top: 160px;
+}
+
+@media screen and (max-width: 992px){
+    #logo {
+        width: 30%;
+        margin-top: 20px;
+    }
+    #formLogin {
+        margin-top: 20px;
+    }
+}
+
