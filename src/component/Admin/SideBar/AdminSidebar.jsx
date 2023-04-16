@@ -11,7 +11,7 @@ import {
   FaRegCalendarAlt,
   FaChartBar
 } from 'react-icons/fa'
-import './Sidebar.css';
+import './SideBar.css';
 import SidebarItem from '../SidebarItem'
 
 
