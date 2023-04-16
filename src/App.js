@@ -1,9 +1,11 @@
 import "./App.css";
-import Admin from "./Screen/Admin/Admin";
+
+import Authentication from "./Screen/Authentication/Authentication";
+
 export default function App() {
   return (
     <div className="Body">
-      <Admin />
+      <Authentication />
     </div>
   );
 }
