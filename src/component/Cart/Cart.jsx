@@ -1,7 +1,47 @@
 import React from "react";
 import "./Cart.css";
+import  { useState } from 'react';
 
+const products = [
+    {
+      id: 1,
+      imgSrc: "https://img.tinbanxe.vn/images/Lamborghini/Lamborghini%20Huracan%20Evo/ANHDAIDIEN-Lamborghini-Huracan_EVO-.png",
+      Name: "718 Boxster",
+      Cost: "4354600000",
+      Quantity: "1",
+      Status: "Chưa thanh toán"
+    },
+    {
+      id: 2,
+      imgSrc: "https://img.tinbanxe.vn/images/Lamborghini/Lamborghini%20Huracan%20Evo/ANHDAIDIEN-Lamborghini-Huracan_EVO-.png",
+      Name: "718 Boxster",
+      Cost: "4354600000",
+      Quantity: "2",
+      Status: "Chưa thanh toán"
+    }
+  ];
+  
 export default function Cart(){
+    const [totalQuantity, setTotalQuantity] = useState(0);
+    const [totalCost, setTotalCost] = useState(0);
+  
+    function handleToggleCheckbox(cost, quantity, isChecked) {
+        setTotalQuantity(prevQuantity => {
+          if (isChecked) {
+            return prevQuantity + 1;
+          } else {
+            return prevQuantity - 1;
+          }
+        });
+        setTotalCost(prevCost => {
+          if (isChecked) {
+            return prevCost + cost * quantity;
+          } else {
+            return prevCost - cost * quantity;
+          }
+        });
+      }
+
     return(
         <div className="Cart">
         <div className="row">
@@ -42,38 +82,30 @@ export default function Cart(){
 
         </div>
         </div>
+        
+        <div className="Wrapper">
+        {products.map(product => (
+          <Product
+            key={product.id}
+            {...product}
+            handleToggleCheckbox={handleToggleCheckbox}
+          />
+        ))}
+        </div>
 
         <div className="Wrapper">
-        <Product imgSrc="https://img.tinbanxe.vn/images/Lamborghini/Lamborghini%20Huracan%20Evo/ANHDAIDIEN-Lamborghini-Huracan_EVO-.png"
-         Name="718 Boxster"
-         Cost ="4354600000"
-         Quantity ="1"
-         Status ="Chưa thanh toán"
-         />
-        <Product imgSrc="https://img.tinbanxe.vn/images/Lamborghini/Lamborghini%20Huracan%20Evo/ANHDAIDIEN-Lamborghini-Huracan_EVO-.png"
-         Name="718 Boxster"
-         Cost ="4354600000"
-         Quantity ="2"
-         Status ="Chưa thanh toán"
-         />
+        <Pay totalQuantity={totalQuantity} totalCost={totalCost}/>
         </div>
-        
-        <div className="Wrapper">
-        <Pay/>
-        </div>
-        
+
         </div>
     )
 }
 
 function Product({...props}){
     function toggleCheckbox() {
-        var checkbox = document.getElementById("myCheckbox");
-        if (checkbox.checked) {
-          checkbox.checked = false;
-        } else {
-          checkbox.checked = true;
-        }
+        const checkbox = document.getElementById(`myCheckbox${props.id}`);
+        const isChecked = checkbox.checked;
+        props.handleToggleCheckbox(props.Cost, props.Quantity, isChecked);
       }
     return(
         <div className="row Product">
@@ -96,24 +128,28 @@ function Product({...props}){
         <p>{props.Status}</p>
         </div>
         <div className="col-md-1">
-        <input type="checkbox" id="myCheckbox" onclick="toggleCheckbox()"/>
-        </div>
+        <input
+          type="checkbox"
+          id={`myCheckbox${props.id}`}
+          onChange={toggleCheckbox}
+        />
+      </div>
         </div>
     )
 }
 
-function Pay({...props}){
-    return(
-        <div className="Pay row">
+function Pay({...props}) {
+    return (
+      <div className="Pay row">
         <div className="col-md-3">
-        <p>Số đơn: {props.Quantity}</p>
+          <p>Số đơn: {props.totalQuantity}</p>
         </div>
         <div className="col-md-6">
-        <p>Tổng: {props.total}</p>
+          <p>Tổng: {(parseInt(props.totalCost)).toLocaleString()} VNĐ</p>
         </div>
         <div className="col-md-3">
-        <button class="btn-pay">Thanh toán</button>
+          <button className="btn-pay">Thanh toán</button>
         </div>
-        </div>
-    )
-}
+      </div>
+    );
+  }
