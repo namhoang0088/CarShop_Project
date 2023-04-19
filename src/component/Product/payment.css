@@ -1,0 +1,21 @@
+@media screen and (max-width: 1980px) {
+    form {
+        position: relative;
+    }
+
+    #buttonSubmit{
+        margin-top: 10px;
+        float: right;
+        width: 10%;
+        min-width: 75px;
+    }
+    form > input{
+        padding: 0px;
+    }
+    .address{
+        background-color: aliceblue;
+    }
+    .shipment-payment{
+        background-color: aliceblue;
+    }
+}
