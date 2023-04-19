@@ -138,7 +138,7 @@ export default function(){
                             <div>Expire Date</div>
                             <Row>
                                 <Col>
-                                    <Form.Select size="sm">
+                                    <Form.Select size="sm" name="month">
                                     <option value="" selected>Chọn tháng</option>
                                         {monthList.map((current,idx)=>
                                             (
@@ -151,7 +151,7 @@ export default function(){
 
                                 </Col>
                                 <Col>
-                                <Form.Select size="sm">
+                                <Form.Select size="sm" name="year">
                                     <option value="" selected> Chọn năm</option>
                                         {yearList.map((current,idx)=>
                                             (

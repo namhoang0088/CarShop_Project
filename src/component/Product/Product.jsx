@@ -1,5 +1,5 @@
-import Header from "../header/Header"
-import Footer from "../footer/Footer"
+import Header from "../Header"
+import Footer from "../Footer"
 import CustomCar from "./CustomCar";
 import Specification from "./Specification";
 import Review from "./Review";
