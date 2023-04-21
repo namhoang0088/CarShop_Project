@@ -2,7 +2,7 @@ import React from "react";
 import "./Login.css";
 import { FiMail } from "react-icons/fi";
 import { FaKey } from "react-icons/fa";
-
+import { Link } from "react-router-dom";
 const FormLogin = () => {
   return (
     <div id="formLogin">
@@ -50,8 +50,8 @@ const FormLogin = () => {
           </a>
         </p>
       </form>
-      <button type="submit" class="btn btn-success" id="register">
-        Register an account
+      <button type="submit" class="btn btn-success" id="register" >
+       <Link to="/register"> Register an account</Link>
       </button>
     </div>
   );

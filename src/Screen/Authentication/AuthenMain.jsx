@@ -5,17 +5,16 @@ import "./AuthenMain.css";
 
 const AuthoMain = () => {
   return (
-    <div class="container-fluid">
-      <div class="row">
+      <div class="container-fluid">
+      <div class="row login">
         <div class="col-lg-6 d-flex justify-content-center">
           <img
             id="logo"
-            src="https://t4.ftcdn.net/jpg/02/27/63/25/360_F_227632568_14m9psbulgRfz5QWsuzp9pTMmjJnczGU.jpg"
+            src="https://upload.wikimedia.org/wikipedia/vi/thumb/d/df/Lamborghini_Logo.svg/672px-Lamborghini_Logo.svg.png"
           ></img>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 ">
           <FormLogin />
-          {/* <FormLogin /> */}
         </div>
       </div>
     </div>
