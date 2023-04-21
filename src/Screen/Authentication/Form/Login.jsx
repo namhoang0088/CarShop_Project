@@ -12,15 +12,14 @@ const FormLogin = () => {
             <FiMail class="item" />
           </div>
           <div class="col-10">
-            <label for="exampleInputEmail1" style={{ fontSize: "14px" }}>
-              Email address
-            </label>
+            <label for="exampleInputEmail1">Email address</label>
             <input
               type="email"
               class="form-control border-0 shadow-none bg-white form-control-sm"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
               placeholder="Enter email"
+              name="user_email"
             ></input>
           </div>
         </div>
@@ -29,14 +28,13 @@ const FormLogin = () => {
             <FaKey class="item" />
           </div>
           <div class="col-10">
-            <label for="password" style={{ fontSize: "14px" }}>
-              Password
-            </label>
+            <label for="password">Password</label>
             <input
               type="password"
               class="form-control border-0 shadow-none bg-white form-control-sm"
               id="password"
               placeholder="Enter password"
+              name="user_password"
             ></input>
           </div>
         </div>
@@ -46,7 +44,7 @@ const FormLogin = () => {
         <button type="submit" class="btn btn-primary" id="signIn">
           Sign in
         </button>
-        <p id="for">
+        <p class="text-center" id="for">
           <a href="#" class="text-primary">
             Quên mật khẩu?
           </a>

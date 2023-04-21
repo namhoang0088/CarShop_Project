@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2023 at 02:26 PM
+-- Generation Time: Apr 21, 2023 at 04:44 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `car_shop`
+-- Database: `car_shop_222`
 --
 
 -- --------------------------------------------------------
@@ -42,6 +42,16 @@ CREATE TABLE `account` (
   `role` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `account`
+--
+
+INSERT INTO `account` (`id`, `email`, `password`, `phone_number`, `name`, `birthday`, `address`, `avatar`, `security_question`, `security_answer`, `state`, `role`) VALUES
+(400, 'kientran@gmail.com', '1234', '01234567', 'Kiên Trần', '2023-04-21', 'Linh Trung, Thủ Đức', 'any', 'Sở thích của bạn là gì', 'Xem phim', 'True', 'admin'),
+(500, 'huynhnhan@gmail.com', '1234', '01234567', 'Huỳnh Nhân', '2023-04-21', 'Linh Trung, Thủ Đức', 'any', 'Sở thích của bạn là gì', 'Xem phim', 'True', 'customer'),
+(600, 'hoangnam@gmail.com', '1234', '01234567', 'Hoàng Nam', '2023-04-21', 'Linh Trung, Thủ Đức', 'any', 'Sở thích của bạn là gì', 'Xem phim', 'True', 'customer'),
+(700, 'chungquang@gmail.com', '1234', '01234567', 'Chúng Quang', '2023-04-21', 'Linh Trung, Thủ Đức', 'any', 'Sở thích của bạn là gì', 'Xem phim', 'True', 'customer');
+
 -- --------------------------------------------------------
 
 --
@@ -60,7 +70,8 @@ CREATE TABLE `admin` (
 
 CREATE TABLE `brand` (
   `brand_id` int(10) NOT NULL,
-  `name` varchar(255) NOT NULL
+  `name` varchar(255) NOT NULL,
+  `img` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -86,7 +97,8 @@ CREATE TABLE `car` (
   `price` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `color` varchar(255) NOT NULL,
+  `color` varchar(255) DEFAULT NULL,
+  `wheel` varchar(255) DEFAULT NULL,
   `overall_size` varchar(255) DEFAULT NULL,
   `base_width` date DEFAULT NULL,
   `wattage` varchar(255) DEFAULT NULL,
@@ -138,7 +150,9 @@ CREATE TABLE `customer` (
 
 CREATE TABLE `image` (
   `car_id` int(10) NOT NULL,
-  `img` varchar(255) NOT NULL
+  `img_car` varchar(255) NOT NULL,
+  `img_color` varchar(255) DEFAULT NULL,
+  `img_wheel` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -223,7 +237,7 @@ ALTER TABLE `customer`
 -- Indexes for table `image`
 --
 ALTER TABLE `image`
-  ADD PRIMARY KEY (`car_id`,`img`);
+  ADD PRIMARY KEY (`car_id`,`img_car`);
 
 --
 -- Indexes for table `own`
