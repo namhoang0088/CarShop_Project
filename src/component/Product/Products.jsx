@@ -1,55 +1,35 @@
-import React from "react";
+
 import "./Products.css";
+
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+
 export default function Products(){
+    const [products, setProducts] = useState([]);
+    useEffect(() => {
+        axios.get('http://localhost/test-react/webcar-ui/BE/Model/Products-data.php')
+          .then(response => setProducts(response.data))
+          .catch(error => console.log(error));
+      }, []);
+
     return(
         <>
+        
         <Introduce imgSrc="https://logos-world.net/wp-content/uploads/2021/04/Porsche-Logo.png" imgName="Porsche" />
         <div style={{margin:'30px 10px'}}>
         <div className="row">
+        {products.map(product => (
             <div className="col-md-4">
-            <CardProduct imgSrc ="https://img.tinbanxe.vn/images/Lamborghini/Lamborghini%20Huracan%20Evo/ANHDAIDIEN-Lamborghini-Huracan_EVO-.png"
-            imgAlt = "Carpicture" />
+            <CardProduct 
+            imgSrc = {product.image}
+            imgAlt = "Carpicture" 
+            name = {product.name}
+            price = {product.price}
+            />
             </div>
-            <div className="col-md-4">
-            <CardProduct imgSrc ="https://img.tinbanxe.vn/images/Lamborghini/Lamborghini%20Huracan%20Evo/ANHDAIDIEN-Lamborghini-Huracan_EVO-.png"
-            imgAlt = "Carpicture" />
-            </div>
-            <div className="col-md-4">
-            <CardProduct imgSrc ="https://img.tinbanxe.vn/images/Lamborghini/Lamborghini%20Huracan%20Evo/ANHDAIDIEN-Lamborghini-Huracan_EVO-.png"
-            imgAlt = "Carpicture" />
-            </div>
-        </div>
-        </div>
-        <div style={{margin:'30px 10px'}}>
-        <div className="row">
-            <div className="col-md-4">
-            <CardProduct imgSrc ="https://img.tinbanxe.vn/images/Lamborghini/Lamborghini%20Huracan%20Evo/ANHDAIDIEN-Lamborghini-Huracan_EVO-.png"
-            imgAlt = "Carpicture" />
-            </div>
-            <div className="col-md-4">
-            <CardProduct imgSrc ="https://img.tinbanxe.vn/images/Lamborghini/Lamborghini%20Huracan%20Evo/ANHDAIDIEN-Lamborghini-Huracan_EVO-.png"
-            imgAlt = "Carpicture" />
-            </div>
-            <div className="col-md-4">
-            <CardProduct imgSrc ="https://img.tinbanxe.vn/images/Lamborghini/Lamborghini%20Huracan%20Evo/ANHDAIDIEN-Lamborghini-Huracan_EVO-.png"
-            imgAlt = "Carpicture" />
-            </div>
-        </div>
-        </div>
-        <div style={{margin:'30px 10px'}}>
-        <div className="row">
-            <div className="col-md-4">
-            <CardProduct imgSrc ="https://img.tinbanxe.vn/images/Lamborghini/Lamborghini%20Huracan%20Evo/ANHDAIDIEN-Lamborghini-Huracan_EVO-.png"
-            imgAlt = "Carpicture" />
-            </div>
-            <div className="col-md-4">
-            <CardProduct imgSrc ="https://img.tinbanxe.vn/images/Lamborghini/Lamborghini%20Huracan%20Evo/ANHDAIDIEN-Lamborghini-Huracan_EVO-.png"
-            imgAlt = "Carpicture" />
-            </div>
-            <div className="col-md-4">
-            <CardProduct imgSrc ="https://img.tinbanxe.vn/images/Lamborghini/Lamborghini%20Huracan%20Evo/ANHDAIDIEN-Lamborghini-Huracan_EVO-.png"
-            imgAlt = "Carpicture" />
-            </div>
+        ))}
+
         </div>
         </div>
 
@@ -90,8 +70,8 @@ function CardProduct(props){
         </div>
         <img src={props.imgSrc} class="card-img-top" alt = {props.imgAlt} />
         <div class="card-body text-center">
-        <p className="card-text">718 Boxster</p>
-        <p className="card-text">3.620.000.000 VNĐ</p>
+        <p className="card-text">{props.name}</p>
+        <p className="card-text">{(parseInt(props.price)).toLocaleString()} VNĐ</p>
         </div>
         </div>
     )
