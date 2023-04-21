@@ -25,6 +25,7 @@ const FormRegister = () => {
               class="form-control border-0 shadow-none bg-white form-control-sm"
               id="name"
               placeholder="Enter your name"
+              name="user_name"
             ></input>
           </div>
         </div>
@@ -33,13 +34,14 @@ const FormRegister = () => {
             <FiMail class="item" />
           </div>
           <div class="col-10">
-            <label for="exampleInputEmail1">EMAIL ADDRESS</label>
+            <label for="email">EMAIL ADDRESS</label>
             <input
               type="email"
               class="form-control border-0 shadow-none bg-white form-control-sm"
-              id="exampleInputEmail1"
+              id="email"
               aria-describedby="emailHelp"
-              placeholder="Enter email"
+              placeholder="Enter your email"
+              name="user_email"
             ></input>
           </div>
         </div>
@@ -54,6 +56,7 @@ const FormRegister = () => {
               class="form-control border-0 shadow-none bg-white form-control-sm"
               id="password"
               placeholder="Enter password"
+              name="user_password"
             ></input>
           </div>
         </div>
@@ -68,6 +71,7 @@ const FormRegister = () => {
               class="form-control border-0 shadow-none bg-white form-control-sm"
               id="con_password"
               placeholder="Enter confirm password"
+              name="user_repassword"
             ></input>
           </div>
         </div>
@@ -82,6 +86,7 @@ const FormRegister = () => {
               class="form-control border-0 shadow-none bg-white form-control-sm"
               id="birthday"
               placeholder="Enter your birthday"
+              name="user_birthday"
             ></input>
           </div>
         </div>
@@ -95,7 +100,8 @@ const FormRegister = () => {
               type="text"
               class="form-control border-0 shadow-none bg-white form-control-sm"
               id="address"
-              placeholder="Enter your birthday"
+              placeholder="Enter your address"
+              name="user_address"
             ></input>
           </div>
         </div>
@@ -110,6 +116,7 @@ const FormRegister = () => {
               class="form-control border-0 shadow-none bg-white form-control-sm"
               id="phonenumber"
               placeholder="Enter your phone number"
+              name="user_phonenumber"
             ></input>
           </div>
         </div>
@@ -120,7 +127,11 @@ const FormRegister = () => {
           <div class="col-10">
             <div class="input-group">
               <label for="question">QUESTION</label>
-              <select class="custom-select border-0" id="question">
+              <select
+                class="custom-select border-0"
+                id="question"
+                name="user_question"
+              >
                 <option selected>Select Question</option>
                 <option value="1">Sở thích của bạn là gì</option>
                 <option value="2">Bạn sống ở đâu</option>
@@ -141,6 +152,7 @@ const FormRegister = () => {
               class="form-control border-0 shadow-none bg-white form-control-sm"
               id="answer"
               placeholder="Enter your answer"
+              name="user_answer"
             ></input>
           </div>
         </div>
@@ -152,7 +164,11 @@ const FormRegister = () => {
         Sign Up
       </button>
       <p class="text-center">
-        Already have an account? <a href="#"> Sign in</a>
+        Already have an account?{" "}
+        <a href="#" class="text-success">
+          {" "}
+          Sign in
+        </a>
       </p>
     </div>
   );

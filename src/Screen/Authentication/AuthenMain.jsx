@@ -14,7 +14,8 @@ const AuthoMain = () => {
           ></img>
         </div>
         <div class="col-lg-6">
-          <FormRegister />
+          <FormLogin />
+          {/* <FormLogin /> */}
         </div>
       </div>
     </div>
