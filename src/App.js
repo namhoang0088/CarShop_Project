@@ -1,17 +1,12 @@
-import React from "react";
-import "./App.css";
+// import "./App.css";
 
-import ShowProducts from "./Screen/User/Products";
-import Home from "./Screen/User/Home";
-import ShowCart from "./Screen/User/Cart";
+// import Authentication from "./Screen/Authentication/Authentication";
+// import Product from "./component/Product/Product.jsx"
+import Payment from './component/Product/Payment';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-
-
 export default function App() {
   return (
-    <div className="Body">
-    <ShowCart />
-    </div>
+      <Payment/>
+      
   );
 }
