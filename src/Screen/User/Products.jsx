@@ -7,7 +7,6 @@ import Products from "../../component/Product/Products";
 export default function ShowProducts() {
   return (
     <div className="Body">
-    <Header />
     <ViewProduct/>
     <Footer />
     </div> 

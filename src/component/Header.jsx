@@ -1,4 +1,8 @@
 import React from "react";
+import ShowCart from "../Screen/User/Cart";
+import ShowProducts from "../Screen/User/Products";
+import Home from "../Screen/User/Home";
+import { Link } from "react-router-dom";
 import "./Style-header.css";
 export default function Header(){
     return(
@@ -12,18 +16,13 @@ export default function Header(){
             <div className="collapse navbar-collapse" id="mynavbar">
                 <ul className="navbar-nav me-auto" >
                     <li className="nav-item">
-                        <a href="#" className="nav-link" id="Title">Trang chủ</a> 
+                    <Link to="/" className="nav-link" id="Title">Trang chủ</Link>
                     </li> 
                     <li className="nav-item active">
                         <a href="#" className="nav-link" id="Title">Tin tức</a> 
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" id="Title">Sản phẩm</a>
-                        <ul class="dropdown-menu">
-                          <li><a href="#" class="dropdown-item">Link</a></li>
-                          <li><a href="#" class="dropdown-item">Another link</a></li>
-                          <li><a href="#" class="dropdown-item">A third link</a></li>
-                        </ul>
+                    <Link to="/products" className="nav-link" id="Title">Sản phẩm</Link>
                     </li>
                     <li className="nav-item active">
                         <a href="#" className="nav-link" id="Title">Thông tin</a> 
@@ -36,7 +35,7 @@ export default function Header(){
                 </form>
                 </div>
                 <div className="header-icon">
-                <button className="btn" type="button"><i class='bx bx-cart' style={{ fontSize: '2em' }}></i></button>
+                <Link to="/cart" className="btn"><i class='bx bx-cart' style={{ fontSize: '2em' }}></i></Link>
                 </div>
                 <div className="header-icon">
                 <button className="btn" type="button"><i class='bx bxs-user' style={{ fontSize: '2em' }}></i></button>
