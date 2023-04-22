@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2023 at 04:44 AM
+-- Generation Time: Apr 22, 2023 at 03:13 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -83,7 +83,9 @@ CREATE TABLE `brand` (
 CREATE TABLE `buy_history` (
   `customer_id` int(10) NOT NULL,
   `car_id` int(10) NOT NULL,
-  `date_time` date NOT NULL
+  `date_time` date NOT NULL,
+  `color` varchar(255) NOT NULL,
+  `wheel` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -106,7 +108,11 @@ CREATE TABLE `car` (
   `gear` varchar(255) DEFAULT NULL,
   `cylinder_capacity` varchar(255) DEFAULT NULL,
   `seats` varchar(255) DEFAULT NULL,
-  `base_long` varchar(255) DEFAULT NULL
+  `base_long` varchar(255) DEFAULT NULL,
+  `img_front` varchar(255) NOT NULL,
+  `img_back` varchar(255) NOT NULL,
+  `img_beside` varchar(255) NOT NULL,
+  `img_above` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -117,7 +123,9 @@ CREATE TABLE `car` (
 
 CREATE TABLE `cart` (
   `customer_id` int(10) NOT NULL,
-  `car_id` int(10) NOT NULL
+  `car_id` int(10) NOT NULL,
+  `color` varchar(255) NOT NULL,
+  `wheel` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -128,7 +136,7 @@ CREATE TABLE `cart` (
 
 CREATE TABLE `comment_rate` (
   `comment_id` int(10) NOT NULL,
-  `content` varchar(255) NOT NULL,
+  `content` text NOT NULL,
   `rate` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

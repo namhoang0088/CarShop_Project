@@ -2,7 +2,7 @@ import React from "react";
 import "./Login.css";
 import { FiMail } from "react-icons/fi";
 import { FaKey } from "react-icons/fa";
-
+import { Link } from "react-router-dom";
 const FormLogin = () => {
   return (
     <div id="formLogin">
@@ -45,13 +45,11 @@ const FormLogin = () => {
           Sign in
         </button>
         <p class="text-center" id="for">
-          <a href="#" class="text-primary">
-            Quên mật khẩu?
-          </a>
+          <Link to="/forgotpassword"> Quên mật khẩu?</Link>
         </p>
       </form>
       <button type="submit" class="btn btn-success" id="register">
-        Register an account
+        <Link to="/register"> Register an account</Link>
       </button>
     </div>
   );
