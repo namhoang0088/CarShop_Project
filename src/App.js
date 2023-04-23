@@ -9,9 +9,9 @@ import Admin from './Screen/Admin/Admin';
 import 'bootstrap/dist/css/bootstrap.min.css';
 export default function App() {
   return (
-    <div className="Body">
-      <Authentication/>
-    </div>
+
+      <Admin/>
+
       
       
   );

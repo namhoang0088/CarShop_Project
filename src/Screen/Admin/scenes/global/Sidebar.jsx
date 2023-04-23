@@ -11,10 +11,12 @@ import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
 import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import InventoryIcon from '@mui/icons-material/Inventory';
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
@@ -144,7 +146,13 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-
+            <Item
+              title="Products"
+              to="/comments"
+              icon={<InventoryIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
             <Typography
               variant="h6"
               color={colors.grey[300]}
@@ -170,6 +178,13 @@ const Sidebar = () => {
               title="Comments"
               to="/comments"
               icon={<ChatBubbleOutlineIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Posts"
+              to="/comments"
+              icon={<DynamicFeedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
