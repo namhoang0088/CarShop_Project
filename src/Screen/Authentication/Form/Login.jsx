@@ -45,13 +45,11 @@ const FormLogin = () => {
           Sign in
         </button>
         <p class="text-center" id="for">
-          <a href="#" class="text-primary">
-            Quên mật khẩu?
-          </a>
+          <Link to="/forgotpassword"> Quên mật khẩu?</Link>
         </p>
       </form>
-      <button type="submit" class="btn btn-success" id="register" >
-       <Link to="/register"> Register an account</Link>
+      <button type="submit" class="btn btn-success" id="register">
+        <Link to="/register"> Register an account</Link>
       </button>
     </div>
   );
