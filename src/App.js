@@ -1,7 +1,7 @@
 // import "./App.css";
 
 // import Authentication from "./Screen/Authentication/Authentication";
-// import Product from "./component/Product/Product.jsx"
+import Product from "./component/Product/Product.jsx"
 import Payment from './component/Product/Payment';
 import Authentication from './Screen/Authentication/Authentication';
 import FormRegister from './Screen/Authentication/Form/Register';
