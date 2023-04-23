@@ -31,7 +31,7 @@ label {
 }
 
 #signIn {
-    color: black;
+    color: rgb(255, 255, 255);
     font-size: large;
     width: 100%;
 }
@@ -41,7 +41,7 @@ label {
 }
 
 #register {
-    color: black;
+    color: rgb(255, 255, 255);
     width: 60%;
     font-size: large;
     margin-left: 20%;
@@ -52,10 +52,6 @@ label {
 form {
     padding-bottom: 10px; 
     border-bottom: 1px solid #D9D9D9;
-}
-
-html {
-    background-color: black;
 }
 
 .item {
@@ -74,9 +70,9 @@ select {
 }
 
 .register{
+    background-color: white;
     height: 100vh;
 }
 .title-register{
     width: 100vw;
-    margin-bottom: 50px;
 }
