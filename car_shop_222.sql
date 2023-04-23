@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2023 at 03:13 PM
+-- Generation Time: Apr 23, 2023 at 05:38 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -96,23 +96,15 @@ CREATE TABLE `buy_history` (
 
 CREATE TABLE `car` (
   `car_id` int(10) NOT NULL,
-  `price` int(11) NOT NULL,
+  `price` int(15) NOT NULL,
   `quantity` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `color` varchar(255) DEFAULT NULL,
-  `wheel` varchar(255) DEFAULT NULL,
-  `overall_size` varchar(255) DEFAULT NULL,
-  `base_width` date DEFAULT NULL,
+  ` acceleration` varchar(255) DEFAULT NULL,
+  `max_speed` varchar(255) DEFAULT NULL,
   `wattage` varchar(255) DEFAULT NULL,
   `torque` varchar(255) DEFAULT NULL,
-  `gear` varchar(255) DEFAULT NULL,
-  `cylinder_capacity` varchar(255) DEFAULT NULL,
-  `seats` varchar(255) DEFAULT NULL,
-  `base_long` varchar(255) DEFAULT NULL,
-  `img_front` varchar(255) NOT NULL,
-  `img_back` varchar(255) NOT NULL,
-  `img_beside` varchar(255) NOT NULL,
-  `img_above` varchar(255) NOT NULL
+  `fuel_comsumption` varchar(255) DEFAULT NULL,
+  ` emissions_co2` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -158,9 +150,12 @@ CREATE TABLE `customer` (
 
 CREATE TABLE `image` (
   `car_id` int(10) NOT NULL,
-  `img_car` varchar(255) NOT NULL,
   `img_color` varchar(255) DEFAULT NULL,
-  `img_wheel` varchar(255) DEFAULT NULL
+  `img_wheel` varchar(255) DEFAULT NULL,
+  `beside` varchar(255) NOT NULL,
+  `front` varchar(255) NOT NULL,
+  `back` varchar(255) NOT NULL,
+  `top` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -245,7 +240,7 @@ ALTER TABLE `customer`
 -- Indexes for table `image`
 --
 ALTER TABLE `image`
-  ADD PRIMARY KEY (`car_id`,`img_car`);
+  ADD PRIMARY KEY (`car_id`,`front`) USING BTREE;
 
 --
 -- Indexes for table `own`
