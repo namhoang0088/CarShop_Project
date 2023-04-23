@@ -5,7 +5,6 @@ import Cart from "../../component/Cart/Cart";
 export default function ShowCart() {
   return (
     <div className="Body">
-    <Header />
     <Cart />
     <Footer />
     </div>
