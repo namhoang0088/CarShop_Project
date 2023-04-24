@@ -65,7 +65,7 @@ export default function CommentRating() {
                     {
                         stars.map((_, index) => {
                             return(
-                              <>
+                              <span key={`star-${index}`}>
                                 
                                 <label for={`star-${index}`}>
                                   <FaStar
@@ -84,7 +84,7 @@ export default function CommentRating() {
                                         value={currentValue}
                                         style={{display: "none"}}
                                 />
-                              </>
+                              </span>
                             )
                         })
                     }

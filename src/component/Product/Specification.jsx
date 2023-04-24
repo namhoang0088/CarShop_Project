@@ -3,12 +3,12 @@ import "./Specification.css"
 
 
 const specification = [
-    {name:"wattage", value:220},
-    {name:"acceleration", value:4.9},
-    {name:"max_speed", value:250},
-    {name:"fuel", value:50},
-    {name:"CO2", value:5.6},
-    {name:"price", value:5000}
+    {name:"Công suất(kW)", value:220},
+    {name:"Tăng tốc từ 0 - 100 km/giờ(giây)", value:4.9},
+    {name:"Tốc độ tối đa(km/h)", value:250},
+    {name:"Tiêu thụ nhiên liệu kết hợp (lít/100km)", value:50},
+    {name:"Lượng khí thải CO2 (g/km)", value:5.6},
+    {name:"Giá", value:5000}
 ]
 
 export default function Specification(){
