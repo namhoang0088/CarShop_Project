@@ -13,10 +13,12 @@ body,
 .app {
   display: flex;
   position: relative;
+  height: 100vh;
 }
 
 .home{
   background-color: black;
+
 }
 ::-webkit-scrollbar {
   width: 10px;
