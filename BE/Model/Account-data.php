@@ -15,7 +15,7 @@ $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password)
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 // Select data
-$stmt = $conn->prepare("SELECT id, name, brand, price, image FROM products");
+$stmt = $conn->prepare("SELECT id, email, password, phone_number, name, birthday, address, avatar, security_question, security_answer, state, role  FROM account");
 $stmt->execute();
 
 // Fetch data as associative array
