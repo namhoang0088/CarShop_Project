@@ -52,13 +52,19 @@
   width: 90%;
   height: auto;
   border-radius: 20px;
+  padding: 10px;
 }
 
 .logoproduct {
   height: 100px;
   object-fit: contain;
+  align-items: center;
 }
 
 .namelogo{
   text-align: center;
+}
+
+.introduce p{
+  margin-left: 20px;
 }
