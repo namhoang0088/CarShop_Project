@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2023 at 03:13 PM
+-- Generation Time: Apr 24, 2023 at 10:11 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -77,6 +77,17 @@ CREATE TABLE `brand` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `brand_has_model`
+--
+
+CREATE TABLE `brand_has_model` (
+  `brand_id` int(10) NOT NULL,
+  `model_id` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `buy_history`
 --
 
@@ -96,23 +107,15 @@ CREATE TABLE `buy_history` (
 
 CREATE TABLE `car` (
   `car_id` int(10) NOT NULL,
-  `price` int(11) NOT NULL,
+  `price` int(15) NOT NULL,
   `quantity` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `color` varchar(255) DEFAULT NULL,
-  `wheel` varchar(255) DEFAULT NULL,
-  `overall_size` varchar(255) DEFAULT NULL,
-  `base_width` date DEFAULT NULL,
+  ` acceleration` varchar(255) DEFAULT NULL,
+  `max_speed` varchar(255) DEFAULT NULL,
   `wattage` varchar(255) DEFAULT NULL,
   `torque` varchar(255) DEFAULT NULL,
-  `gear` varchar(255) DEFAULT NULL,
-  `cylinder_capacity` varchar(255) DEFAULT NULL,
-  `seats` varchar(255) DEFAULT NULL,
-  `base_long` varchar(255) DEFAULT NULL,
-  `img_front` varchar(255) NOT NULL,
-  `img_back` varchar(255) NOT NULL,
-  `img_beside` varchar(255) NOT NULL,
-  `img_above` varchar(255) NOT NULL
+  `fuel_comsumption` varchar(255) DEFAULT NULL,
+  ` emissions_co2` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -126,6 +129,17 @@ CREATE TABLE `cart` (
   `car_id` int(10) NOT NULL,
   `color` varchar(255) NOT NULL,
   `wheel` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `car_of_models`
+--
+
+CREATE TABLE `car_of_models` (
+  `model_id` int(10) NOT NULL,
+  `car_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -158,20 +172,23 @@ CREATE TABLE `customer` (
 
 CREATE TABLE `image` (
   `car_id` int(10) NOT NULL,
-  `img_car` varchar(255) NOT NULL,
   `img_color` varchar(255) DEFAULT NULL,
-  `img_wheel` varchar(255) DEFAULT NULL
+  `img_wheel` varchar(255) DEFAULT NULL,
+  `beside` varchar(255) NOT NULL,
+  `front` varchar(255) NOT NULL,
+  `back` varchar(255) NOT NULL,
+  `top` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `own`
+-- Table structure for table `models`
 --
 
-CREATE TABLE `own` (
-  `brand_id` int(10) NOT NULL,
-  `car_id` int(10) NOT NULL
+CREATE TABLE `models` (
+  `model_id` int(10) NOT NULL,
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -210,6 +227,13 @@ ALTER TABLE `brand`
   ADD PRIMARY KEY (`brand_id`);
 
 --
+-- Indexes for table `brand_has_model`
+--
+ALTER TABLE `brand_has_model`
+  ADD PRIMARY KEY (`brand_id`,`model_id`),
+  ADD KEY `FK_model_has` (`model_id`);
+
+--
 -- Indexes for table `buy_history`
 --
 ALTER TABLE `buy_history`
@@ -230,6 +254,13 @@ ALTER TABLE `cart`
   ADD KEY `FK_cart_customer` (`customer_id`);
 
 --
+-- Indexes for table `car_of_models`
+--
+ALTER TABLE `car_of_models`
+  ADD PRIMARY KEY (`model_id`,`car_id`),
+  ADD KEY `FK_car` (`car_id`);
+
+--
 -- Indexes for table `comment_rate`
 --
 ALTER TABLE `comment_rate`
@@ -245,14 +276,13 @@ ALTER TABLE `customer`
 -- Indexes for table `image`
 --
 ALTER TABLE `image`
-  ADD PRIMARY KEY (`car_id`,`img_car`);
+  ADD PRIMARY KEY (`car_id`,`front`) USING BTREE;
 
 --
--- Indexes for table `own`
+-- Indexes for table `models`
 --
-ALTER TABLE `own`
-  ADD PRIMARY KEY (`car_id`,`brand_id`),
-  ADD KEY `FK_own_brand` (`brand_id`);
+ALTER TABLE `models`
+  ADD PRIMARY KEY (`model_id`);
 
 --
 -- Indexes for table `write_comment_rate`
@@ -273,6 +303,13 @@ ALTER TABLE `admin`
   ADD CONSTRAINT `FK_admin_user` FOREIGN KEY (`admin_id`) REFERENCES `account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `brand_has_model`
+--
+ALTER TABLE `brand_has_model`
+  ADD CONSTRAINT `FK_brand_has` FOREIGN KEY (`brand_id`) REFERENCES `brand` (`brand_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_model_has` FOREIGN KEY (`model_id`) REFERENCES `models` (`model_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `buy_history`
 --
 ALTER TABLE `buy_history`
@@ -287,6 +324,13 @@ ALTER TABLE `cart`
   ADD CONSTRAINT `FK_cart_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `car_of_models`
+--
+ALTER TABLE `car_of_models`
+  ADD CONSTRAINT `FK_car` FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_model` FOREIGN KEY (`model_id`) REFERENCES `models` (`model_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `customer`
 --
 ALTER TABLE `customer`
@@ -297,13 +341,6 @@ ALTER TABLE `customer`
 --
 ALTER TABLE `image`
   ADD CONSTRAINT `FK_image_car` FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `own`
---
-ALTER TABLE `own`
-  ADD CONSTRAINT `FK_own_brand` FOREIGN KEY (`brand_id`) REFERENCES `brand` (`brand_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_own_car` FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `write_comment_rate`
