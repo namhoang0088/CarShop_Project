@@ -1,6 +1,5 @@
 
 import "./Products.css";
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -15,7 +14,6 @@ export default function Products(){
 
     return(
         <>
-        
         <Introduce imgSrc="https://logos-world.net/wp-content/uploads/2021/04/Porsche-Logo.png" imgName="Porsche" />
         <div style={{margin:'30px 10px'}}>
         <div className="row">
@@ -33,7 +31,7 @@ export default function Products(){
         </div>
         </div>
 
-        <div className="row">
+       {/* <div className="row">
             <div className="col-sm-3">
 
             </div>
@@ -54,7 +52,7 @@ export default function Products(){
             <div className="col-sm-3">
 
             </div>
-        </div>
+        </div> */}
         </>
     )
 }
