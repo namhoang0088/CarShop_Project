@@ -21,10 +21,11 @@ export default function Specification(){
                 </Col>
                 <Col lg='6'>
                     <Table striped bordered className='specification-table'>
+                        <tbody>
                         {
                             specification.map(
-                                object => (
-                                            <tr>
+                                (object,idx) => (
+                                            <tr key={`tr-${idx}`}>
                                                 <th>{object.name}</th>
                                                 <td>{object.value}</td>
                                             </tr>
@@ -32,6 +33,7 @@ export default function Specification(){
                             )
 
                         }
+                        </tbody>
                     </Table>
                 </Col>
             </Row>

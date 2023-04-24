@@ -11,8 +11,8 @@ export default function SlideCar(props) {
   return (
     <Carousel activeIndex={index} onSelect={handleSelect}>
       {
-        props.car_img.map(car => (
-          <Carousel.Item>
+        props.car_img.map((car,idx) => (
+          <Carousel.Item key={`img car-${idx}`}>
             <img
               className="d-block w-100"
               src={car.url}

@@ -65,10 +65,10 @@ import "./CustomCar.css"
 // }
 
 const radios = [
-    { name: 'Black', value: '0' },
-    { name: 'Red', value: '1' },
-    { name: 'Blue', value: '2' },
-    { name: 'Yellow', value: '3' }
+    { name: 'black', value: '0' },
+    { name: 'red', value: '1' },
+    { name: 'blue', value: '2' },
+    { name: 'yellow', value: '3' }
 ];
 
 const wheel_array = [
@@ -78,7 +78,7 @@ const wheel_array = [
 
 
 function CustomCar(props){
-    const[color, setColor] = useState("Black");
+    const[color, setColor] = useState("black");
     const [radioColorValue, setRadioColorValue] = useState('0');
     const [wheel, setWheel] = useState("style1");
     const [radioWheelValue, setRadioWheelValue] = useState('0');
@@ -87,10 +87,10 @@ function CustomCar(props){
     
     const handleChangeColor = (e) => {
         setRadioColorValue(e.currentTarget.value);
-        if(e.currentTarget.value ==="0") setColor('Black');
-        else if(e.currentTarget.value ==="1") setColor('Red');
-        else if(e.currentTarget.value === "2") setColor('Blue');
-        else setColor('Yellow');
+        if(e.currentTarget.value ==="0") setColor('black');
+        else if(e.currentTarget.value ==="1") setColor('red');
+        else if(e.currentTarget.value === "2") setColor('blue');
+        else setColor('yellow');
     
     }
 

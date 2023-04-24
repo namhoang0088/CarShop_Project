@@ -13,7 +13,7 @@ import axios from "axios"
 
 function Product() {
   const [price,setPrice] = useState("0");
-  const [carImg,setCarImg] = useState({black:{style1 :[]}});
+  const [carImg,setCarImg] = useState({"black":{"style1" :[]}});
 
 
 const fetchProductsImg = async () => {
