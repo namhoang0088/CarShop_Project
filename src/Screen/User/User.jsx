@@ -5,6 +5,7 @@ import ViewProduct from './Products';
 import Home from './Home';
 import Header from '../../component/Header';
 import Footer from '../../component/Footer';
+import AuthoMain from '../Authentication/AuthenMain';
 function User() {
   return (
     <div>
@@ -13,6 +14,7 @@ function User() {
         <Route exact path="/" element = {<Home />} />
         <Route exact path="/products" element = {<ViewProduct />} />
         <Route exact path="/cart" element = {<Cart />} />
+        <Route exact path="/login" element = {<AuthoMain />} />
         </Routes>
     <Footer />
     </div>

@@ -1,0 +1,29 @@
+.main{
+    background-color: #F4F3F3;
+}
+
+.account{
+    height: auto;
+    width: 80%;
+    background-color: white;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.info{
+    margin-bottom: 20px;
+}
+
+.avatar{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.anh{
+    margin: 20px 0;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 3px solid black;
+}
