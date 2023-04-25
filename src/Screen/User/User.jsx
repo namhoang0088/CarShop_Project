@@ -15,8 +15,7 @@ function User() {
     setIslogin(loginStatus);
   };
   
-  let loginComponent = isLogin === 'No' ? <AuthoMain onLogin={handleLogin} /> : <Account />;
-  console.log(isLogin)
+  let loginComponent = isLogin === 'No' ? <AuthoMain onLogin={handleLogin} /> : <Account isLogin={isLogin} />;
   return (
     <div>
       <Header />
