@@ -1,5 +1,4 @@
-import { Col, Row, Container, Button, ToggleButton, Form ,InputGroup, Figure} from "react-bootstrap";
-import SlideCar from "./SlideCar";
+import { Col, Row, Container, Button, ToggleButton, Form ,InputGroup, Carousel} from "react-bootstrap";
 import Style1 from './style1.JPG';
 import Style2 from './style2.JPG';
 import { useState } from "react";
@@ -83,6 +82,11 @@ function CustomCar(props){
     const [wheel, setWheel] = useState("style1");
     const [radioWheelValue, setRadioWheelValue] = useState('0');
     const [quantity, setQuantity] = useState(1);
+
+    const [index, setIndex] = useState(0);
+    const handleSelect = (selectedIndex, e) => {
+        setIndex(selectedIndex);
+    };
     
     
     const handleChangeColor = (e) => {
@@ -120,7 +124,19 @@ function CustomCar(props){
             <h1>718 Cayman</h1>
           <Row>
             <Col lg="8">
-                <SlideCar car_img={props.carImg[color][wheel]}/>
+                <Carousel activeIndex={index} onSelect={handleSelect}>
+                    {
+                        props.carImg[color][wheel].map((car,idx) => (
+                        <Carousel.Item key={`img car-${idx}`}>
+                            <img
+                            className="d-block w-100"
+                            src={"http://"+car.url}
+                            alt={car.name}
+                            />
+                        </Carousel.Item>
+                        ))
+                    }     
+                </Carousel>
             </Col>
             <Col lg="4" id='custom_car'>
                 <Form action="">

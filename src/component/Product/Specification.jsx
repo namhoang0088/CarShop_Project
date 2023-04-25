@@ -1,18 +1,19 @@
 import { Table, Row, Col} from 'react-bootstrap';
-import "./Specification.css"
+import { useState } from 'react';
+import "./Specification.css";
 
 
-const specification = [
-    {name:"Công suất(kW)", value:220},
-    {name:"Mô men xoắn cực đại(Nm)", value:380},
-    {name:"Tăng tốc từ 0 - 100 km/giờ(giây)", value:4.9},
-    {name:"Tốc độ tối đa(km/h)", value:250},
-    {name:"Tiêu thụ nhiên liệu kết hợp (lít/100km)", value:50},
-    {name:"Lượng khí thải CO2 (g/km)", value:5.6},
-    {name:"Giá", value:5000}
-]
+// const specification = [
+//     {name:"Công suất(kW)", value:220},
+//     {name:"Mô men xoắn cực đại(Nm)", value:380},
+//     {name:"Tăng tốc từ 0 - 100 km/giờ(giây)", value:4.9},
+//     {name:"Tốc độ tối đa(km/h)", value:250},
+//     {name:"Tiêu thụ nhiên liệu kết hợp (lít/100km)", value:50},
+//     {name:"Lượng khí thải CO2 (g/km)", value:5.6},
+//     {name:"Giá", value:5000}
+// ]
 
-export default function Specification(){
+export default function Specification(props){
     return (
         <Row  className='m-3'>
             <h1>Thông số kĩ thuật</h1>
@@ -24,7 +25,7 @@ export default function Specification(){
                     <Table striped bordered className='specification-table'>
                         <tbody>
                         {
-                            specification.map(
+                            props.specification.map(
                                 (object,idx) => (
                                             <tr key={`tr-${idx}`}>
                                                 <th>{object.name}</th>

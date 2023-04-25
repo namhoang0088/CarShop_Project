@@ -14,15 +14,17 @@ import axios from "axios"
 function Product() {
   const [price,setPrice] = useState("0");
   const [carImg,setCarImg] = useState({"black":{"style1" :[]}});
-
+  const [specification,setSpecification] = useState([]);
 
 const fetchProductsImg = async () => {
   try {
-    const name = '718%20Cayman';
-    const response = await axios.get(`http://localhost/Controller/Products/Car_controller.php?name=${name}`)
-    // console.log(response.data);
+    const id = "4";
+    const response = await axios.get(`http://localhost/Controller/Products/Car_controller.php?id=${id}`)
+    console.log(response.data["img"]);
     setCarImg(response.data["img"]);
-    setPrice(response.data["price"]); // Lưu danh sách sản phẩm vào state
+    console.log(carImg);
+    setSpecification(response.data["specification"]); // Lưu danh sách sản phẩm vào state
+    setPrice(response.data["specification"][6].value);
   } 
   catch (error) {
     alert( error);
@@ -38,7 +40,7 @@ const fetchProductsImg = async () => {
     <div className="product container-fluid">
         {/* <Header/> */}
         <CustomCar carImg={carImg} price={price}/>
-        <Specification/>
+        <Specification specification={specification}/>
         <Review/>
         {/* <Footer/> */}
     </div>
