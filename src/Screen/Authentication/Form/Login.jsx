@@ -4,7 +4,7 @@ import { FiMail } from "react-icons/fi";
 import { FaKey } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import axios from 'axios';
-const FormLogin = () => {
+const FormLogin = (props) => {
   const [account, setAccount] = useState([]);
   const [Warning, setWarning] = useState([]);
   useEffect(() => {
@@ -25,13 +25,14 @@ const FormLogin = () => {
         for (let i = 0; i < account.length; i++) {
           if (email === account[i].email && password === account[i].password) {
             // Trùng khớp, chuyển hướng đến trang khác
+            props.onLogin(account[i].id);
             setWarning("");
-            
             return;
           }
         }
+        console.log("okelaaaaa")
          // Không tìm thấy tài khoản
-        setWarning("Tài khoản không hợp lệ!");
+         props.onLogin("No");
       }
      
     };

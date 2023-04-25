@@ -6,7 +6,6 @@ export default function Account(){
     return(
         <>
         <div className="main">
-        <Header />
         <div className="account">
         <div className="row">
             <div className="col-md-7">
@@ -43,7 +42,6 @@ export default function Account(){
             </div>
         </div>
         </div>
-        <Footer />
         </div>
         </>
     )
