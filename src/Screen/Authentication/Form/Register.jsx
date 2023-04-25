@@ -82,7 +82,6 @@ const FormRegister = () => {
           return;
         }
       }
-      alert("a");
       setWarning("");
     }
   return (
