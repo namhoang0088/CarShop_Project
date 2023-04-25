@@ -3,7 +3,8 @@ import FormLogin from "./Form/Login";
 import FormRegister from "./Form/Register";
 import "./AuthenMain.css";
 
-const AuthoMain = () => {
+const AuthoMain = (props) => {
+  
   return (
       <div class="container-fluid">
       <div class="row login">
@@ -14,10 +15,10 @@ const AuthoMain = () => {
           ></img>
         </div>
         <div class="col-lg-6 ">
-          <FormLogin />
+          <FormLogin onLogin={props.onLogin} />
         </div>
       </div>
-    </div>
+    </div> 
   );
 };
 
