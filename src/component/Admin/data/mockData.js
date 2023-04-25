@@ -429,15 +429,15 @@ export const mockPieData = [
     color: "hsl(344, 70%, 50%)",
   },
 ];
-
+var test = 200;
 export const mockLineData = [
   {
-    id: "japan",
+    id: "Doanh thu",
     color: tokens("dark").greenAccent[500],
     data: [
       {
         x: "Jan",
-        y: 101,
+        y: test,
       },
       {
         x: "Feb",
@@ -482,114 +482,6 @@ export const mockLineData = [
       {
         x: "Dec",
         y: 14,
-      },
-    ],
-  },
-  {
-    id: "france",
-    color: tokens("dark").blueAccent[300],
-    data: [
-      {
-        x: "Jan",
-        y: 212,
-      },
-      {
-        x: "Feb",
-        y: 190,
-      },
-      {
-        x: "Mar",
-        y: 270,
-      },
-      {
-        x: "Apr",
-        y: 9,
-      },
-      {
-        x: "May",
-        y: 75,
-      },
-      {
-        x: "Jun",
-        y: 175,
-      },
-      {
-        x: "Jul",
-        y: 33,
-      },
-      {
-        x: "Aug",
-        y: 189,
-      },
-      {
-        x: "Sep",
-        y: 97,
-      },
-      {
-        x: "Oct",
-        y: 87,
-      },
-      {
-        x: "Nov",
-        y: 299,
-      },
-      {
-        x: "Dec",
-        y: 251,
-      },
-    ],
-  },
-  {
-    id: "us",
-    color: tokens("dark").redAccent[200],
-    data: [
-      {
-        x: "Jan",
-        y: 191,
-      },
-      {
-        x: "Feb",
-        y: 136,
-      },
-      {
-        x: "Mar",
-        y: 91,
-      },
-      {
-        x: "Apr",
-        y: 190,
-      },
-      {
-        x: "May",
-        y: 211,
-      },
-      {
-        x: "Jun",
-        y: 152,
-      },
-      {
-        x: "Jul",
-        y: 189,
-      },
-      {
-        x: "Aug",
-        y: 152,
-      },
-      {
-        x: "Sep",
-        y: 8,
-      },
-      {
-        x: "Nov",
-        y: 197,
-      },
-      {
-        x: "Oct",
-        y: 107,
-      },
-      {
-        x: "Dec",
-        y: 170,
       },
     ],
   },
