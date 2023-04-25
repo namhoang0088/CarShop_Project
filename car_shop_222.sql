@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2023 at 10:11 AM
+-- Generation Time: Apr 25, 2023 at 03:26 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -71,7 +71,8 @@ CREATE TABLE `admin` (
 CREATE TABLE `brand` (
   `brand_id` int(10) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `img` varchar(255) NOT NULL
+  `logo` varchar(255) NOT NULL,
+  `info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -107,16 +108,26 @@ CREATE TABLE `buy_history` (
 
 CREATE TABLE `car` (
   `car_id` int(10) NOT NULL,
-  `price` int(15) NOT NULL,
+  `price` bigint(15) NOT NULL,
   `quantity` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  ` acceleration` varchar(255) DEFAULT NULL,
+  `acceleration` varchar(255) DEFAULT NULL,
   `max_speed` varchar(255) DEFAULT NULL,
   `wattage` varchar(255) DEFAULT NULL,
   `torque` varchar(255) DEFAULT NULL,
   `fuel_comsumption` varchar(255) DEFAULT NULL,
-  ` emissions_co2` varchar(255) DEFAULT NULL
+  `emissions_co2` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `car`
+--
+
+INSERT INTO `car` (`car_id`, `price`, `quantity`, `name`, `acceleration`, `max_speed`, `wattage`, `torque`, `fuel_comsumption`, `emissions_co2`) VALUES
+(1000, 3740000000, 3, '718 Boxster', '4.7', '275', '220', '380', '8.1', '180'),
+(1001, 3620000000, 2, '718 Cayman', '4.9', '275', '220', '380', '8.0', '181'),
+(1002, 7130000000, 3, '911 Carrera', '4.2', '293', '283', '450', '8.5', '190'),
+(1003, 8500000000, 1, '911 Targa 4', '4.4', '289', '282', '450', '8.4', '189');
 
 -- --------------------------------------------------------
 
@@ -141,6 +152,16 @@ CREATE TABLE `car_of_models` (
   `model_id` int(10) NOT NULL,
   `car_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `car_of_models`
+--
+
+INSERT INTO `car_of_models` (`model_id`, `car_id`) VALUES
+(2000, 1000),
+(2000, 1001),
+(2001, 1002),
+(2001, 1003);
 
 -- --------------------------------------------------------
 
@@ -174,11 +195,49 @@ CREATE TABLE `image` (
   `car_id` int(10) NOT NULL,
   `img_color` varchar(255) DEFAULT NULL,
   `img_wheel` varchar(255) DEFAULT NULL,
-  `beside` varchar(255) NOT NULL,
-  `front` varchar(255) NOT NULL,
-  `back` varchar(255) NOT NULL,
-  `top` varchar(255) NOT NULL
+  `beside` char(255) NOT NULL,
+  `front` char(255) NOT NULL,
+  `back` char(255) NOT NULL,
+  `top` char(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `image`
+--
+
+INSERT INTO `image` (`car_id`, `img_color`, `img_wheel`, `beside`, `front`, `back`, `top`) VALUES
+(1000, 'black', 'style2', 'https://localhost/uploads/718 Boxster/black_style1_beside.jpg', 'https://localhost/uploads/718 Boxster/black_style1_front.jpg', 'https://localhost/uploads/718 Boxster/black_style1_back.jpg', 'https://localhost/uploads/718 Boxster/black_top.jpg'),
+(1000, 'black', 'style2', 'https://localhost/uploads/718 Boxster/black_style2_beside.jpg', 'https://localhost/uploads/718 Boxster/black_style2_front.jpg', 'https://localhost/uploads/718 Boxster/black_style2_back.jpg', 'https://localhost/uploads/718 Boxster/black_top.jpg'),
+(1000, 'blue', 'style1', 'https://localhost/uploads/718 Boxster/blue_style1_beside.jpg', 'https://localhost/uploads/718 Boxster/blue_style1_front.jpg', 'https://localhost/uploads/718 Boxster/blue_style1_back.jpg', 'https://localhost/uploads/718 Boxster/blue_top.jpg'),
+(1000, 'blue', 'style2', 'https://localhost/uploads/718 Boxster/blue_style2_beside.jpg', 'https://localhost/uploads/718 Boxster/blue_style2_front.jpg', 'https://localhost/uploads/718 Boxster/blue_style2_back.jpg', 'https://localhost/uploads/718 Boxster/blue_top.jpg'),
+(1000, 'red', 'style1', 'https://localhost/uploads/718 Boxster/red_style1_beside.jpg', 'https://localhost/uploads/718 Boxster/red_style1_front.jpg', 'https://localhost/uploads/718 Boxster/red_style1_back.jpg', 'https://localhost/uploads/718 Boxster/red_top.jpg'),
+(1000, 'red', 'style2', 'https://localhost/uploads/718 Boxster/red_style2_beside.jpg', 'https://localhost/uploads/718 Boxster/red_style2_front.jpg', 'https://localhost/uploads/718 Boxster/red_style2_back.jpg', 'https://localhost/uploads/718 Boxster/red_top.jpg'),
+(1000, 'yellow', 'style1', 'https://localhost/uploads/718 Boxster/yellow_style1_beside.jpg', 'https://localhost/uploads/718 Boxster/yellow_style1_front.jpg', 'https://localhost/uploads/718 Boxster/yellow_style1_back.jpg', 'https://localhost/uploads/718 Boxster/yellow_top.jpg'),
+(1000, 'yellow', 'style2', 'https://localhost/uploads/718 Boxster/yellow_style2_beside.jpg', 'https://localhost/uploads/718 Boxster/yellow_style2_front.jpg', 'https://localhost/uploads/718 Boxster/yellow_style2_back.jpg', 'https://localhost/uploads/718 Boxster/yellow_top.jpg'),
+(1001, 'black', 'style1', 'https://localhost/uploads/718 Cayman/black_style1_beside.jpg', 'https://localhost/uploads/718 Cayman/black_style1_front.jpg', 'https://localhost/uploads/718 Cayman/black_style1_back.jpg', 'https://localhost/uploads/718 Cayman/black_top.jpg'),
+(1001, 'black', 'style2', 'https://localhost/uploads/718 Cayman/black_style2_beside.jpg', 'https://localhost/uploads/718 Cayman/black_style2_front.jpg', 'https://localhost/uploads/718 Cayman/black_style2_back.jpg', 'https://localhost/uploads/718 Cayman/black_top.jpg'),
+(1001, 'blue', 'style1', 'https://localhost/uploads/718 Cayman/blue_style1_beside.jpg', 'https://localhost/uploads/718 Cayman/blue_style1_front.jpg', 'https://localhost/uploads/718 Cayman/blue_style1_back.jpg', 'https://localhost/uploads/718 Cayman/blue_top.jpg'),
+(1001, 'blue', 'style2', 'https://localhost/uploads/718 Cayman/blue_style2_beside.jpg', 'https://localhost/uploads/718 Cayman/blue_style2_front.jpg', 'https://localhost/uploads/718 Cayman/blue_style2_back.jpg', 'https://localhost/uploads/718 Cayman/blue_top.jpg'),
+(1001, 'red', 'style1', 'https://localhost/uploads/718 Cayman/red_style1_beside.jpg', 'https://localhost/uploads/718 Cayman/red_style1_front.jpg', 'https://localhost/uploads/718 Cayman/red_style1_back.jpg', 'https://localhost/uploads/718 Cayman/red_top.jpg'),
+(1001, 'red', 'style2', 'https://localhost/uploads/718 Cayman/red_style2_beside.jpg', 'https://localhost/uploads/718 Cayman/red_style2_front.jpg', 'https://localhost/uploads/718 Cayman/red_style2_back.jpg', 'https://localhost/uploads/718 Cayman/red_top.jpg'),
+(1001, 'yellow', 'style1', 'https://localhost/uploads/718 Cayman/yellow_style1_beside.jpg', 'https://localhost/uploads/718 Cayman/yellow_style1_front.jpg', 'https://localhost/uploads/718 Cayman/yellow_style1_back.jpg', 'https://localhost/uploads/718 Cayman/yellow_top.jpg'),
+(1001, 'yellow', 'style2', 'https://localhost/uploads/718 Cayman/yellow_style2_beside.jpg', 'https://localhost/uploads/718 Cayman/yellow_style2_front.jpg', 'https://localhost/uploads/718 Cayman/yellow_style2_back.jpg', 'https://localhost/uploads/718 Cayman/yellow_top.jpg'),
+(1002, 'black', 'style1', 'https://localhost/uploads/911 Carrera/black_style1_beside.jpg', 'https://localhost/uploads/911 Carrera/black_style1_front.jpg', 'https://localhost/uploads/911 Carrera/black_style1_back.jpg', 'https://localhost/uploads/911 Carrera/black_top.jpg'),
+(1002, 'black', 'style2', 'https://localhost/uploads/911 Carrera/black_style2_beside.jpg', 'https://localhost/uploads/911 Carrera/black_style2_front.jpg', 'https://localhost/uploads/911 Carrera/black_style2_back.jpg', 'https://localhost/uploads/911 Carrera/black_top.jpg'),
+(1002, 'blue', 'style1', 'https://localhost/uploads/911 Carrera/blue_style1_beside.jpg', 'https://localhost/uploads/911 Carrera/blue_style1_front.jpg', 'https://localhost/uploads/911 Carrera/blue_style1_back.jpg', 'https://localhost/uploads/911 Carrera/blue_top.jpg'),
+(1002, 'blue', 'style2', 'https://localhost/uploads/911 Carrera/blue_style2_beside.jpg', 'https://localhost/uploads/911 Carrera/blue_style2_front.jpg', 'https://localhost/uploads/911 Carrera/blue_style2_back.jpg', 'https://localhost/uploads/911 Carrera/blue_top.jpg'),
+(1002, 'red', 'style1', 'https://localhost/uploads/911 Carrera/red_style1_beside.jpg', 'https://localhost/uploads/911 Carrera/red_style1_front.jpg', 'https://localhost/uploads/911 Carrera/red_style1_back.jpg', 'https://localhost/uploads/911 Carrera/red_top.jpg'),
+(1002, 'red', 'style2', 'https://localhost/uploads/911 Carrera/red_style2_beside.jpg', 'https://localhost/uploads/911 Carrera/red_style2_front.jpg', 'https://localhost/uploads/911 Carrera/red_style2_back.jpg', 'https://localhost/uploads/911 Carrera/red_top.jpg'),
+(1002, 'yellow', 'style1', 'https://localhost/uploads/911 Carrera/yellow_style1_beside.jpg', 'https://localhost/uploads/911 Carrera/yellow_style1_front.jpg', 'https://localhost/uploads/911 Carrera/yellow_style1_back.jpg', 'https://localhost/uploads/911 Carrera/yellow_top.jpg'),
+(1002, 'yellow', 'style2', 'https://localhost/uploads/911 Carrera/yellow_style2_beside.jpg', 'https://localhost/uploads/911 Carrera/yellow_style2_front.jpg', 'https://localhost/uploads/911 Carrera/yellow_style2_back.jpg', 'https://localhost/uploads/911 Carrera/yellow_top.jpg'),
+(1003, 'black', 'style1', 'https://localhost/uploads/911 Targa 4/black_style1_beside.jpg', 'https://localhost/uploads/911 Targa 4/black_style1_front.jpg', 'https://localhost/uploads/911 Targa 4/black_style1_back.jpg', 'https://localhost/uploads/911 Targa 4/black_top.jpg'),
+(1003, 'black', 'style2', 'https://localhost/uploads/911 Targa 4/black_style2_beside.jpg', 'https://localhost/uploads/911 Targa 4/black_style2_front.jpg', 'https://localhost/uploads/911 Targa 4/black_style2_back.jpg', 'https://localhost/uploads/911 Targa 4/black_top.jpg'),
+(1003, 'blue', 'style1', 'https://localhost/uploads/911 Targa 4/blue_style1_beside.jpg', 'https://localhost/uploads/911 Targa 4/blue_style1_front.jpg', 'https://localhost/uploads/911 Targa 4/blue_style1_back.jpg', 'https://localhost/uploads/911 Targa 4/blue_top.jpg'),
+(1003, 'blue', 'style2', 'https://localhost/uploads/911 Targa 4/blue_style2_beside.jpg', 'https://localhost/uploads/911 Targa 4/blue_style2_front.jpg', 'https://localhost/uploads/911 Targa 4/blue_style2_back.jpg', 'https://localhost/uploads/911 Targa 4/blue_top.jpg'),
+(1003, 'red', 'style1', 'https://localhost/uploads/911 Targa 4/red_style1_beside.jpg', 'https://localhost/uploads/911 Targa 4/red_style1_front.jpg', 'https://localhost/uploads/911 Targa 4/red_style1_back.jpg', 'https://localhost/uploads/911 Targa 4/red_top.jpg'),
+(1003, 'red', 'style2', 'https://localhost/uploads/911 Targa 4/red_style2_beside.jpg', 'https://localhost/uploads/911 Targa 4/red_style2_front.jpg', 'https://localhost/uploads/911 Targa 4/red_style2_back.jpg', 'https://localhost/uploads/911 Targa 4/red_top.jpg'),
+(1003, 'yellow', 'style1', 'https://localhost/uploads/911 Targa 4/yellow_style1_beside.jpg', 'https://localhost/uploads/911 Targa 4/yellow_style1_front.jpg', 'https://localhost/uploads/911 Targa 4/yellow_style1_back.jpg', 'https://localhost/uploads/911 Targa 4/yellow_top.jpg'),
+(1003, 'yellow', 'style2', 'https://localhost/uploads/911 Targa 4/yellow_style2_beside.jpg', 'https://localhost/uploads/911 Targa 4/yellow_style2_front.jpg', 'https://localhost/uploads/911 Targa 4/yellow_style2_back.jpg', 'https://localhost/uploads/911 Targa 4/yellow_top.jpg');
 
 -- --------------------------------------------------------
 
@@ -190,6 +249,14 @@ CREATE TABLE `models` (
   `model_id` int(10) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `models`
+--
+
+INSERT INTO `models` (`model_id`, `name`) VALUES
+(2000, '718'),
+(2001, '911 Carrera & Targa');
 
 -- --------------------------------------------------------
 
