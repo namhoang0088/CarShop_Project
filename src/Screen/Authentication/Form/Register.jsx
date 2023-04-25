@@ -69,12 +69,16 @@ const FormRegister = () => {
         setWarning("Câu trả lời bảo mật không được quá 100 ký tự!");
       }else {
         setWarning("");
-        verifyEmail(email);
+        verifyEmail(name, email, password, confirmPassword, birth, address, phone, question, answer);
       }
      
     };
-    const verifyEmail = (email) => {
+    const verifyEmail = (name, email, password, confirmPassword, birth, address, phone, question, answer) => {
+      let id = 0;
       for (let i = 0; i < account.length; i++) {
+        if(account[i].id > id){
+          id = account[i].id;
+        }
         if (email === account[i].email) {
           // Trùng khớp, chuyển hướng đến trang khác
           setWarning("Email của bạn đã được sử dụng!");
@@ -82,7 +86,36 @@ const FormRegister = () => {
           return;
         }
       }
+      id += 1;
+      uploadDatabase(id,name, email, password, birth, address, phone, question, answer);
       setWarning("");
+    }
+    const uploadDatabase = (id ,name, email, password, birth, address, phone, question, answer) => {
+      
+      const data = { // Tạo một object chứa thông tin của tài khoản
+        user_id: id,
+        user_name: name,
+        user_email: email,
+        user_password: password,
+        user_birthday: birth,
+        user_address: address,
+        user_phonenumber: phone,
+        user_question: question,
+        user_answer: answer,
+      };
+      axios.post('http://localhost/test-react/webcar-ui/BE/Model/registerAccount-data.php', data)
+      .then(response => {
+        // Xử lý kết quả trả về nếu cần
+        alert("Đăng ký thành công, bạn vui lòng đăng nhập lại!");
+        navigation();
+      })
+      .catch(error => {
+        // Xử lý lỗi nếu có
+        alert(error);
+      });
+    }
+    const navigation = () => {   
+      window.location.href = "/signin";
     }
   return (
     <div className="register">
