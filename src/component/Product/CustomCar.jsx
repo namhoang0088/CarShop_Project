@@ -162,7 +162,7 @@ function CustomCar(props){
                         ))
                     }
 
-                        <p>Quantity</p>
+                        <p>Số lượng</p>
                         <InputGroup className="text-center">
                             <Button id="increase" onClick={decreaseQuantity}>-</Button>
                             <input

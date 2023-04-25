@@ -20,7 +20,7 @@ const fetchProductsImg = async () => {
   try {
     const name = '718%20Cayman';
     const response = await axios.get(`http://localhost/Controller/Products/Car_controller.php?name=${name}`)
-    console.log(response.data);
+    // console.log(response.data);
     setCarImg(response.data["img"]);
     setPrice(response.data["price"]); // Lưu danh sách sản phẩm vào state
   } 
