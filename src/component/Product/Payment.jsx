@@ -37,32 +37,29 @@ export default function(){
     <Container fluid>
         <Form action="">
             <Row>
-                <Col lg={5} className="address m-3" >
+                <Col md={6} className="address p-3" >
                         <h2>Địa chỉ giao hàng</h2>
                         <Row>
-                            <Col md={8} className="p-0">
+                            <Col md={8}>
                                 <Form.Label>Họ</Form.Label>
                                 <Form.Control type="text" placeholder="Nguyễn Văn"  name="fname" id="first_name" required/>
                             </Col>
 
                             <Col md={4}>
                                 <Form.Label>Tên</Form.Label>
-                                <Form.Control type="text" placeholder="A"  name="lname" id="last_name"/>
+                                <Form.Control type="text" placeholder="A"  name="lname" id="last_name" required/>
                             </Col>
 
                         </Row>
 
-                        <Row>
+                        
                             <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" placeholder="example@gmail.com" />
-                        </Row>
+                            <Form.Control type="email" placeholder="example@gmail.com" required/>
+                        
 
-                        <Row>
                             <Form.Label>SĐT</Form.Label>
-                            <Form.Control type="text" placeholder="09xx xx xx86" />
-                        </Row>
+                            <Form.Control type="text" placeholder="09xx xx xx86" maxLength={10} required/>
 
-                        <Row>
                                 <Form.Label> tỉnh/thành phố</Form.Label>
                                 <Form.Select aria-label="Default select example " name="City" id="city">
                                     <option>Tỉnh</option>
@@ -70,25 +67,21 @@ export default function(){
                                     <option value="2">Hà Nội</option>
                                     <option value="3">Huế</option>
                                 </Form.Select>
-                        </Row>
 
-                        <Row>
                             <Form.Label>Địa chỉ giao hàng</Form.Label>
                             <Form.Control type="text" placeholder="" />
-                        </Row>
-                        <Row>
                             <Form.Label>Zip/ portal Code</Form.Label>
                             <Form.Control type="text" placeholder="" />
-                        </Row>
 
 
                 </Col>
-                <Col lg={5} className="shipment-payment m-3">
+                <Col md={6} className="shipment-payment p-3">
                     <Row className="shipment-method">
                         <h2>Phương thức giao hàng</h2>
                         {
                             shippingMethods.map((Smethod,idx)=>
                                 <Form.Check
+                                    key={`method-${idx}`}
                                     className="mx-3"
                                     inline
                                     id={`method-${idx}`}
@@ -108,7 +101,7 @@ export default function(){
                         <Row>
                         {
                             paymentMethods.map((Pmethod,idx) => 
-                                <Col md={4}>
+                                <Col md={4} key={`payment-${idx}`}>
                                     <ToggleButton className="img-button"
                                         variant="inline"
                                         id={`payment-${idx}`}
@@ -134,37 +127,40 @@ export default function(){
 
                         <Row id="cardInfo">
                             <Form.Label>Number Card</Form.Label>
-                            <Form.Control type="text" name="numberCard" className="p-0 mx-3"></Form.Control>
+                            <Form.Control type="text" name="numberCard" ></Form.Control>
+
                             <div>Expire Date</div>
-                            <Row>
-                                <Col>
-                                    <Form.Select size="sm" name="month">
-                                    <option value="" selected>Chọn tháng</option>
+ 
+                            <Row className="p-0">
+                                <Col md = {3}>
+                                    <Form.Select >
+                                    <option value="n/a" >Chọn tháng</option>
                                         {monthList.map((current,idx)=>
                                             (
-                                                <option>
+                                                <option key={`month-${idx}`} value={current}>
                                                     {current}
                                                 </option>
                                             )
                                         )}
                                     </Form.Select>
+                                </Col>
+                                <Col md = {3}>
 
-                                </Col>
-                                <Col>
-                                <Form.Select size="sm" name="year">
-                                    <option value="" selected> Chọn năm</option>
-                                        {yearList.map((current,idx)=>
-                                            (
-                                                <option value={current}>
-                                                    {current}
-                                                </option>
-                                            )
-                                        )}
+                                    <Form.Select >
+                                        <option value="n/a" > Chọn năm</option>
+                                            {yearList.map((current,idx)=>
+                                                (
+                                                    <option key={`year-${idx}`}value={current}>
+                                                        {current}
+                                                    </option>
+                                                )
+                                            )}
                                     </Form.Select>
                                 </Col>
+
                             </Row>
                             <Form.Label>Card Code(CVC)</Form.Label>
-                            <Form.Control type="text" name="cardCode" className="p-0 mx-3"></Form.Control>
+                            <Form.Control type="text" name="cardCode"></Form.Control>
                         </Row>
                     </Row>
                             <Button variant="primary" type="submit" id="buttonSubmit"> Confirm </Button>

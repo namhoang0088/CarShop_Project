@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {FaStar} from "react-icons/fa"
-import CommentRating from "./Comment_Rating";
+import CommentRating from "./CommentRating";
 import StarRating from "./star";
 import "./Review.css";
 
