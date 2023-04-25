@@ -1,4 +1,6 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios"
 import "./Sidebar.css";
 function Sidebar(props) {
   const [brands, setBrands] = useState([]);

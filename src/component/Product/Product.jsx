@@ -4,9 +4,10 @@ import Footer from "../Footer"
 import CustomCar from "./CustomCar";
 import Specification from "./Specification";
 import Review from "./Review";
+import Payment from "./Payment";
 import "./Product.css"
 
-
+import {Routes, Route} from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios"
 //import { Col, Row, Container, Button, ButtonGroup, ToggleButton, Form} from "react-bootstrap";

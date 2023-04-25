@@ -1,4 +1,5 @@
 import { Col, Row, Container, Button, ToggleButton, Form ,InputGroup, Carousel} from "react-bootstrap";
+import { Link } from "react-router-dom";
 import Style1 from './style1.JPG';
 import Style2 from './style2.JPG';
 import { useState } from "react";
@@ -195,9 +196,11 @@ function CustomCar(props){
 
                     <div className="text-center" id="price"  >
                         <p>Price : {quantity*props.price}$</p>
-                        <Button style={{width:60,height:60}} type="submit" className="col-md-2 m-2" variant="primary"> 
+                        <Link to="/Payment" >
+                            <Button style={{width:60,height:60}} type="submit" className="col-md-2 m-2" variant="primary"> 
                             Mua ngay
-                        </Button>
+                            </Button>
+                        </Link> 
                         <Button style={{width:100,height:60}} type="submit"  className="col-md-2 m-2" variant="primary"> 
                             Thêm vào giỏ
                         </Button>
