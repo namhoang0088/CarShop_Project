@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {FaStar} from "react-icons/fa"
-import CommentRating from "./CommentRating";
+import Comment_Rating from "./Comment_Rating";
 import StarRating from "./star";
 import "./Review.css";
 
@@ -14,7 +14,7 @@ export default function Review(){
                 <h1 >
                     Review
                 </h1>
-                <CommentRating/>
+                <Comment_Rating/>
             </div>
 
             <div className="row mt-3 review-container" >
