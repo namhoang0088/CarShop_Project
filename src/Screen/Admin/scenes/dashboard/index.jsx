@@ -1,19 +1,61 @@
+import React, { useState, useEffect }  from "react";
 import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import { mockTransactions } from "../../../../component/Admin/data/mockData";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
-import EmailIcon from "@mui/icons-material/Email";
-import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import TrafficIcon from "@mui/icons-material/Traffic";
+import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import PersonIcon from '@mui/icons-material/Person';
+import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import Header from "../../../../component/Admin/components/Header";
 import LineChart from "../../../../component/Admin/components/LineChart";
 import StatBox from "../../../../component/Admin/components/StatBox";
-
+import axios from 'axios';
 const Dashboard = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-
+  const [account, setAccount] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [order, setOrder] = useState([]);
+  const [comment, setComment] = useState([]);
+  let numClient = 0;
+  let numProducts = 0;
+  let numOrder = 0;
+  let numComment = 0;
+    useEffect(() => {
+      axios.get('http://localhost/test-react/webcar-ui/BE/Model/Account-data.php')
+        .then(response => setAccount(response.data))
+        .catch(error => console.log(error));
+    }, []);
+    for(let i = 0; i < account.length; i++){
+      if(account[i].role == 'customer'){
+        numClient++;
+      }
+    }
+    useEffect(() => {
+      axios.get('http://localhost/test-react/webcar-ui/BE/Model/Car-data.php')
+        .then(response => setProducts(response.data))
+        .catch(error => console.log(error));
+    }, []);
+    for(let i = 0; i < products.length; i++){
+      numProducts++;
+    }   
+    useEffect(() => {
+      axios.get('http://localhost/test-react/webcar-ui/BE/Model/Order-data.php')
+        .then(response => setOrder(response.data))
+        .catch(error => console.log(error));
+    }, []);
+    for(let i = 0; i < order.length; i++){
+      numOrder++;
+    }  
+    useEffect(() => {
+      axios.get('http://localhost/test-react/webcar-ui/BE/Model/Comment-data.php')
+        .then(response => setComment(response.data))
+        .catch(error => console.log(error));
+    }, []);
+    for(let i = 0; i < comment.length; i++){
+      numComment++;
+    } 
   return (
     <Box m="20px">
       {/* HEADER */}
@@ -37,12 +79,10 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="12,361"
-            subtitle="Emails Sent"
-            progress="0.75"
-            increase="+14%"
+            title={numProducts}
+            subtitle="Sản phẩm"
             icon={
-              <EmailIcon
+              <DirectionsCarIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -56,12 +96,10 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="431,225"
-            subtitle="Sales Obtained"
-            progress="0.50"
-            increase="+21%"
+            title={numOrder}
+            subtitle="Đơn hàng"
             icon={
-              <PointOfSaleIcon
+              <InventoryIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -75,12 +113,10 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="32,441"
-            subtitle="New Clients"
-            progress="0.30"
-            increase="+5%"
+            title={numClient}
+            subtitle="Khách Hàng"
             icon={
-              <PersonAddIcon
+              <PersonIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -94,12 +130,10 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="1,325,134"
-            subtitle="Traffic Received"
-            progress="0.80"
-            increase="+43%"
+            title={numComment}
+            subtitle="Bình luận"
             icon={
-              <TrafficIcon
+              <InsertCommentIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -125,7 +159,7 @@ const Dashboard = () => {
                 fontWeight="600"
                 color={colors.grey[100]}
               >
-                Revenue Generated
+                Biểu đồ doanh thu
               </Typography>
               <Typography
                 variant="h3"
