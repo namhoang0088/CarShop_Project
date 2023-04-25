@@ -25,13 +25,20 @@ const FormLogin = (props) => {
         for (let i = 0; i < account.length; i++) {
           if (email === account[i].email && password === account[i].password) {
             // Trùng khớp, chuyển hướng đến trang khác
-            props.onLogin(account[i].id);
+            if(account[i].role == 'customer'){
+              props.onLogin(account[i].id);
+            } else if(account[i].role == 'admin'){
+              // Tạo điều hướng tới Page dành cho admin
+            } else {
+              //NOTHING
+            }
+            
             setWarning("");
             return;
           }
         }
-        console.log("okelaaaaa")
          // Không tìm thấy tài khoản
+         setWarning("Thông tin tài khoản của bạn không chính xác!");
          props.onLogin("No");
       }
      
