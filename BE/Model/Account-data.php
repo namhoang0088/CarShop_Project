@@ -6,7 +6,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database = "car_shop";
+$database = "shop";
 
 // Create connection
 $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
