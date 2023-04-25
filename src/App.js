@@ -1,12 +1,12 @@
-// import "./App.css";
-
-// import Authentication from "./Screen/Authentication/Authentication";
-import Product from "./component/Product/Product.jsx"
-import Payment from './component/Product/Payment';
+import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import User from './Screen/User/User';
+import Authentication from './Screen/Authentication/Authentication';
 export default function App() {
   return (
-      <Product/>
-      
+    <div className="Body">
+    <Authentication />
+    </div>
   );
 }

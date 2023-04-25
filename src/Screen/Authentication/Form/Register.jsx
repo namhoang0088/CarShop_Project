@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect }  from "react";
 import "./Login.css";
 import { FiMail } from "react-icons/fi";
+import axios from 'axios';
 import {
   BsFillCalendarEventFill,
   BsTelephoneFill,
@@ -11,6 +12,79 @@ import { ImLocation2 } from "react-icons/im";
 import { FaKey, FaSignature, FaLock } from "react-icons/fa";
 
 const FormRegister = () => {
+  const [account, setAccount] = useState([]);
+  const [Warning, setWarning] = useState([]);
+  useEffect(() => {
+      axios.get('http://localhost/test-react/webcar-ui/BE/Model/Account-data.php')
+        .then(response => setAccount(response.data))
+        .catch(error => console.log(error));
+    }, []);
+    const handleRegister = (e) => {
+      e.preventDefault();
+      const name = document.getElementsByName("user_name")[0].value;
+      const email = document.getElementsByName("user_email")[0].value;
+      const password = document.getElementsByName("user_password")[0].value;
+      const confirmPassword = document.getElementsByName("user_repassword")[0].value;
+      const birth = document.getElementsByName("user_birthday")[0].value;
+      const address = document.getElementsByName("user_address")[0].value;
+      const phone = document.getElementsByName("user_phonenumber")[0].value;
+      const question = document.getElementsByName("user_question")[0].value;
+      const answer = document.getElementsByName("user_answer")[0].value;
+
+      
+      verifyAccount(name, email, password, confirmPassword, birth, address, phone, question, answer);
+    };
+
+    const verifyAccount = (name,email, password, confirmPassword, birth, address, phone, question, answer) => {
+      var yearAge = parseInt(
+        birth.substring(0, 4),
+        10)
+      let regexName = new RegExp(/^[a-z|A-Z|ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]{1,128}$/);
+      let regexEmail = new RegExp(/\b\w+@gmail\.com\b/);
+      let regexPassword = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,32}$/);
+      let regexNumPhone = new RegExp(/^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/);
+      let regexAnswer = new RegExp(/^.{0,100}$/)
+      if(name===""||email=== "" || password === ""||confirmPassword===""||birth===""||address===""||phone===""||question==="0"||answer===""){
+        setWarning("Hãy nhập đầy đủ thông tin!");
+        
+      } else if(!regexName.test(name)){
+        setWarning("Tên của bạn không được chứa số, ký tự đặc biệt!");
+        
+      } else if(!regexEmail.test(email)){
+        setWarning("Email của bạn cần phải có định dạng <tên>@gmail.com!");
+        
+      } else if(!regexPassword.test(password)){
+        setWarning("Mật khẩu phải có ít nhất 8 ký tự đến 32 ký tự, bao gồm ký tự viết hoa, viết thường, số và ký tự đặc biệt!");
+        
+      }else if(!(password === confirmPassword)){
+        setWarning("Mật khẩu xác nhận phải khớp với mật khẩu!");
+        
+      }else if((2023-yearAge+1)<15){
+        setWarning("Tuổi của bạn cần phải lớn hơn 15");
+        
+          
+      } else if(!regexNumPhone.test(phone)){
+        setWarning("Số điện thoại gồm 10 số nếu có nhập số 0 ở đầu tiên còn nếu không nhập 0 thì còn 9 số!");
+      } else if(!regexAnswer.test(answer)){
+        setWarning("Câu trả lời bảo mật không được quá 100 ký tự!");
+      }else {
+        setWarning("");
+        verifyEmail(email);
+      }
+     
+    };
+    const verifyEmail = (email) => {
+      for (let i = 0; i < account.length; i++) {
+        if (email === account[i].email) {
+          // Trùng khớp, chuyển hướng đến trang khác
+          setWarning("Email của bạn đã được sử dụng!");
+          
+          return;
+        }
+      }
+      alert("a");
+      setWarning("");
+    }
   return (
     <div id="formLogin" style={{ marginTop: 0 }}>
       <form>
@@ -132,7 +206,7 @@ const FormRegister = () => {
                 id="question"
                 name="user_question"
               >
-                <option selected>Select Question</option>
+                <option value="0" selected>Select Question</option>
                 <option value="1">Sở thích của bạn là gì</option>
                 <option value="2">Bạn sống ở đâu</option>
                 <option value="3">Biệt danh của bạn là gì</option>
@@ -156,11 +230,16 @@ const FormRegister = () => {
             ></input>
           </div>
         </div>
-        <div class="a alert alert-danger border-0 bg-white" role="alert">
-          Sai mật khẩu hoặc enmail!
+        <div class="a alert alert-danger border-0 bg-white" role="alert" style={{color: 'red'}}>
+          {Warning}
         </div>
+<<<<<<< HEAD
       </form>
       <button type="submit" class="btn btn-success" id="register">
+=======
+        </form>
+        <button type="submit" class="btn btn-success" id="register" onClick={handleRegister}>
+>>>>>>> 82e80c0fa5b31144f2df06d9a5fbfe85c1d5b621
         Sign Up
       </button>
       <p class="text-center">
