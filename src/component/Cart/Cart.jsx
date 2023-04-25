@@ -44,8 +44,8 @@ export default function Cart(){
 
     return(
         <div className="Cart">
-        <div className="row">
-            <div className="Status col-md-2">
+        <div className="row Product">
+            <div className="Status col-md-4">
             <i class='bx bx-cart' style={{ fontSize: '2.5em' }}>Giỏ hàng</i>
             </div>
             <div className="Status col-md-3">
@@ -53,16 +53,12 @@ export default function Cart(){
             <p>1 đơn</p>
             </div>
             <div className="Status col-md-3">
-            <p>Đang giao hàng:</p>
-            <p>0 đơn</p>
-            </div>
-            <div className="Status col-md-3">
-            <p>Đã hoàn thành:</p>
+            <p>Đã thanh toán:</p>
             <p>1 đơn</p>
             </div>
         </div>
 
-        <div className="row Title">
+        <div className="row Product">
         <div className="col-md-2">
         <p>Sản phẩm</p>
         </div>
@@ -83,7 +79,7 @@ export default function Cart(){
         </div>
         </div>
         
-        <div className="Wrapper">
+        <div>
         {products.map(product => (
           <Product
             key={product.id}
@@ -91,9 +87,10 @@ export default function Cart(){
             handleToggleCheckbox={handleToggleCheckbox}
           />
         ))}
+        
         </div>
 
-        <div className="Wrapper">
+        <div>
         <Pay totalQuantity={totalQuantity} totalCost={totalCost}/>
         </div>
 
@@ -140,7 +137,7 @@ function Product({...props}){
 
 function Pay({...props}) {
     return (
-      <div className="Pay row">
+      <div className="row Product">
         <div className="col-md-3">
           <p>Số đơn: {props.totalQuantity}</p>
         </div>
