@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-
-import "./Products.css";
-
-=======
->>>>>>> 82e80c0fa5b31144f2df06d9a5fbfe85c1d5b621
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./Products.css";
@@ -36,13 +30,6 @@ export default function Products(props) {
           .catch((error) => console.log(error));
       }, [props.selectedBrand]);
 
-<<<<<<< HEAD
-    return(
-        <>
-        
-        <Introduce imgSrc="https://logos-world.net/wp-content/uploads/2021/04/Porsche-Logo.png" imgName="Porsche" />
-        <div style={{margin:'30px 10px'}}>
-=======
   return (
     <>
         <Introduce
@@ -51,7 +38,6 @@ export default function Products(props) {
           info={brandInfo.info}
         />
       <div style={{ margin: '30px 10px' }}>
->>>>>>> 82e80c0fa5b31144f2df06d9a5fbfe85c1d5b621
         <div className="row">
           {filteredProducts.map((product) => (
             <div className="col-md-4">
@@ -64,38 +50,9 @@ export default function Products(props) {
             </div>
           ))}
         </div>
-<<<<<<< HEAD
-        </div>
-
-        <div className="row">
-            <div className="col-sm-3">
-
-            </div>
-            <div className="col-sm-6">
-            <div className="pagination stylepag">
-            <ul>
-            <a className="page-link" href="#"><li>Previous</li></a>
-            <a className="page-link" href="#"><li>1</li></a>
-            <a className="page-link" href="#"><li>2</li></a>
-            <a className="page-link is-active" href="#"><li>3</li></a>
-            <a className="page-link" href="#"><li>4</li></a>
-            <a className="page-link" href="#"><li>5</li></a>
-            <a className="page-link" href="#"><li>6</li></a>
-            <a className="page-link" href="#"><li>Next</li></a>
-            </ul>
-            </div>
-            </div>
-            <div className="col-sm-3">
-
-            </div>
-        </div>
-        </>
-    )
-=======
       </div>
     </>
   );
->>>>>>> 82e80c0fa5b31144f2df06d9a5fbfe85c1d5b621
 }
 
 function CardProduct(props) {
