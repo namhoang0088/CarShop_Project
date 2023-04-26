@@ -122,7 +122,7 @@ function CustomCar(props){
     
     return (
         <Container fluid>
-            <h1>718 Cayman</h1>
+            <h1>{props.name}</h1>
           <Row>
             <Col lg="8">
                 <Carousel activeIndex={index} onSelect={handleSelect}>
