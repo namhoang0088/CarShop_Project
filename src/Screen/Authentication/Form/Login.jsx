@@ -8,7 +8,7 @@ const FormLogin = (props) => {
   const [account, setAccount] = useState([]);
   const [Warning, setWarning] = useState([]);
   useEffect(() => {
-      axios.get('http://localhost/test-react/webcar-ui/BE/Model/Account-data.php')
+      axios.get('http://localhost/Model/Account-data.php')
         .then(response => setAccount(response.data))
         .catch(error => console.log(error));
     }, []);

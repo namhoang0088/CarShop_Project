@@ -8,7 +8,7 @@ export default function Products(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost/test-react/webcar-ui/BE/Model/Products-data.php")
+      .get("http://localhost/Model/Products-data.php")
       .then((response) => setProducts(response.data))
       .catch((error) => console.log(error));
   }, []);
@@ -19,7 +19,7 @@ export default function Products(props) {
 
     useEffect(() => {   
         axios
-          .get("http://localhost/test-react/webcar-ui/BE/Model/Brand-data.php")
+          .get("http://localhost/Model/Brand-data.php")
           .then((response) => {
             const filteredBrands = response.data.filter(brand => brand.name === props.selectedBrand);
             if (filteredBrands.length > 0) {

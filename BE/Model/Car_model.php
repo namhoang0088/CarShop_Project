@@ -30,7 +30,7 @@ class Car{
         $this->torque = $torque;
         $this->fuelComsumption = $fuelComsumption;
         $this->emissionCO2 = $emissionCO2;
-        $this->database = new Database("localhost","root","","carshop");
+        $this->database = new Database("localhost","root","","shop");
         
     }
 

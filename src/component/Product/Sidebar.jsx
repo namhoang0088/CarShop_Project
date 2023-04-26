@@ -7,7 +7,7 @@ function Sidebar(props) {
   
   useEffect(() => {
     axios
-      .get("http://localhost/test-react/webcar-ui/BE/Model/Brand-data.php")
+      .get("http://localhost/Model/Brand-data.php")
       .then((response) => setBrands(response.data))
       .catch((error) => console.log(error));
   }, []);
