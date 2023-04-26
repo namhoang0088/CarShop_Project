@@ -1,9 +1,29 @@
 import { Col, Row, Container, Button, ToggleButton, Form ,InputGroup, Carousel} from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import Style1 from './style1.JPG';
 import Style2 from './style2.JPG';
 import { useState } from "react";
 import "./CustomCar.css"
+import axios from 'axios';
+
+function addToCart(customer_id, car_id, color, wheel, name, price, img) {
+    const data = { // Tạo một object chứa thông tin của tài khoản
+        userid: customer_id,
+        carid: car_id,
+        mau: color,
+        kieu: wheel,
+        ten: name,
+        gia: price,
+        anh: img,
+      };
+  axios.post("http://localhost/Model/UpCart-data.php", data)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+}
 
 const radios = [
     { name: 'black', value: '0' },
@@ -24,6 +44,10 @@ function CustomCar(props){
     const [wheel, setWheel] = useState("style1");
     const [radioWheelValue, setRadioWheelValue] = useState('0');
     const [quantity, setQuantity] = useState(1);
+
+    const handleAddToCart = () => {
+        addToCart(props.customer_id, props.car_id, color, wheel, props.name, props.price, props.carImg[color][wheel][0].url);
+    };
 
     const [index, setIndex] = useState(0);
     const handleSelect = (selectedIndex, e) => {
@@ -60,7 +84,8 @@ function CustomCar(props){
         }
         else setQuantity(+e.currentTarget.value);
     }
-    
+
+
     return (
         <Container fluid>
             <h1>{props.name}</h1>
@@ -142,9 +167,12 @@ function CustomCar(props){
                             Mua ngay
                             </Button>
                         </Link> 
-                        <Button style={{width:100,height:60}} type="submit"  className="col-md-2 m-2" variant="primary"> 
-                            Thêm vào giỏ
+
+                        <Link to="/cart">
+                        <Button style={{width:100,height:60}} type="submit" className="col-md-2 m-2" variant="primary"  onClick={handleAddToCart}>
+                        Thêm vào giỏ
                         </Button>
+                        </Link>
                     </div>
                 </Form>
             </Col>

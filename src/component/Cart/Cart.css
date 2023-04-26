@@ -41,3 +41,7 @@ input[type="checkbox"] {
   .btn-pay:hover {
     background-color: #3e8e41; /* Màu xanh lá tối */
   }
+
+.delete-button{
+    margin-left: 15px;
+}
