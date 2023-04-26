@@ -1,27 +1,25 @@
-import React from "react";
-import "./Cart.css";
-import  { useState } from 'react';
 
-const products = [
-    {
-      id: 1,
-      imgSrc: "https://img.tinbanxe.vn/images/Lamborghini/Lamborghini%20Huracan%20Evo/ANHDAIDIEN-Lamborghini-Huracan_EVO-.png",
-      Name: "718 Boxster",
-      Cost: "4354600000",
-      Quantity: "1",
-      Status: "Chưa thanh toán"
-    },
-    {
-      id: 2,
-      imgSrc: "https://img.tinbanxe.vn/images/Lamborghini/Lamborghini%20Huracan%20Evo/ANHDAIDIEN-Lamborghini-Huracan_EVO-.png",
-      Name: "718 Boxster",
-      Cost: "4354600000",
-      Quantity: "2",
-      Status: "Chưa thanh toán"
-    }
-  ];
+import "./Cart.css";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
   
-export default function Cart(){
+export default function Cart(props){
+
+  const [productList, setProductList] = useState([]);
+
+
+  useEffect(() => {
+    axios
+      .get("http://localhost/Model/Cart-data.php")
+      .then((response) => setProductList(response.data))
+      .catch((error) => console.log(error));
+  }, []);
+
+  const filteredProducts = props.userID
+  ? productList.filter((product) => product.customer_id === props.userID)
+  : productList;
+
     const [totalQuantity, setTotalQuantity] = useState(0);
     const [totalCost, setTotalCost] = useState(0);
   
@@ -50,45 +48,50 @@ export default function Cart(){
             </div>
             <div className="Status col-md-3">
             <p>Chưa thanh toán:</p>
-            <p>1 đơn</p>
+            <p> đơn</p>
             </div>
             <div className="Status col-md-3">
             <p>Đã thanh toán:</p>
-            <p>1 đơn</p>
+            <p> đơn</p>
             </div>
         </div>
 
         <div className="row Product">
-        <div className="col-md-2">
+        <div className="col-md-3">
         <p>Sản phẩm</p>
         </div>
         <div className="col-md-3">
         <p>Đơn giá</p>
         </div>
         <div className="col-md-1">
-        <p>Số lượng</p>
+          <p>Màu sắc</p>
         </div>
-        <div className="col-md-3">
-        <p>Tổng tiền</p>
+        <div className="col-md-1">
+          <p>kiểu bánh</p>
         </div>
         <div className="col-md-2">
         <p>Trạng thái</p>
         </div>
-        <div className="col-md-1">
+        <div className="col-md-2">
 
         </div>
         </div>
         
         <div>
-        {products.map(product => (
-          <Product
-            key={product.id}
-            {...product}
-            handleToggleCheckbox={handleToggleCheckbox}
-          />
-        ))}
-        
-        </div>
+
+  {filteredProducts.map((product) => (
+    <Product
+      imgSrc={product.img}
+      Name={product.name}
+      Cost={product.price}
+      color={product.color}
+      wheel={product.wheel}
+      Status={"Chưa thanh toán"}
+      handleToggleCheckbox={handleToggleCheckbox}
+    />
+  ))}
+
+</div>
 
         <div>
         <Pay totalQuantity={totalQuantity} totalCost={totalCost}/>
@@ -98,7 +101,7 @@ export default function Cart(){
     )
 }
 
-function Product({...props}){
+function Product(props){
     function toggleCheckbox() {
         const checkbox = document.getElementById(`myCheckbox${props.id}`);
         const isChecked = checkbox.checked;
@@ -106,20 +109,20 @@ function Product({...props}){
       }
     return(
         <div className="row Product">
-        <div className="col-md-2">
+        <div className="col-md-3">
         <img src={props.imgSrc} class="card-img-top" alt = "car" />
         <div class="card-body text-center">
         <p>{props.Name}</p>
         </div>
         </div>
         <div className="col-md-3">
-        <p>{(parseInt(props.Cost)).toLocaleString()} VNĐ</p>
+        <p>{props.Cost}</p>
         </div>
         <div className="col-md-1">
-        <p>{props.Quantity}</p>
+          <p>{props.color}</p>
         </div>
-        <div className="col-md-3">
-        <p>{(parseInt(props.Cost) * props.Quantity).toLocaleString()} VNĐ</p>
+        <div className="col-md-1">
+          <p>{props.wheel}</p>
         </div>
         <div className="col-md-2">
         <p>{props.Status}</p>
@@ -130,7 +133,12 @@ function Product({...props}){
           id={`myCheckbox${props.id}`}
           onChange={toggleCheckbox}
         />
-      </div>
+        </div>
+        <div className="col-md-1">
+        <button className="delete-button">
+        <i class='bx bx-trash'></i> Xóa
+        </button>
+        </div>
         </div>
     )
 }

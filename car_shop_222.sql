@@ -348,11 +348,6 @@ ALTER TABLE `car`
   ADD PRIMARY KEY (`car_id`);
 
 --
--- Chỉ mục cho bảng `cart`
---
-ALTER TABLE `cart`
-  ADD PRIMARY KEY (`car_id`,`customer_id`),
-  ADD KEY `FK_cart_customer` (`customer_id`);
 
 --
 -- Chỉ mục cho bảng `car_of_models`
@@ -418,11 +413,8 @@ ALTER TABLE `buy_history`
   ADD CONSTRAINT `FK_buy_history_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `cart`
---
-ALTER TABLE `cart`
-  ADD CONSTRAINT `FK_cart_car` FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_cart_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
 
 --
 -- Các ràng buộc cho bảng `car_of_models`
