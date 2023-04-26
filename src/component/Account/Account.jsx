@@ -7,7 +7,7 @@ const Account = (props) =>{
 
         useEffect(() => {
         axios
-          .get("http://localhost/test-react/webcar-ui/BE/Model/Account-data.php")
+          .get("http://localhost/Model/Account-data.php")
           .then((response) => {
             const filteredID = response.data.filter(account => account.id === props.isLogin);
             if (filteredID.length > 0) {

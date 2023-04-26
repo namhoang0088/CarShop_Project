@@ -7,8 +7,7 @@ import Product from "./component/Product/Product";
 export default function App() {
   return (
     <div className="Body">
-    {/* <User /> */}
-    <Product/>
+     <User /> 
     </div>
   );
 }
