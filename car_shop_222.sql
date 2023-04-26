@@ -3,11 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-<<<<<<< HEAD
--- Generation Time: Apr 21, 2023 at 04:44 AM
-=======
 -- Generation Time: Apr 25, 2023 at 03:26 AM
->>>>>>> 8cfb00a325834a943bdaf7393dac041873d31b1e
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -173,15 +169,11 @@ CREATE TABLE `image` (
   `car_id` int(10) NOT NULL,
   `img_car` varchar(255) NOT NULL,
   `img_color` varchar(255) DEFAULT NULL,
-<<<<<<< HEAD
-  `img_wheel` varchar(255) DEFAULT NULL
-=======
   `img_wheel` varchar(255) DEFAULT NULL,
   `beside` char(255) NOT NULL,
   `front` char(255) NOT NULL,
   `back` char(255) NOT NULL,
   `top` char(255) NOT NULL
->>>>>>> 8cfb00a325834a943bdaf7393dac041873d31b1e
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
