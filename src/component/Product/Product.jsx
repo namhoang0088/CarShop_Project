@@ -45,7 +45,7 @@ const fetchProductsImg = async () => {
   return (
     <div className="product container-fluid">
         {/* <Header/> */}
-        <CustomCar carImg={carImg} price={price} name={name}/>
+        <CustomCar carImg={carImg} price={price} name={name} car_id = {id} customer_id = {props.isLogin}/>
         <Specification specification={specification}/>
         <Review comment_list={comment} isLogin={props.isLogin}/>
         {/* <Footer/> */}
