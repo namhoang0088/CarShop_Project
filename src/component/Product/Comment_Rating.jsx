@@ -3,6 +3,7 @@ import {FaStar} from "react-icons/fa"
 import Style1 from "./style1.JPG"
 import { Modal,Button, Form, Row } from "react-bootstrap";
 import "./Comment_Rating.css";
+import {useNavigate} from "react-router-dom";
 
 const colors = {
     orange: "#FFBA5A",
@@ -11,8 +12,10 @@ const colors = {
 };
 
 
-export default function CommentRating() {
+export default function CommentRating(props) {
     const stars = Array(5).fill(0)
+    const navigate= useNavigate();
+
     const [currentValue, setCurrentValue] = useState(0);
     const [hoverValue, setHoverValue] = useState(undefined);
     const [text,setText] = useState('')
@@ -24,7 +27,15 @@ export default function CommentRating() {
         setShow(false);
 
     }
-    const handleShow = () => setShow(true);
+    const handleShow = () =>{ 
+      // console.log(props.isLogin)
+      if(props.isLogin === "No"){
+        console.log(navigate); 
+        setShow(false);
+        navigate('/login',{ replace: true })
+      }
+      else{setShow(true);}
+    }
     const handleClose = () => setShow(false);
 
   
@@ -45,7 +56,7 @@ export default function CommentRating() {
     }
   
     return (
-      <div className="row">
+      <div className="row m-3">
           <Button variant="primary" onClick={handleShow} id="add_comment" >
             +comment
           </Button>

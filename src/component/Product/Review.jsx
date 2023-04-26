@@ -6,7 +6,7 @@ import "./Review.css";
 
 import Avatar from "./avatar.jpg"
 export default function Review(props){
-
+    const[userId,setUserID] = useState("0");
     return(
         
         <div className="m-3 review-block">
@@ -14,15 +14,15 @@ export default function Review(props){
                 <h1 >
                     Review
                 </h1>
-                <Comment_Rating/>
+                <Comment_Rating isLogin={props.isLogin}/>
             </div>
             {
                 props.comment_list.map((comment,idx) => (
-                    <div className="row mt-3 review-container" key={`comment-${idx}`}>
+                    <div className="row m-0 p-0 review-container" key={`comment-${idx}`}>
                         <div className="col-md-3  review-avatar" >
                             <img id="avatar-img" src={comment["avatar"]} alt="avatar"/>
                         </div>
-                        <div className="col-md-8 review-commnent">
+                        <div className="col-md-6 px-2 review-commnent">
 
                             <div className="row" id="name">
                                 {comment["name"]}

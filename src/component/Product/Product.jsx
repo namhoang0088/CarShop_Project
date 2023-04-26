@@ -7,7 +7,7 @@ import Review from "./Review";
 import Payment from "./Payment";
 import "./Product.css"
 
-import {Routes, Route, useParams} from "react-router-dom";
+import {Routes, Route, useParams, useHistory} from "react-router-dom";
 import { useEffect, useState} from "react";
 import axios from "axios"
 //import { Col, Row, Container, Button, ButtonGroup, ToggleButton, Form} from "react-bootstrap";
@@ -19,6 +19,7 @@ function Product(props) {
   const [carImg,setCarImg] = useState({"black":{"style1" :[]}});
   const [specification,setSpecification] = useState([]);
   const {id} = useParams();
+  
 
 const fetchProductsImg = async () => {
   try {
@@ -46,7 +47,7 @@ const fetchProductsImg = async () => {
         {/* <Header/> */}
         <CustomCar carImg={carImg} price={price} name={name}/>
         <Specification specification={specification}/>
-        <Review comment_list={comment}/>
+        <Review comment_list={comment} isLogin={props.isLogin}/>
         {/* <Footer/> */}
     </div>
   );

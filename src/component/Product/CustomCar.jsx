@@ -136,7 +136,7 @@ function CustomCar(props){
                     </div>
 
                     <div className="text-center" id="price"  >
-                        <p>Price : {quantity*props.price}$</p>
+                        <p>Price : {(parseInt(quantity*props.price)).toLocaleString()}vnd</p>
                         <Link to="/Payment" >
                             <Button style={{width:60,height:60}} type="submit" className="col-md-2 m-2" variant="primary"> 
                             Mua ngay
