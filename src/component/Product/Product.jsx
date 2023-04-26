@@ -7,8 +7,8 @@ import Review from "./Review";
 import Payment from "./Payment";
 import "./Product.css"
 
-import {Routes, Route} from "react-router-dom";
-import { useEffect, useState } from "react";
+import {Routes, Route, useParams} from "react-router-dom";
+import { useEffect, useState} from "react";
 import axios from "axios"
 //import { Col, Row, Container, Button, ButtonGroup, ToggleButton, Form} from "react-bootstrap";
 
@@ -16,14 +16,14 @@ function Product() {
   const [price,setPrice] = useState("0");
   const [carImg,setCarImg] = useState({"black":{"style1" :[]}});
   const [specification,setSpecification] = useState([]);
-
+  const {id} = useParams();
+  
 const fetchProductsImg = async () => {
   try {
-    const id = "1000";
     const response = await axios.get(`http://localhost/Controller/Car_controller.php?id=${id}`)
-    console.log(response.data["img"]);
+    // console.log(response.data["img"]);
     setCarImg(response.data["img"]);
-    console.log(carImg);
+    // console.log(carImg);
     setSpecification(response.data["specification"]); // Lưu danh sách sản phẩm vào state
     setPrice(response.data["specification"][6].value);
   } 

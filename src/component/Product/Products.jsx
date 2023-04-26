@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import "./Products.css";
 
@@ -41,12 +42,14 @@ export default function Products(props) {
         <div className="row">
           {filteredProducts.map((product) => (
             <div className="col-md-4">
-              <CardProduct
-                imgSrc={product.img}
-                imgAlt="Carpicture"
-                name={product.name}
-                price={product.price}
-              />
+              <Link to={`/products/product/${product['car_id']}`} >
+                <CardProduct
+                  imgSrc={product.img}
+                  imgAlt="Carpicture"
+                  name={product.name}
+                  price={product.price}
+                />
+              </Link>
             </div>
           ))}
         </div>

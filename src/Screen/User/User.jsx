@@ -8,6 +8,8 @@ import Header from '../../component/Header';
 import Footer from '../../component/Footer';
 import AuthoMain from '../Authentication/AuthenMain';
 import Account from '../../component/Account/Account';
+import Product from '../../component/Product/Product';
+import Payment from '../../component/Product/Payment';
 
 function User() {
   const [isLogin, setIslogin] = useState('No');
@@ -22,6 +24,8 @@ function User() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/products" element={<ViewProduct />} />
+          <Route exact path="/products/product/:id" element={<Product/>} />
+          <Route exact path="/products/payment" element={<Payment/>} />
         <Route exact path="/cart" element={<Cart />} />
         <Route exact path="/login" element={loginComponent} />
       </Routes>
