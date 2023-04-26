@@ -5,65 +5,6 @@ import Style2 from './style2.JPG';
 import { useState } from "react";
 import "./CustomCar.css"
 
-// const car_img = {
-//         Black:{
-//             style1:[
-//                 { name: 'front', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9Z7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KwChQ5kpagfNMkv0Dy10Q9%25khifIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' },
-//                 { name: 'back', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9A7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KwChQ5kpagfNMkv0Dy10Q9%25khifIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' },
-//                 { name: 'side', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9L7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KwChQ5kpagfNMkv0Dy10Q9%25khifIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' },
-//                 { name: 'top', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9U7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KwChQ5kpagfNMkv0Dy10Q9%25khifIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' }
-//             ],
-//             style2:[
-//                 { name: 'front', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9Z7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZhiWTQpZPaif3P0Dy10Q9%25khifIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' },
-//                 { name: 'back', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9A7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZhiWTQpZPaif3P0Dy10Q9%25khifIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' },
-//                 { name: 'side', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9L7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZhiWTQpZPaif3P0Dy10Q9%25khifIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' },
-//                 { name: 'top', url:'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9U7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZhiWTQpZPaif3P0Dy10Q9%25khifIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2'}
-//             ]
-//         },
-//         Red:{
-//             style1:[
-//                 { name: 'front', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9Z7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZh4WTQpZPaif3a0DynvQ9%25khifIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' },
-//                 { name: 'back', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9A7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZh4WTQpZPaif3a0DynvQ9%25khifIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' },
-//                 { name: 'side', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9L7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZh4WTQpZPaif3a0DynvQ9%25khifIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' },
-//                 { name: 'top', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9U7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZh4WTQpZPaif3a0DynvQ9%25khifIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' }
-//             ],
-//             style2:[
-//                 { name: 'front', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9Z7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZhiWTQpZPaif3a0DynvQ9%25khifIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' },
-//                 { name: 'back', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9A7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZhiWTQpZPaif3a0DynvQ9%25khifIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' },
-//                 { name: 'side', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9L7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZhiWTQpZPaif3a0DynvQ9%25khifIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' },
-//                 { name: 'top', url:'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9U7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZhiWTQpZPaif3a0DynvQ9%25khifIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2'}
-//             ]
-//         },
-//         Blue:{
-//             style1:[
-//                 { name: 'front', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9Z7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZh4WTQpZPaif3a0DyKIQ9%25khifIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' },
-//                 { name: 'back', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9A7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZh4WTQpZPaif3a0DyKIQ9%25khifIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' },
-//                 { name: 'side', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9L7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZh4WTQpZPaif3a0DyKIQ9%25khifIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' },
-//                 { name: 'top', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9U7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZh4WTQpZPaif3a0DyKIQ9%25khifIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' }
-//             ],
-//             style2:[
-//                 { name: 'front', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9Z7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZhiWTQpZPaif3a0DyKIQ9%25khifIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' },
-//                 { name: 'back', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9A7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZhiWTQpZPaif3a0DyKIQ9%25khifIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' },
-//                 { name: 'side', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9L7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZhiWTQpZPaif3a0DyKIQ9%25khifIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' },
-//                 { name: 'top', url:'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9U7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZhiWTQpZPaif3a0DyKIQ9%25khifIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2'}
-//             ]
-//         },
-//         Yellow:{
-//             style1:[
-//                 { name: 'front', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9Z7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZh4WTQpZPaif3a0DyZ6qT89SnfIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' },
-//                 { name: 'back', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9A7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZh4WTQpZPaif3a0DyZ6qT89SnfIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' },
-//                 { name: 'side', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9L7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZh4WTQpZPaif3a0DyZ6qT89SnfIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' },
-//                 { name: 'top', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9U7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZh4WTQpZPaif3a0DyZ6qT89SnfIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' }
-//             ],
-//             style2:[
-//                 { name: 'front', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9Z7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZhiWTQpZPaif3a0DyZ6qT89SnfIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' },
-//                 { name: 'back', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9A7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZhiWTQpZPaif3a0DyZ6qT89SnfIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' },
-//                 { name: 'side', url: 'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9L7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZhiWTQpZPaif3a0DyZ6qT89SnfIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2' },
-//                 { name: 'top', url:'https://pics.porsche.com/rtt/iris?COSY-EU-100-1713c6eK12UC31P3T5JOCU%25hjdmiTDDmvMXlHWguCuq6Q44RtRHo9ZAaDjau5PwI7tGW3rNbZJNKXv9U7KcQQ%25yFN5tFAsXrw4r3wo0qnqZr8MCnR4i84tV2YN2OmNyW1QGWgCWKMUuyO3jZ60KZhiWTQpZPaif3a0DyZ6qT89SnfIOuw6eu8q%25LAljPqsk6paVvajgwzX29QsMeIzR%25BWIJCgN2'}
-//             ]
-//         }
-// }
-
 const radios = [
     { name: 'black', value: '0' },
     { name: 'red', value: '1' },
