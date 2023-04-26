@@ -18,15 +18,15 @@ export default function Review(){
             </div>
 
             <div className="row mt-3 review-container" >
-                <div className="col-sm-2  review-avatar" >
+                <div className="col-md-3  review-avatar" >
                     <img id="avatar-img" src={Avatar} alt="avatar"/>
                 </div>
-                <div className="col-sm-8 review-commnent">
+                <div className="col-md-8 review-commnent">
 
                     <div className="row" id="name">
                         Huỳnh Nguyễn Hiếu Nhân
                     </div>
-                    <div className="row">
+                    <div >
                         <StarRating rating={5} ></StarRating>
                     </div>
                     <div className="row">

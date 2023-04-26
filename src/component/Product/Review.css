@@ -2,6 +2,14 @@
   #avatar-img{
     border-radius: 100%;
     width: 100%;
+
+  }
+  .review-avatar{
+    max-width: 20%;
+    
+  }
+  .review-commnent{
+    font-size: medium;
   }
   #name{
     color: rgb(0, 255, 38);
@@ -21,18 +29,29 @@
   #add_comment{
     width: 20%;
   }
+  .review-commnent{
+    font-size: small;
+  }
+  #name{
+    color: rgb(0, 255, 38);
+    font-size: small;
+  }
 }
 
 @media screen and (max-width: 420px) {
   #avatar-img{
     border-radius: 100%;
-    max-width: 20%;
   }
   .review-avatar{
     width: 30%;
   }
   .review-commnent{
     width: 60%;
+    font-size: 10px;
+  }
+  #name{
+    color: rgb(0, 255, 38);
+    font-size: small;
   }
   #add_comment{
     width: 30%;

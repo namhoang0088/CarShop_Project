@@ -19,8 +19,8 @@ function Product() {
 
 const fetchProductsImg = async () => {
   try {
-    const id = "4";
-    const response = await axios.get(`http://localhost/Controller/Products/Car_controller.php?id=${id}`)
+    const id = "1000";
+    const response = await axios.get(`http://localhost/Controller/Car_controller.php?id=${id}`)
     console.log(response.data["img"]);
     setCarImg(response.data["img"]);
     console.log(carImg);

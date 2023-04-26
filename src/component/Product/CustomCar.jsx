@@ -131,7 +131,7 @@ function CustomCar(props){
                         <Carousel.Item key={`img car-${idx}`}>
                             <img
                             className="d-block w-100"
-                            src={"http://"+car.url}
+                            src={car.url}
                             alt={car.name}
                             />
                         </Carousel.Item>
@@ -164,7 +164,7 @@ function CustomCar(props){
                     <div className="row-xl button-wheel">
                     {
                         wheel_array.map((wheelObject,idx) =>(
-                                <ToggleButton className="col-lg-2 img-button"
+                                <ToggleButton className="col-lg-2 img-button p-2 m-2"
                                     key={`wheel-${idx}`}
                                     variant="inline"
                                     id={`wheel-${idx}`}

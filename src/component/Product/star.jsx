@@ -9,10 +9,10 @@ function StarRating(props) {
         <div>
             {
                 stars.map((star, idx) => {
-                    return(
+                    return(                    
                         <FaStar
                             key={idx}
-                            size={24}
+                            size={20}
                             name="rating"
                             type="radio"
                             values={rating}
