@@ -39,7 +39,7 @@ export default function Header(){
                 <button className="btn" type="button"><i class='bx bx-cart' style={{ fontSize: '2em' }}></i></button>
                 </div>
                 <div className="header-icon">
-                <button className="btn" type="button"><i class='bx bxs-user' style={{ fontSize: '2em' }}></i></button>
+                <Link to="/login" className="btn" type="button"><i class='bx bxs-user' style={{ fontSize: '2em' }}></i> </Link>
                 </div>
             </div>
         </div>

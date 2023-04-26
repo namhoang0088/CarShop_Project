@@ -2,10 +2,11 @@ import React from "react";
 import "./Login.css";
 import { FiMail } from "react-icons/fi";
 import { FaKey } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import axios from 'axios';
+const FormLogin = (props) => {
 
 const FormLogin = () => {
-<<<<<<< HEAD
-=======
   const [account, setAccount] = useState([]);
   const [Warning, setWarning] = useState([]);
   useEffect(() => {
@@ -26,17 +27,24 @@ const FormLogin = () => {
         for (let i = 0; i < account.length; i++) {
           if (email === account[i].email && password === account[i].password) {
             // Trùng khớp, chuyển hướng đến trang khác
-            setWarning("");
+            if(account[i].role == 'customer'){
+              props.onLogin(account[i].id);
+            } else if(account[i].role == 'admin'){
+              // Tạo điều hướng tới Page dành cho admin
+            } else {
+              //NOTHING
+            }
             
+            setWarning("");
             return;
           }
         }
          // Không tìm thấy tài khoản
-        setWarning("Tài khoản không hợp lệ!");
+         setWarning("Thông tin tài khoản của bạn không chính xác!");
+         props.onLogin("No");
       }
      
     };
->>>>>>> 82e80c0fa5b31144f2df06d9a5fbfe85c1d5b621
   return (
     <div id="formLogin">
       <form>
@@ -71,15 +79,10 @@ const FormLogin = () => {
             ></input>
           </div>
         </div>
-<<<<<<< HEAD
-        <div class="a alert alert-danger border-0 bg-white" role="alert">
-          Sai mật khẩu hoặc enmail!
-=======
         <div class="a alert alert-danger border-0 bg-white" role="alert" style={{color: 'red'}}>
         <div>
           {Warning}
         </div>
->>>>>>> 82e80c0fa5b31144f2df06d9a5fbfe85c1d5b621
         </div>
         <button type="submit" class="btn btn-primary" id="signIn" onClick={handleSignIn}>
           Sign in
@@ -90,16 +93,11 @@ const FormLogin = () => {
           </a>
         </p>
       </form>
-<<<<<<< HEAD
-      <button type="submit" class="btn btn-success" id="register">
-        Register an account
-=======
       <button type="submit" className="btn btn-success" id="register" >
         <Link to="/register" style={{color: "white", textDecoration: "none"}}>Register an account</Link>
->>>>>>> 82e80c0fa5b31144f2df06d9a5fbfe85c1d5b621
       </button>
     </div>
   );
 };
-
+}
 export default FormLogin;
