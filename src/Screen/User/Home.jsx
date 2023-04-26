@@ -6,7 +6,6 @@ import News from "../../component/Home/News";
 export default function Home() {
   return (
     <div className="Body">
-    <Header />
     <Slide />
     <TopProduct />
     <News />

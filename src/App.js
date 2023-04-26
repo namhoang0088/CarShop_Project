@@ -6,8 +6,7 @@ import Payment from "./component/Product/Payment";
 export default function App() {
   return (
     <div className="Body">
-    {/* <User /> */}
-    <Payment/>
+     <User /> 
     </div>
   );
 }
