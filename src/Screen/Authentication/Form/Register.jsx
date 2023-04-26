@@ -265,13 +265,8 @@ const FormRegister = () => {
         <div class="a alert alert-danger border-0 bg-white" role="alert" style={{color: 'red'}}>
           {Warning}
         </div>
-<<<<<<< HEAD
-      </form>
-      <button type="submit" class="btn btn-success" id="register">
-=======
         </form>
         <button type="submit" class="btn btn-success" id="register" onClick={handleRegister}>
->>>>>>> 82e80c0fa5b31144f2df06d9a5fbfe85c1d5b621
         Sign Up
       </button>
       <p class="text-center">
