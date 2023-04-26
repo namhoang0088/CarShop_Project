@@ -10,7 +10,7 @@ import {
 } from "react-icons/bs";
 import { ImLocation2 } from "react-icons/im";
 import { FaKey, FaSignature, FaLock } from "react-icons/fa";
-
+import { Link } from "react-router-dom";
 const FormRegister = () => {
   const [account, setAccount] = useState([]);
   const [Warning, setWarning] = useState([]);
@@ -118,8 +118,13 @@ const FormRegister = () => {
       window.location.href = "/signin";
     }
   return (
-    <div id="formLogin" style={{ marginTop: 0 }}>
-      <form>
+    <div className="register">
+      <div className="title-register">
+      <div class="d-flex justify-content-center"><h1>Sign Up</h1></div>
+      </div>
+     <div>
+     <div id="formRegister">
+     <form>
         <div class="a form-group shadow-sm d-flex align-items-center">
           <div class="col-2 ">
             <FaSignature class="item" />
@@ -268,16 +273,16 @@ const FormRegister = () => {
         </form>
         <button type="submit" class="btn btn-success" id="register" onClick={handleRegister}>
         Sign Up
-      </button>
-      <p class="text-center">
+        </button>
+        <p class="text-center">
         Already have an account?{" "}
-        <a href="#" class="text-success">
-          {" "}
-          Sign in
-        </a>
-      </p>
+        <Link to="/signin">Sign In</Link>
+        </p> 
+      </div>
+     </div>
     </div>
   );
 };
 
 export default FormRegister;
+{/* */}

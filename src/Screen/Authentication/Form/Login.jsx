@@ -1,12 +1,10 @@
-import React from "react";
+import React, { useState, useEffect }  from "react";
 import "./Login.css";
 import { FiMail } from "react-icons/fi";
 import { FaKey } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 const FormLogin = (props) => {
-
-const FormLogin = () => {
   const [account, setAccount] = useState([]);
   const [Warning, setWarning] = useState([]);
   useEffect(() => {
@@ -88,9 +86,7 @@ const FormLogin = () => {
           Sign in
         </button>
         <p class="text-center" id="for">
-          <a href="#" class="text-primary">
-            Quên mật khẩu?
-          </a>
+          <Link to="/forgotpassword"> Quên mật khẩu?</Link>
         </p>
       </form>
       <button type="submit" className="btn btn-success" id="register" >
@@ -99,5 +95,5 @@ const FormLogin = () => {
     </div>
   );
 };
-}
+
 export default FormLogin;

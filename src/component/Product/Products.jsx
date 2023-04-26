@@ -51,9 +51,6 @@ export default function Products(props) {
           ))}
         </div>
       </div>
-            
-
-
     </>
   );
 }
