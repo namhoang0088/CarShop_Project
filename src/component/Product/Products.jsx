@@ -17,7 +17,7 @@ export default function Products(props) {
     ? products.filter((product) => product.brand === props.selectedBrand)
     : products;
 
-    useEffect(() => {
+    useEffect(() => {   
         axios
           .get("http://localhost/test-react/webcar-ui/BE/Model/Brand-data.php")
           .then((response) => {
@@ -42,7 +42,7 @@ export default function Products(props) {
           {filteredProducts.map((product) => (
             <div className="col-md-4">
               <CardProduct
-                imgSrc={product.image}
+                imgSrc={product.img}
                 imgAlt="Carpicture"
                 name={product.name}
                 price={product.price}
@@ -51,6 +51,9 @@ export default function Products(props) {
           ))}
         </div>
       </div>
+            
+
+
     </>
   );
 }
