@@ -24,7 +24,7 @@ function User() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/products" element={<ViewProduct />} />
-          <Route exact path="/products/product/:id" element={<Product/>} />
+          <Route exact path="/products/product/:id" element={<Product isLogin={isLogin}/>} />
           <Route exact path="/products/payment" element={<Payment/>} />
         <Route exact path="/cart" element={<Cart />} />
         <Route exact path="/login" element={loginComponent} />

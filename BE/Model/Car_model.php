@@ -43,7 +43,6 @@ class Car{
         if ($result->num_rows > 0) {
         
             while($row = $result->fetch_assoc()) {
-                
                 $color = $row["img_color"];
                 $wheel = $row["img_wheel"];
                 $front = $row["front"];
@@ -68,7 +67,6 @@ class Car{
     
             }
         }
-
         $data_response['img'] = $img_Car;
         // $data_response['price'] = $price;
     
@@ -80,8 +78,10 @@ class Car{
 
     function get_specification(){
         $data_response = array();
-        $acceleration = $maxSpeed = $wattage = $torque = $fuelComsumption = $emissionCO2 = "";
+        $name = $acceleration = $maxSpeed = $wattage = $torque = $fuelComsumption = $emissionCO2 = "";
         $sql = "SELECT * FROM car WHERE car_id='$this->id'";
+        
+
         $result = ($this->database)->execute($sql);
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
@@ -92,9 +92,9 @@ class Car{
                 $fuelComsumption = $row["fuel_comsumption"];
                 $emissionCO2 = $row["emissions_co2"];
                 $price = $row["price"];
+                $name = $row["name"];
             }
         }
-
         $data_response[] = array("name" => "Công suất(kW)", "value" => $wattage);
         $data_response[] = array("name" => "Mô men xoắn cực đại(Nm)", "value" => $torque);
         $data_response[] = array("name" => "Tăng tốc từ 0 - 100 km/giờ(giây)", "value" => $acceleration);
@@ -102,7 +102,7 @@ class Car{
         $data_response[] = array("name" => "Tiêu thụ nhiên liệu kết hợp (lít/100km)", "value" => $fuelComsumption);
         $data_response[] = array("name" => "Lượng khí thải CO2 (g/km)", "value" => $emissionCO2);
         $data_response[] = array("name" => "Giá", "value" => $price);
-        $data_response = array("specification" => $data_response);
+        $data_response = array("specification" => $data_response,"name" => $name);
         return json_encode($data_response);
     }
 
