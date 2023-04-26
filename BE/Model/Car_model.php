@@ -105,6 +105,60 @@ class Car{
         $data_response = array("specification" => $data_response,"name" => $name);
         return json_encode($data_response);
     }
+    function get_comment_rating(){
+        $data_response = array();
+        $comment_and_customer_list = array();
+        $avatar = $name = $rate = $comment = $customer_id = "";
+        $sql = "SELECT * FROM write_comment_rate WHERE car_id='$this->id'";
+        $result = ($this->database)->execute($sql);
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+        
+                $comment_and_customer_list[] = array("customer_id" => $row["customer_id"],"comment_id" => $row["comment_id"]);
+            }
+        }
+        // var_dump($comment_and_customer_list);
+        $element = array();
+        foreach($comment_and_customer_list as $value){
+            // echo "here";
+            $comemnt_id = $value["comment_id"];
+            $customer_id = $value["customer_id"];
+            
+            
+            $sql = "SELECT * FROM comment_rate WHERE comment_id='$comemnt_id'";
+            $result = ($this->database)->execute($sql);
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    $rate = $row["rate"];
+                    $content =$row["content"];
+                }
+            }
+            $sql = "SELECT * FROM account WHERE id='$customer_id'";
+            $result = ($this->database)->execute($sql);
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    $avatar = $row["avatar"];
+                    $name =$row["name"];
+                }
+            }
+            $element["avatar"]= $avatar;
+            $element["name"]= $name;
+            $element["rate"]= $rate;
+            $element["content"]= $content;
+            // var_dump($element);
+
+            $data_response[] = $element; 
+
+
+        }
+        $data_response = array("comment_list"=> $data_response );
+        // var_dump($data_response);
+        return json_encode($data_response);
+
+    }
+    // function postCommentRating(){
+
+    // }
 
 }
 

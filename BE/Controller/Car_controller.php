@@ -1,7 +1,4 @@
 <?php
-
-use LDAP\Result;
-
 header("Access-Control-Allow-Origin: http://localhost:3000");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
@@ -17,6 +14,10 @@ class CarController{
         $car = new Car($id);
         return $car->get_specification();
     }
+    function get_comment_rating($id){
+        $car = new Car($id);
+        return $car->get_comment_rating();
+    }
 
 };
 
@@ -26,12 +27,14 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
     $carController = new CarController;
     $img = $carController->get_img($id);
     $specification = $carController->get_specification($id);
+    $comment_list = $carController->get_comment_rating($id);
     
-    $obj1 = json_decode($img );
+$obj1 = json_decode($img );
 $obj2 = json_decode($specification);
+$obj3= json_decode($comment_list);
 
 // Nối hai đối tượng JSON lại với nhau
-$objResult = (object)array_merge((array)$obj1, (array)$obj2);
+$objResult = (object)array_merge((array)$obj1, (array)$obj2,(array)$obj3);
 
 // Chuyển đối tượng kết quả thành chuỗi JSON
 $jsonResult = json_encode($objResult);
