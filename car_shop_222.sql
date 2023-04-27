@@ -173,22 +173,31 @@ CREATE TABLE `cart` (
   `id` varchar(255) NOT NULL,
   `customer_id` int(10) NOT NULL,
   `car_id` int(10) NOT NULL,
-  `color` varchar(255) NOT NULL,
-  `wheel` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
   `price` bigint(15) NOT NULL,
-  `img` varchar(255) NOT NULL
+  `quantity` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `brand` varchar(255) NOT NULL,
+  `img` varchar(255) NOT NULL,
+  `acceleration` varchar(255) DEFAULT NULL,
+  `max_speed` varchar(255) DEFAULT NULL,
+  `wattage` varchar(255) DEFAULT NULL,
+  `torque` varchar(255) DEFAULT NULL,
+  `fuel_comsumption` varchar(255) DEFAULT NULL,
+  `emissions_co2` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `cart`
 --
 
-INSERT INTO `cart` (`id`, `customer_id`, `car_id`, `color`, `wheel`, `name`, `price`, `img`) VALUES
-('', 0, 0, '', '', '', 0, ''),
-('', 0, 0, '', '', '', 0, ''),
-('', 0, 0, '', '', '', 0, ''),
-('dmyyu7lj5lojonjley73j', 600, 1001, 'black', 'style1', '718 Cayman', 3620000000, 'http://localhost/uploads/718 Cayman/black_style1_front.jpg');
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `customer_id`, `car_id`, `price`, `quantity`, `name`, `brand`, `img`, `acceleration`, `max_speed`, `wattage`, `torque`, `fuel_comsumption`, `emissions_co2`) VALUES
+('1', 500, 1000, 3740000000, 3, '718 Boxster', 'Porsche', 'https://files.porsche.com/filestore/image/multimedia/none/982-718-c7-modelimage-sideshot/thumbwhite/230138a1-e874-11ea-80cd-005056bbdc38;sK;twebp/porsche-thumbwhite.webp', '4.7', '275', '220', '380', '8.1', '180'),
+('2', 600, 1001, 3620000000, 2, '718 Cayman', 'Porsche', 'https://files.porsche.com/filestore/image/multimedia/none/982-718-c7-se-modelimage-sideshot/thumbwhite/7bdc3629-4ea4-11ed-80f7-005056bbdc38;sK;twebp/porsche-thumbwhite.webp', '4.9', '275', '220', '380', '8.0', '181'),
+('3', 700, 1010, 1400000000, 1, 'Audi S4', 'Audi', 'https://images.autofun.vn/file1/new3fbb5e0370244ef28af19016af6ffdba_606x402.jpg', '4', '200', '200', '400', '8', '180');
 
 -- --------------------------------------------------------
 
@@ -241,12 +250,14 @@ CREATE TABLE `customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `customer`
+-- Dumping data for table `customer`
 --
 
 INSERT INTO `customer` (`customer_id`) VALUES
 (500),
-(600);
+(600),
+(700);
+
 
 -- --------------------------------------------------------
 
@@ -377,6 +388,14 @@ ALTER TABLE `buy_history`
   ADD PRIMARY KEY (`car_id`,`customer_id`),
   ADD KEY `FK_buy_history_customer` (`customer_id`);
 
+--
+-- Dumping data for table `buy_history`
+--
+
+INSERT INTO `buy_history` (`customer_id`, `car_id`, `date_time`, `color`, `wheel`) VALUES
+(500, 1000, '2023-04-26', 'black', 'style1'),
+(600, 1001, '2023-03-26', 'black', 'style1'),
+(700, 1002, '2023-02-26', 'black', 'style1');
 --
 -- Chỉ mục cho bảng `car`
 --

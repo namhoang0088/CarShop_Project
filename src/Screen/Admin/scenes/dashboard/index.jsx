@@ -18,12 +18,13 @@ const Dashboard = () => {
   const [products, setProducts] = useState([]);
   const [order, setOrder] = useState([]);
   const [comment, setComment] = useState([]);
+  const [Cart, setCart] = useState([]);
   let numClient = 0;
   let numProducts = 0;
   let numOrder = 0;
   let numComment = 0;
     useEffect(() => {
-      axios.get('http://localhost/test-react/webcar-ui/BE/Model/Account-data.php')
+      axios.get('http://localhost/Model/Account-data.php')
         .then(response => setAccount(response.data))
         .catch(error => console.log(error));
     }, []);
@@ -33,7 +34,7 @@ const Dashboard = () => {
       }
     }
     useEffect(() => {
-      axios.get('http://localhost/test-react/webcar-ui/BE/Model/Car-data.php')
+      axios.get('http://localhost/Model/Car-data.php')
         .then(response => setProducts(response.data))
         .catch(error => console.log(error));
     }, []);
@@ -41,7 +42,7 @@ const Dashboard = () => {
       numProducts++;
     }   
     useEffect(() => {
-      axios.get('http://localhost/test-react/webcar-ui/BE/Model/Order-data.php')
+      axios.get('http://localhost/Model/Order-data.php')
         .then(response => setOrder(response.data))
         .catch(error => console.log(error));
     }, []);
@@ -49,13 +50,18 @@ const Dashboard = () => {
       numOrder++;
     }  
     useEffect(() => {
-      axios.get('http://localhost/test-react/webcar-ui/BE/Model/Comment-data.php')
+      axios.get('http://localhost/Model/Comment-data.php')
         .then(response => setComment(response.data))
         .catch(error => console.log(error));
     }, []);
     for(let i = 0; i < comment.length; i++){
       numComment++;
     } 
+    useEffect(() => {
+      axios.get('http://localhost/Model/Cart-data.php')
+        .then(response => setCart(response.data))
+        .catch(error => console.log(error));
+    }, []);
   return (
     <Box m="20px">
       {/* HEADER */}
@@ -97,7 +103,7 @@ const Dashboard = () => {
         >
           <StatBox
             title={numOrder}
-            subtitle="Đơn hàng"
+            subtitle="Giao dịch"
             icon={
               <InventoryIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
@@ -190,12 +196,13 @@ const Dashboard = () => {
             p="15px"
           >
             <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
-              Recent Transactions
+              Đơn đặt hàng
             </Typography>
           </Box>
-          {mockTransactions.map((transaction, i) => (
+
+          {Cart.map((transaction) => (
             <Box
-              key={`${transaction.txId}-${i}`}
+              key={`${transaction.customer_id}`}
               display="flex"
               justifyContent="space-between"
               alignItems="center"
@@ -208,19 +215,19 @@ const Dashboard = () => {
                   variant="h5"
                   fontWeight="600"
                 >
-                  {transaction.txId}
+                  {transaction.car_name}
                 </Typography>
                 <Typography color={colors.grey[100]}>
-                  {transaction.user}
+                  {transaction.name}
                 </Typography>
               </Box>
-              <Box color={colors.grey[100]}>{transaction.date}</Box>
+              <Box color={colors.grey[100]}>{transaction.price}đ</Box>
               <Box
                 backgroundColor={colors.greenAccent[500]}
                 p="5px 10px"
                 borderRadius="4px"
               >
-                ${transaction.cost}
+                 Xem chi tiết
               </Box>
             </Box>
           ))}
