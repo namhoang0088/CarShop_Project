@@ -29,16 +29,13 @@ export default function Cart(props){
       .then((response) => setProductList(response.data))
       .catch((error) => console.log(error));
   }, []);
-
-  const filteredProducts = props.userID
-  ? productList.filter((product) => product.customer_id === props.userID)
-  : productList;
+  const filteredProducts = (props.userID !== '')? productList.filter((product) => product.customer_id == props.userID): productList;
 
   const handleToggleCheckbox = useCallback((cost, quantity, isChecked) => {
     setTotalQuantity(prevQuantity => isChecked ? prevQuantity + 1 : prevQuantity - 1);
     setTotalCost(prevCost => isChecked ? prevCost + cost * quantity : prevCost - cost * quantity);
   }, []);
-
+  console.log(productList);
   const [totalQuantity, setTotalQuantity] = useState(0);
   const [totalCost, setTotalCost] = useState(0);
 

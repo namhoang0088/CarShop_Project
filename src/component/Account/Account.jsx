@@ -3,6 +3,8 @@ import "./Account.css";
 import axios from 'axios';
 
 function handleOut(event){
+   localStorage.removeItem('userId');
+   // console.log(localStorage.getItem('userId'));
    window.location.reload();
 }
 const Account = (props) =>{
@@ -10,14 +12,14 @@ const Account = (props) =>{
    function handleSubmit() {
 
     }
-
+   console.log(props.isLogin);
     const [account, setAccount] = useState({});
 
         useEffect(() => {
         axios
           .get("http://localhost/Model/Account-data.php")
           .then((response) => {
-            const filteredID = response.data.filter(account => account.id === props.isLogin);
+            const filteredID = response.data.filter(account => account.id == props.isLogin);
             if (filteredID.length > 0) {
                setAccount(filteredID[0]);
             }

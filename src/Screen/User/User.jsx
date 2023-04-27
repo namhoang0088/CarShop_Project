@@ -1,5 +1,5 @@
 import React from 'react'
-import  { useState } from 'react';
+import  { useState ,useEffect } from 'react';
 import {Routes, Route} from "react-router-dom";
 import Cart from '../../component/Cart/Cart';
 import ViewProduct from './Products';
@@ -16,7 +16,16 @@ function User() {
   const handleLogin = (loginStatus) => {
     setIslogin(loginStatus);
   };
-  
+
+  useEffect(()=>{
+    if(localStorage.getItem("userId") != null){
+      // console.log(localStorage.getItem("userId"));
+      setIslogin(localStorage.getItem("userId"));
+      // console.log(isLogin);
+    }
+  },[])
+  // console.log(isLogin);
+
   let loginComponent = isLogin === 'No' ? <AuthoMain onLogin={handleLogin} /> : <Account isLogin={isLogin} />;
   return (
     <div>
