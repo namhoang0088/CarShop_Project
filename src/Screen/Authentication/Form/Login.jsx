@@ -2,11 +2,12 @@ import React, { useState, useEffect }  from "react";
 import "./Login.css";
 import { FiMail } from "react-icons/fi";
 import { FaKey } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 const FormLogin = (props) => {
   const [account, setAccount] = useState([]);
   const [Warning, setWarning] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
       axios.get('http://localhost/Model/Account-data.php')
         .then(response => setAccount(response.data))
@@ -17,6 +18,7 @@ const FormLogin = (props) => {
       const email = document.getElementsByName("user_email")[0].value;
       const password = document.getElementsByName("user_password")[0].value;
       verifyAccount(email, password);
+      navigate(-1);
     };
     const verifyAccount = (email, password) => {
       if(email=== "" || password === ""){

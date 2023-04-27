@@ -58,7 +58,8 @@ export default function CommentRating(props) {
       if(props.customer_id  === "No"){
         console.log(navigate); 
         setShow(false);
-        navigate('/login',{ replace: true })
+        navigate('/login')//,{ replace: true })
+        
       }
       else{setShow(true);}
     }
