@@ -1,9 +1,23 @@
 
 import "./Cart.css";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
   
+function deleteCart(id) {
+  const data = {
+      code: id,
+    };
+axios.post("http://localhost/Model/Cart-delete.php", data)
+.then((response) => {
+  console.log(response);
+})
+.catch((error) => {
+  console.log(error);
+});
+}
+
+
 export default function Cart(props){
 
   const [productList, setProductList] = useState([]);
@@ -20,25 +34,14 @@ export default function Cart(props){
   ? productList.filter((product) => product.customer_id === props.userID)
   : productList;
 
-    const [totalQuantity, setTotalQuantity] = useState(0);
-    const [totalCost, setTotalCost] = useState(0);
-  
-    function handleToggleCheckbox(cost, quantity, isChecked) {
-        setTotalQuantity(prevQuantity => {
-          if (isChecked) {
-            return prevQuantity + 1;
-          } else {
-            return prevQuantity - 1;
-          }
-        });
-        setTotalCost(prevCost => {
-          if (isChecked) {
-            return prevCost + cost * quantity;
-          } else {
-            return prevCost - cost * quantity;
-          }
-        });
-      }
+  const handleToggleCheckbox = useCallback((cost, quantity, isChecked) => {
+    setTotalQuantity(prevQuantity => isChecked ? prevQuantity + 1 : prevQuantity - 1);
+    setTotalCost(prevCost => isChecked ? prevCost + cost * quantity : prevCost - cost * quantity);
+  }, []);
+
+  const [totalQuantity, setTotalQuantity] = useState(0);
+  const [totalCost, setTotalCost] = useState(0);
+
 
     return(
         <div className="Cart">
@@ -81,13 +84,14 @@ export default function Cart(props){
 
   {filteredProducts.map((product) => (
     <Product
-      imgSrc={product.img}
-      Name={product.name}
-      Cost={product.price}
-      color={product.color}
-      wheel={product.wheel}
-      Status={"Chưa thanh toán"}
-      handleToggleCheckbox={handleToggleCheckbox}
+          id={product.id}
+          imgSrc={product.img}
+          Name={product.name}
+          Cost={product.price}
+          color={product.color}
+          wheel={product.wheel}
+          Status={"Chưa thanh toán"}
+          handleToggleCheckbox={handleToggleCheckbox}
     />
   ))}
 
@@ -101,12 +105,16 @@ export default function Cart(props){
     )
 }
 
-function Product(props){
-    function toggleCheckbox() {
-        const checkbox = document.getElementById(`myCheckbox${props.id}`);
-        const isChecked = checkbox.checked;
-        props.handleToggleCheckbox(props.Cost, props.Quantity, isChecked);
-      }
+function Product({...props}){
+  console.log(props.id)
+  const toggleCheckbox = () => {
+    const checkbox = document.getElementById(`myCheckbox${props.id}`);
+    const isChecked = checkbox.checked;
+    props.handleToggleCheckbox(props.Cost, 1, isChecked);
+  };
+  const handleDeleteCart = () => {
+    deleteCart(props.id);
+  };
     return(
         <div className="row Product">
         <div className="col-md-3">
@@ -116,7 +124,7 @@ function Product(props){
         </div>
         </div>
         <div className="col-md-3">
-        <p>{props.Cost}</p>
+        <p>{(parseInt(props.Cost)).toLocaleString()} VNĐ</p>
         </div>
         <div className="col-md-1">
           <p>{props.color}</p>
@@ -135,7 +143,7 @@ function Product(props){
         />
         </div>
         <div className="col-md-1">
-        <button className="delete-button">
+        <button className="delete-button" onClick={handleDeleteCart}>
         <i class='bx bx-trash'></i> Xóa
         </button>
         </div>

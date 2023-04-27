@@ -6,8 +6,9 @@ import { useState } from "react";
 import "./CustomCar.css"
 import axios from 'axios';
 
-function addToCart(customer_id, car_id, color, wheel, name, price, img) {
-    const data = { // Tạo một object chứa thông tin của tài khoản
+function addToCart(id, customer_id, car_id, color, wheel, name, price, img) {
+    const data = { // Tạo một object chứa thông tin của đơn hàng
+        code: id,
         userid: customer_id,
         carid: car_id,
         mau: color,
@@ -45,8 +46,9 @@ function CustomCar(props){
     const [radioWheelValue, setRadioWheelValue] = useState('0');
     const [quantity, setQuantity] = useState(1);
 
+    const id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     const handleAddToCart = () => {
-        addToCart(props.customer_id, props.car_id, color, wheel, props.name, props.price, props.carImg[color][wheel][0].url);
+        addToCart( id, props.customer_id, props.car_id, color, wheel, props.name, props.price, props.carImg[color][wheel][0].url);
     };
 
     const [index, setIndex] = useState(0);

@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
 -- version 5.2.0
--- http://www.phpmyadmin.net/
+-- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 26, 2023 lúc 09:29 AM
+-- Thời gian đã tạo: Th4 27, 2023 lúc 10:19 AM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.0.25
 
@@ -170,10 +170,14 @@ INSERT INTO `car` (`car_id`, `price`, `quantity`, `name`, `brand`, `img`, `accel
 --
 
 CREATE TABLE `cart` (
+  `id` varchar(255) NOT NULL,
   `customer_id` int(10) NOT NULL,
   `car_id` int(10) NOT NULL,
   `color` varchar(255) NOT NULL,
-  `wheel` varchar(255) NOT NULL
+  `wheel` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` bigint(15) NOT NULL,
+  `img` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -348,8 +352,6 @@ ALTER TABLE `car`
   ADD PRIMARY KEY (`car_id`);
 
 --
-
---
 -- Chỉ mục cho bảng `car_of_models`
 --
 ALTER TABLE `car_of_models`
@@ -411,10 +413,6 @@ ALTER TABLE `brand_has_model`
 ALTER TABLE `buy_history`
   ADD CONSTRAINT `FK_buy_history_car` FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_buy_history_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
-
-
 
 --
 -- Các ràng buộc cho bảng `car_of_models`

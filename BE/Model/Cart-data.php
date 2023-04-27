@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 }
 
 // lấy dữ liệu từ bảng thương hiệu
-$sql = "SELECT customer_id, car_id, color, wheel FROM cart";
+$sql = "SELECT id, customer_id, car_id, color, wheel,name,price,img FROM cart";
 $result = $conn->query($sql);
 
 // đưa dữ liệu vào mảng
