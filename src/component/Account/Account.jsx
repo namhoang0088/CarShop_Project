@@ -2,7 +2,15 @@ import React, { useState, useEffect } from "react";
 import "./Account.css";
 import axios from 'axios';
 
+function handleOut(event){
+   window.location.reload();
+}
 const Account = (props) =>{
+
+   function handleSubmit() {
+
+    }
+
     const [account, setAccount] = useState({});
 
         useEffect(() => {
@@ -21,35 +29,39 @@ const Account = (props) =>{
         <div className="main">
         <div className="account">
         <div className="row">
-            <div className="col-md-7">
+            <div className="form col-md-7">
                 <div className="info">
                    <label htmlFor="name" className="form-lable">Tên đăng nhập</label>
-                   <input type="text" className="form-control" name="name" value={account.name}/>
+                   <input type="text" className="form-control" name="name" value={account.name} />
                 </div>
                 <div className="info">
                    <label htmlFor="name" className="form-lable">Mật khẩu</label>
-                   <input type="text" className="form-control" name="name" value={account.password}/>
+                   <input type="text" className="form-control" name="password" value={account.password}/>
                 </div>
                 <div className="info">
                    <label htmlFor="name" className="form-lable">Email</label>
-                   <input type="text" className="form-control" name="name" value={account.email}/>
+                   <input type="text" className="form-control" name="email" value={account.email}/>
                 </div>
                 <div className="info">
                    <label htmlFor="name" className="form-lable">Số điện thoại</label>
-                   <input type="text" className="form-control" name="name" value={account.phone_number}/>
+                   <input type="text" className="form-control" name="phone" value={account.phone_number}/>
                 </div>
                 <div className="info">
                    <label htmlFor="name" className="form-lable">Địa chỉ</label>
-                   <input type="text" className="form-control" name="name" value={account.address}/>
+                   <input type="text" className="form-control" name="location" value={account.address}/>
                 </div>
                 <div className="info">
                    <label htmlFor="name" className="form-lable">Ngày sinh</label>
                    <input type="date" className="form-control" name="date" id="date" value={account.birthday} />
                 </div>
+                <div className="info">
+                  <button className="btn btn-primary" onClick={handleSubmit}>Lưu</button>
+                  <button type="button" class="btn btn-danger" onClick={handleOut}>Đăng xuất</button>
+                </div>
             </div>
             <div className="col-md-5">
             <div className="avatar">
-            <img src="https://upload.wikimedia.org/wikipedia/vi/thumb/d/df/Lamborghini_Logo.svg/1200px-Lamborghini_Logo.svg.png" className="anh"/>
+            <img src="https://i.pinimg.com/564x/0d/43/d7/0d43d7f06ecf44b7259548edb5f35da6.jpg" className="anh"/>
             <input type="file" name="file" id="file"/>
             </div>
             </div>
