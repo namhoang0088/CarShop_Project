@@ -13,16 +13,11 @@ $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $data = json_decode(file_get_contents('php://input'), true);
 
 $id = $data['code'];
-$customer_id = $data['userid'];
-$car_id = $data['carid'];
-$color = $data['mau'];
-$wheel = $data['kieu'];
-$name = $data['ten'];
-$price = $data['gia'];
-$img = $data['anh'];
 
-// Thực hiện truy vấn để thêm thông tin vào bảng cart
-$stmt = $conn->query("INSERT INTO cart (id, customer_id, car_id, color, wheel, name, price, img) VALUES ('$id', '$customer_id', '$car_id', '$color', '$wheel', '$name','$price','$img')");
+// Thực hiện truy vấn để xóa thông tin khỏi bảng cart
+$stmt = $conn->prepare("DELETE FROM cart WHERE id = :id");
+$stmt->bindParam(':id', $id);
+$stmt->execute();
 
-
+echo json_encode(array("message" => "Xóa thành công"));
 ?>

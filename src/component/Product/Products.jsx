@@ -42,7 +42,7 @@ export default function Products(props) {
         <div className="row">
           {filteredProducts.map((product) => (
             <div className="col-md-4">
-              <Link to={`/products/product/${product['car_id']}`} >
+              <Link to={`/products/product/${product['car_id']}`} style={{ textDecoration: 'none', color: 'black' }}>
                 <CardProduct
                   imgSrc={product.img}
                   imgAlt="Carpicture"
