@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
 -- version 5.2.0
--- http://www.phpmyadmin.net/
+-- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 26, 2023 lúc 09:29 AM
+-- Thời gian đã tạo: Th4 27, 2023 lúc 10:19 AM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.0.25
 
@@ -170,10 +170,14 @@ INSERT INTO `car` (`car_id`, `price`, `quantity`, `name`, `brand`, `img`, `accel
 --
 
 CREATE TABLE `cart` (
+  `id` varchar(255) NOT NULL,
   `customer_id` int(10) NOT NULL,
   `car_id` int(10) NOT NULL,
   `color` varchar(255) NOT NULL,
-  `wheel` varchar(255) NOT NULL
+  `wheel` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` bigint(15) NOT NULL,
+  `img` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -219,10 +223,6 @@ CREATE TABLE `customer` (
   `customer_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `customer` (`customer_id`) VALUES
-(500),
-(600),
-(700);
 -- --------------------------------------------------------
 
 --
@@ -352,8 +352,6 @@ ALTER TABLE `car`
   ADD PRIMARY KEY (`car_id`);
 
 --
-
---
 -- Chỉ mục cho bảng `car_of_models`
 --
 ALTER TABLE `car_of_models`
@@ -417,10 +415,6 @@ ALTER TABLE `buy_history`
   ADD CONSTRAINT `FK_buy_history_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
-
-
-
---
 -- Các ràng buộc cho bảng `car_of_models`
 --
 ALTER TABLE `car_of_models`
@@ -451,10 +445,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
--- Thêm dữ liệu vào bảng buy buy_history
-INSERT INTO `buy_history` (`customer_id`, `car_id`, `date_time`, `color`, `wheel`) VALUES
-(500, 1000, '2023-04-26', 'black', 'style1'),
-(600, 1001, '2023-03-26', 'black', 'style1'),
-(700, 1002, '2023-02-26', 'black', 'style1');
