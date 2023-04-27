@@ -47,7 +47,7 @@ const fetchProductsImg = async () => {
         {/* <Header/> */}
         <CustomCar carImg={carImg} price={price} name={name} car_id = {id} customer_id = {props.isLogin}/>
         <Specification specification={specification}/>
-        <Review comment_list={comment} isLogin={props.isLogin}/>
+        <Review comment_list={comment} customer_id = {props.isLogin} car_id = {id}/>
         {/* <Footer/> */}
     </div>
   );

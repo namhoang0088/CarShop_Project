@@ -14,7 +14,7 @@ export default function Review(props){
                 <h1 >
                     Review
                 </h1>
-                <Comment_Rating isLogin={props.isLogin}/>
+                <Comment_Rating customer_id = {props.customer_id } car_id={props.car_id}/>
             </div>
             {
                 props.comment_list.map((comment,idx) => (

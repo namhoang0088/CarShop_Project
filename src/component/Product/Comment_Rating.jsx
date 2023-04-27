@@ -4,6 +4,7 @@ import Style1 from "./style1.JPG"
 import { Modal,Button, Form, Row } from "react-bootstrap";
 import "./Comment_Rating.css";
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
 
 const colors = {
     orange: "#FFBA5A",
@@ -18,18 +19,43 @@ export default function CommentRating(props) {
 
     const [currentValue, setCurrentValue] = useState(0);
     const [hoverValue, setHoverValue] = useState(undefined);
-    const [text,setText] = useState('')
-    
-
+    const [text,setText] = useState("");
     const [show, setShow] = useState(false);
+
+
+
+    const send_comment = async (sending_data ) =>{
+      try {
+        const response = await axios.post("http://localhost/Controller/Car_controller.php", sending_data, {headers:{
+          "Content-Type": "application/x-www-form-urlencoded" // Đặt Content-Type cho phù hợp với dữ liệu gửi đi
+        }});
+        console.log(response.data);
+
+      } 
+      catch (error) {
+        alert( error);
+      }
+    }
+
+
     const handleSave = (e) => {
         e.preventDefault();
         setShow(false);
-
+        var sending_data = {
+          customer_id: props.customer_id,
+          car_id: props.car_id,
+          rating: currentValue,
+          content: text
+        };
+        console.log(sending_data);
+        send_comment(sending_data); 
     }
+
+
+
     const handleShow = () =>{ 
       // console.log(props.isLogin)
-      if(props.isLogin === "No"){
+      if(props.customer_id  === "No"){
         console.log(navigate); 
         setShow(false);
         navigate('/login',{ replace: true })
@@ -68,7 +94,7 @@ export default function CommentRating(props) {
 
 
               <Modal.Body>
-                <Form className="m-3"  id="form_modal" action="">
+                <Form className="m-3"  id="form_modal" onSubmit={handleSave}>
                   <div className="row-lg" >
 
                     <div>Rating:</div>

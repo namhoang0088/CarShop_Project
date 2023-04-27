@@ -18,13 +18,19 @@ class CarController{
         $car = new Car($id);
         return $car->get_comment_rating();
     }
+    function post_comment_rating($customer_id, $car_id, $content, $rating){
+        $comment = new Comment($customer_id, $car_id, $content, $rating);
+        return $comment->post_comment_rating();
+    }
 
 };
 
 
 if($_SERVER["REQUEST_METHOD"] == "GET"){
     $id = $_GET["id"];
+
     $carController = new CarController;
+
     $img = $carController->get_img($id);
     $specification = $carController->get_specification($id);
     $comment_list = $carController->get_comment_rating($id);
@@ -42,6 +48,19 @@ $jsonResult = json_encode($objResult);
     echo $jsonResult;
 }
 
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $carController = new CarController();
+
+    $customer_id = $_POST["customer_id"];
+    $car_id = $_POST["car_id"];
+    $rating = $_POST["rating"];
+    $content = $_POST["content"];
+    // echo $customer_id." ".$car_id . " ".$content." ".$rating;
+
+    $response = $carController->post_comment_rating($customer_id, $car_id, $content,$rating);
+    echo json_encode ($response);
+
+}
 
 ?>
 

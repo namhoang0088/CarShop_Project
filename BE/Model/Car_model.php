@@ -156,10 +156,50 @@ class Car{
         return json_encode($data_response);
 
     }
-    // function postCommentRating(){
-
-    // }
-
 }
 
+
+
+class Comment{
+    public $id;
+    public $customer_id;
+    public $car_id;
+    public $content;
+    public $rating;
+
+
+    public $database;
+    function __construct($customer_id = "",$car_id = "",$content = "",$rating = "",$id = ""){
+        $this->id  = $id ;
+        $this->customer_id  = $customer_id ;
+        $this->car_id  = $car_id ;
+        $this->content = $content;
+        $this->rating = $rating;
+        $this->database = new Database("localhost","root","","shop");
+    }   
+
+
+    function post_comment_rating(){
+        $data_response = "";
+        
+        $sql = "SELECT * FROM write_comment_rate WHERE customer_id='$this->customer_id' AND car_id='$this->car_id'";
+        $result = ($this->database)->execute($sql);
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $this->id = $row["comment_id"];
+                $sql = "UPDATE comment_rate SET content='$this->content',rate='$this->rating' WHERE comment_id='$this->id'";
+                $data_response = (($this->database)->execute($sql))?"update success":"update fault";
+            }
+        }
+        else{
+                $sql = "INSERT INTO comment_rate(content,rate) VALUES ('$this->content','$this->rating')";
+                $data_response = (($this->database)->execute($sql))?"post success":"post fault";
+                $sql = "INSERT INTO write_comment_rate(customer_id,car_id,comment_id,date_time) VALUES ('$this->customer_id','$this->car_id',LAST_INSERT_ID(), NOW())";
+                $data_response = (($this->database)->execute($sql))?"post success":"post fault";
+        }
+        $data_response = array("message" => $data_response);
+        return json_encode($data_response);
+    }
+
+}
 ?>
