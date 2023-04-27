@@ -27,6 +27,9 @@ const FormLogin = (props) => {
         for (let i = 0; i < account.length; i++) {
           if (email === account[i].email && password === account[i].password) {
             // Trùng khớp, chuyển hướng đến trang khác
+            console.log(account[i].id);
+            localStorage.setItem("userId",account[i].id);
+            
             if(account[i].role == 'customer'){
               props.onLogin(account[i].id);
             } else if(account[i].role == 'admin'){
