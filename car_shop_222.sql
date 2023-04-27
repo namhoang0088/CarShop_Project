@@ -176,6 +176,8 @@ CREATE TABLE `cart` (
   `price` bigint(15) NOT NULL,
   `quantity` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
+  `color` varchar(255) NOT NULL,
+  `wheel` varchar(255) NOT NULL,
   `brand` varchar(255) NOT NULL,
   `img` varchar(255) NOT NULL,
   `acceleration` varchar(255) DEFAULT NULL,
@@ -194,10 +196,10 @@ CREATE TABLE `cart` (
 -- Dumping data for table `cart`
 --
 
-INSERT INTO `cart` (`id`, `customer_id`, `car_id`, `price`, `quantity`, `name`, `brand`, `img`, `acceleration`, `max_speed`, `wattage`, `torque`, `fuel_comsumption`, `emissions_co2`) VALUES
-('1', 500, 1000, 3740000000, 3, '718 Boxster', 'Porsche', 'https://files.porsche.com/filestore/image/multimedia/none/982-718-c7-modelimage-sideshot/thumbwhite/230138a1-e874-11ea-80cd-005056bbdc38;sK;twebp/porsche-thumbwhite.webp', '4.7', '275', '220', '380', '8.1', '180'),
-('2', 600, 1001, 3620000000, 2, '718 Cayman', 'Porsche', 'https://files.porsche.com/filestore/image/multimedia/none/982-718-c7-se-modelimage-sideshot/thumbwhite/7bdc3629-4ea4-11ed-80f7-005056bbdc38;sK;twebp/porsche-thumbwhite.webp', '4.9', '275', '220', '380', '8.0', '181'),
-('3', 700, 1010, 1400000000, 1, 'Audi S4', 'Audi', 'https://images.autofun.vn/file1/new3fbb5e0370244ef28af19016af6ffdba_606x402.jpg', '4', '200', '200', '400', '8', '180');
+INSERT INTO `cart` (`id`, `customer_id`, `car_id`, `price`, `quantity`, `name`,`color`,`wheel`, `brand`, `img`, `acceleration`, `max_speed`, `wattage`, `torque`, `fuel_comsumption`, `emissions_co2`) VALUES
+('1', 500, 1000, 3740000000, 3, '718 Boxster','black','style1', 'Porsche', 'https://files.porsche.com/filestore/image/multimedia/none/982-718-c7-modelimage-sideshot/thumbwhite/230138a1-e874-11ea-80cd-005056bbdc38;sK;twebp/porsche-thumbwhite.webp', '4.7', '275', '220', '380', '8.1', '180'),
+('2', 600, 1001, 3620000000, 2, '718 Cayman', 'black','style1','Porsche', 'https://files.porsche.com/filestore/image/multimedia/none/982-718-c7-se-modelimage-sideshot/thumbwhite/7bdc3629-4ea4-11ed-80f7-005056bbdc38;sK;twebp/porsche-thumbwhite.webp', '4.9', '275', '220', '380', '8.0', '181'),
+('3', 700, 1010, 1400000000, 1, 'Audi S4','black','style1', 'Audi', 'https://images.autofun.vn/file1/new3fbb5e0370244ef28af19016af6ffdba_606x402.jpg', '4', '200', '200', '400', '8', '180');
 
 -- --------------------------------------------------------
 
