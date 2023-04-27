@@ -219,6 +219,10 @@ CREATE TABLE `customer` (
   `customer_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+INSERT INTO `customer` (`customer_id`) VALUES
+(500),
+(600),
+(700);
 -- --------------------------------------------------------
 
 --
@@ -447,3 +451,10 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+-- Thêm dữ liệu vào bảng buy buy_history
+INSERT INTO `buy_history` (`customer_id`, `car_id`, `date_time`, `color`, `wheel`) VALUES
+(500, 1000, '2023-04-26', 'black', 'style1'),
+(600, 1001, '2023-03-26', 'black', 'style1'),
+(700, 1002, '2023-02-26', 'black', 'style1');
