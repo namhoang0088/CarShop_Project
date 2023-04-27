@@ -25,12 +25,14 @@ export default function Cart(props){
 
   useEffect(() => {
     axios
-      .get("http://localhost/Model/UserCart-data.php")
+      .get("http://localhost/Model/Cart-data.php")
       .then((response) => setProductList(response.data))
       .catch((error) => console.log(error));
   }, []);
 
-  const filteredProducts = (props.userID !== '')? productList.filter((product) => product.customer_id == props.userID): productList;
+  const filteredProducts = props.userID
+  ? productList.filter((product) => product.customer_id === props.userID)
+  : productList;
 
   const handleToggleCheckbox = useCallback((cost, quantity, isChecked) => {
     setTotalQuantity(prevQuantity => isChecked ? prevQuantity + 1 : prevQuantity - 1);
