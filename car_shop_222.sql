@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 27, 2023 lúc 10:19 AM
+-- Thời gian đã tạo: Th4 27, 2023 lúc 02:01 PM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.0.25
 
@@ -48,8 +48,8 @@ CREATE TABLE `account` (
 
 INSERT INTO `account` (`id`, `email`, `password`, `phone_number`, `name`, `birthday`, `address`, `avatar`, `security_question`, `security_answer`, `state`, `role`) VALUES
 (400, 'kientran@gmail.com', '1234', '01234567', 'Kiên Trần', '2023-04-21', 'Linh Trung, Thủ Đức', 'any', 'Sở thích của bạn là gì', 'Xem phim', 'True', 'admin'),
-(500, 'huynhnhan@gmail.com', '1234', '01234567', 'Huỳnh Nhân', '2023-04-21', 'Linh Trung, Thủ Đức', 'any', 'Sở thích của bạn là gì', 'Xem phim', 'True', 'customer'),
-(600, 'hoangnam@gmail.com', '1234', '01234567', 'Hoàng Nam', '2023-04-21', 'Linh Trung, Thủ Đức', 'any', 'Sở thích của bạn là gì', 'Xem phim', 'True', 'customer'),
+(500, 'huynhnhan@gmail.com', '1234', '01234567', 'Huỳnh Nhân', '2023-04-21', 'Linh Trung, Thủ Đức', 'http://localhost/uploads/avatar/any.jpg', 'Sở thích của bạn là gì', 'Xem phim', 'True', 'customer'),
+(600, 'hoangnam@gmail.com', '1234', '01234567', 'Hoàng Nam', '2023-04-21', 'Linh Trung, Thủ Đức', 'http://localhost/uploads/avatar/any.jpg', 'Sở thích của bạn là gì', 'Xem phim', 'True', 'customer'),
 (700, 'chungquang@gmail.com', '1234', '01234567', 'Chúng Quang', '2023-04-21', 'Linh Trung, Thủ Đức', 'any', 'Sở thích của bạn là gì', 'Xem phim', 'True', 'customer');
 
 -- --------------------------------------------------------
@@ -180,6 +180,16 @@ CREATE TABLE `cart` (
   `img` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `cart`
+--
+
+INSERT INTO `cart` (`id`, `customer_id`, `car_id`, `color`, `wheel`, `name`, `price`, `img`) VALUES
+('', 0, 0, '', '', '', 0, ''),
+('', 0, 0, '', '', '', 0, ''),
+('', 0, 0, '', '', '', 0, ''),
+('dmyyu7lj5lojonjley73j', 600, 1001, 'black', 'style1', '718 Cayman', 3620000000, 'http://localhost/uploads/718 Cayman/black_style1_front.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -213,6 +223,13 @@ CREATE TABLE `comment_rate` (
   `rate` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `comment_rate`
+--
+
+INSERT INTO `comment_rate` (`comment_id`, `content`, `rate`) VALUES
+(5, '1235', 4);
+
 -- --------------------------------------------------------
 
 --
@@ -222,6 +239,14 @@ CREATE TABLE `comment_rate` (
 CREATE TABLE `customer` (
   `customer_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `customer`
+--
+
+INSERT INTO `customer` (`customer_id`) VALUES
+(500),
+(600);
 
 -- --------------------------------------------------------
 
@@ -310,6 +335,13 @@ CREATE TABLE `write_comment_rate` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Đang đổ dữ liệu cho bảng `write_comment_rate`
+--
+
+INSERT INTO `write_comment_rate` (`customer_id`, `car_id`, `comment_id`, `date_time`) VALUES
+(600, 1000, 5, '2023-04-27');
+
+--
 -- Chỉ mục cho các bảng đã đổ
 --
 
@@ -389,14 +421,16 @@ ALTER TABLE `write_comment_rate`
   ADD PRIMARY KEY (`car_id`,`customer_id`,`comment_id`),
   ADD KEY `FK_write_comment_rate_customer` (`customer_id`),
   ADD KEY `FK_write_comment_rate_comment` (`comment_id`);
--- AUTO_INCREMENT for dumped tables
+
+--
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `comment_rate`
+-- AUTO_INCREMENT cho bảng `comment_rate`
 --
 ALTER TABLE `comment_rate`
-  MODIFY `comment_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `comment_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
