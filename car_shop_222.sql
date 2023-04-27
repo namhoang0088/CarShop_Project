@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 27, 2023 at 11:33 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th4 27, 2023 lúc 10:19 AM
+-- Phiên bản máy phục vụ: 10.4.27-MariaDB
+-- Phiên bản PHP: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `shop`
+-- Cơ sở dữ liệu: `shop`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `account`
+-- Cấu trúc bảng cho bảng `account`
 --
 
 CREATE TABLE `account` (
@@ -43,19 +43,19 @@ CREATE TABLE `account` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `account`
+-- Đang đổ dữ liệu cho bảng `account`
 --
 
 INSERT INTO `account` (`id`, `email`, `password`, `phone_number`, `name`, `birthday`, `address`, `avatar`, `security_question`, `security_answer`, `state`, `role`) VALUES
-(400, 'kientran@gmail.com', '1234', '01234567', 'Kiên Trần', '2023-04-21', 'Linh Trung, Thủ Đức', 'http://localhost/uploads/avatar/any.jpg', 'Sở thích của bạn là gì', 'Xem phim', 'True', 'admin'),
-(500, 'huynhnhan@gmail.com', '1234', '01234567', 'Huỳnh Nhân', '2023-04-21', 'Linh Trung, Thủ Đức', 'http://localhost/uploads/avatar/nhan.jpg', 'Sở thích của bạn là gì', 'Xem phim', 'True', 'customer'),
-(600, 'hoangnam@gmail.com', '1234', '01234567', 'Hoàng Nam', '2023-04-21', 'Linh Trung, Thủ Đức', 'http://localhost/uploads/avatar/any.jpg', 'Sở thích của bạn là gì', 'Xem phim', 'True', 'customer'),
-(700, 'chungquang@gmail.com', '1234', '01234567', 'Chúng Quang', '2023-04-21', 'Linh Trung, Thủ Đức', 'http://localhost/uploads/avatar/any.jpg', 'Sở thích của bạn là gì', 'Xem phim', 'True', 'customer');
+(400, 'kientran@gmail.com', '1234', '01234567', 'Kiên Trần', '2023-04-21', 'Linh Trung, Thủ Đức', 'any', 'Sở thích của bạn là gì', 'Xem phim', 'True', 'admin'),
+(500, 'huynhnhan@gmail.com', '1234', '01234567', 'Huỳnh Nhân', '2023-04-21', 'Linh Trung, Thủ Đức', 'any', 'Sở thích của bạn là gì', 'Xem phim', 'True', 'customer'),
+(600, 'hoangnam@gmail.com', '1234', '01234567', 'Hoàng Nam', '2023-04-21', 'Linh Trung, Thủ Đức', 'any', 'Sở thích của bạn là gì', 'Xem phim', 'True', 'customer'),
+(700, 'chungquang@gmail.com', '1234', '01234567', 'Chúng Quang', '2023-04-21', 'Linh Trung, Thủ Đức', 'any', 'Sở thích của bạn là gì', 'Xem phim', 'True', 'customer');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Cấu trúc bảng cho bảng `admin`
 --
 
 CREATE TABLE `admin` (
@@ -65,7 +65,7 @@ CREATE TABLE `admin` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `brand`
+-- Cấu trúc bảng cho bảng `brand`
 --
 
 CREATE TABLE `brand` (
@@ -76,7 +76,7 @@ CREATE TABLE `brand` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `brand`
+-- Đang đổ dữ liệu cho bảng `brand`
 --
 
 INSERT INTO `brand` (`brand_id`, `name`, `logo`, `info`) VALUES
@@ -89,7 +89,7 @@ INSERT INTO `brand` (`brand_id`, `name`, `logo`, `info`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `brand_has_model`
+-- Cấu trúc bảng cho bảng `brand_has_model`
 --
 
 CREATE TABLE `brand_has_model` (
@@ -100,7 +100,7 @@ CREATE TABLE `brand_has_model` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `buy_history`
+-- Cấu trúc bảng cho bảng `buy_history`
 --
 
 CREATE TABLE `buy_history` (
@@ -114,7 +114,7 @@ CREATE TABLE `buy_history` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `car`
+-- Cấu trúc bảng cho bảng `car`
 --
 
 CREATE TABLE `car` (
@@ -133,7 +133,7 @@ CREATE TABLE `car` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `car`
+-- Đang đổ dữ liệu cho bảng `car`
 --
 
 INSERT INTO `car` (`car_id`, `price`, `quantity`, `name`, `brand`, `img`, `acceleration`, `max_speed`, `wattage`, `torque`, `fuel_comsumption`, `emissions_co2`) VALUES
@@ -166,20 +166,24 @@ INSERT INTO `car` (`car_id`, `price`, `quantity`, `name`, `brand`, `img`, `accel
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cart`
+-- Cấu trúc bảng cho bảng `cart`
 --
 
 CREATE TABLE `cart` (
+  `id` varchar(255) NOT NULL,
   `customer_id` int(10) NOT NULL,
   `car_id` int(10) NOT NULL,
   `color` varchar(255) NOT NULL,
-  `wheel` varchar(255) NOT NULL
+  `wheel` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` bigint(15) NOT NULL,
+  `img` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `car_of_models`
+-- Cấu trúc bảng cho bảng `car_of_models`
 --
 
 CREATE TABLE `car_of_models` (
@@ -188,7 +192,7 @@ CREATE TABLE `car_of_models` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `car_of_models`
+-- Đang đổ dữ liệu cho bảng `car_of_models`
 --
 
 INSERT INTO `car_of_models` (`model_id`, `car_id`) VALUES
@@ -200,7 +204,7 @@ INSERT INTO `car_of_models` (`model_id`, `car_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comment_rate`
+-- Cấu trúc bảng cho bảng `comment_rate`
 --
 
 CREATE TABLE `comment_rate` (
@@ -209,39 +213,20 @@ CREATE TABLE `comment_rate` (
   `rate` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `comment_rate`
---
-
-INSERT INTO `comment_rate` (`comment_id`, `content`, `rate`) VALUES
-(1, 'xe quá đẹp', 5),
-(2, 'nhìn cũng sang', 4),
-(3, 'quá đẹp', 5),
-(4, 'quá đẹp ', 5);
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `customer`
+-- Cấu trúc bảng cho bảng `customer`
 --
 
 CREATE TABLE `customer` (
   `customer_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `customer`
---
-
-INSERT INTO `customer` (`customer_id`) VALUES
-(500),
-(600),
-(700);
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `image`
+-- Cấu trúc bảng cho bảng `image`
 --
 
 CREATE TABLE `image` (
@@ -255,7 +240,7 @@ CREATE TABLE `image` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `image`
+-- Đang đổ dữ liệu cho bảng `image`
 --
 
 INSERT INTO `image` (`car_id`, `img_color`, `img_wheel`, `beside`, `front`, `back`, `top`) VALUES
@@ -295,7 +280,7 @@ INSERT INTO `image` (`car_id`, `img_color`, `img_wheel`, `beside`, `front`, `bac
 -- --------------------------------------------------------
 
 --
--- Table structure for table `models`
+-- Cấu trúc bảng cho bảng `models`
 --
 
 CREATE TABLE `models` (
@@ -304,7 +289,7 @@ CREATE TABLE `models` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `models`
+-- Đang đổ dữ liệu cho bảng `models`
 --
 
 INSERT INTO `models` (`model_id`, `name`) VALUES
@@ -314,7 +299,7 @@ INSERT INTO `models` (`model_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `write_comment_rate`
+-- Cấu trúc bảng cho bảng `write_comment_rate`
 --
 
 CREATE TABLE `write_comment_rate` (
@@ -325,104 +310,85 @@ CREATE TABLE `write_comment_rate` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `write_comment_rate`
---
-
-INSERT INTO `write_comment_rate` (`customer_id`, `car_id`, `comment_id`, `date_time`) VALUES
-(500, 1000, 1, '2023-04-25'),
-(600, 1000, 2, '2023-04-26'),
-(700, 1000, 3, '2023-04-27'),
-(500, 1001, 4, '2023-04-27');
-
---
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `account`
+-- Chỉ mục cho bảng `account`
 --
 ALTER TABLE `account`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `admin`
+-- Chỉ mục cho bảng `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`);
 
 --
--- Indexes for table `brand`
+-- Chỉ mục cho bảng `brand`
 --
 ALTER TABLE `brand`
   ADD PRIMARY KEY (`brand_id`);
 
 --
--- Indexes for table `brand_has_model`
+-- Chỉ mục cho bảng `brand_has_model`
 --
 ALTER TABLE `brand_has_model`
   ADD PRIMARY KEY (`brand_id`,`model_id`),
   ADD KEY `FK_model_has` (`model_id`);
 
 --
--- Indexes for table `buy_history`
+-- Chỉ mục cho bảng `buy_history`
 --
 ALTER TABLE `buy_history`
   ADD PRIMARY KEY (`car_id`,`customer_id`),
   ADD KEY `FK_buy_history_customer` (`customer_id`);
 
 --
--- Indexes for table `car`
+-- Chỉ mục cho bảng `car`
 --
 ALTER TABLE `car`
   ADD PRIMARY KEY (`car_id`);
 
 --
--- Indexes for table `cart`
---
-ALTER TABLE `cart`
-  ADD PRIMARY KEY (`car_id`,`customer_id`),
-  ADD KEY `FK_cart_customer` (`customer_id`);
-
---
--- Indexes for table `car_of_models`
+-- Chỉ mục cho bảng `car_of_models`
 --
 ALTER TABLE `car_of_models`
   ADD PRIMARY KEY (`model_id`,`car_id`),
   ADD KEY `FK_car` (`car_id`);
 
 --
--- Indexes for table `comment_rate`
+-- Chỉ mục cho bảng `comment_rate`
 --
 ALTER TABLE `comment_rate`
   ADD PRIMARY KEY (`comment_id`);
 
 --
--- Indexes for table `customer`
+-- Chỉ mục cho bảng `customer`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`customer_id`);
 
 --
--- Indexes for table `image`
+-- Chỉ mục cho bảng `image`
 --
 ALTER TABLE `image`
   ADD PRIMARY KEY (`car_id`,`front`) USING BTREE;
 
 --
--- Indexes for table `models`
+-- Chỉ mục cho bảng `models`
 --
 ALTER TABLE `models`
   ADD PRIMARY KEY (`model_id`);
 
 --
--- Indexes for table `write_comment_rate`
+-- Chỉ mục cho bảng `write_comment_rate`
 --
 ALTER TABLE `write_comment_rate`
   ADD PRIMARY KEY (`car_id`,`customer_id`,`comment_id`),
   ADD KEY `FK_write_comment_rate_customer` (`customer_id`),
   ADD KEY `FK_write_comment_rate_comment` (`comment_id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -433,57 +399,50 @@ ALTER TABLE `comment_rate`
   MODIFY `comment_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `admin`
+-- Các ràng buộc cho bảng `admin`
 --
 ALTER TABLE `admin`
   ADD CONSTRAINT `FK_admin_user` FOREIGN KEY (`admin_id`) REFERENCES `account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `brand_has_model`
+-- Các ràng buộc cho bảng `brand_has_model`
 --
 ALTER TABLE `brand_has_model`
   ADD CONSTRAINT `FK_brand_has` FOREIGN KEY (`brand_id`) REFERENCES `brand` (`brand_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_model_has` FOREIGN KEY (`model_id`) REFERENCES `models` (`model_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `buy_history`
+-- Các ràng buộc cho bảng `buy_history`
 --
 ALTER TABLE `buy_history`
   ADD CONSTRAINT `FK_buy_history_car` FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_buy_history_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `cart`
---
-ALTER TABLE `cart`
-  ADD CONSTRAINT `FK_cart_car` FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_cart_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `car_of_models`
+-- Các ràng buộc cho bảng `car_of_models`
 --
 ALTER TABLE `car_of_models`
   ADD CONSTRAINT `FK_car` FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_model` FOREIGN KEY (`model_id`) REFERENCES `models` (`model_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `customer`
+-- Các ràng buộc cho bảng `customer`
 --
 ALTER TABLE `customer`
   ADD CONSTRAINT `FK_customer_user` FOREIGN KEY (`customer_id`) REFERENCES `account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `image`
+-- Các ràng buộc cho bảng `image`
 --
 ALTER TABLE `image`
   ADD CONSTRAINT `FK_image_car` FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `write_comment_rate`
+-- Các ràng buộc cho bảng `write_comment_rate`
 --
 ALTER TABLE `write_comment_rate`
   ADD CONSTRAINT `FK_write_comment_rate_car` FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`) ON DELETE CASCADE ON UPDATE CASCADE,
