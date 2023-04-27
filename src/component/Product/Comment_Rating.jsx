@@ -29,7 +29,7 @@ export default function CommentRating(props) {
         const response = await axios.post("http://localhost/Controller/Car_controller.php", sending_data, {headers:{
           "Content-Type": "application/x-www-form-urlencoded" // Đặt Content-Type cho phù hợp với dữ liệu gửi đi
         }});
-        console.log(response.data);
+        // console.log(response.data);
 
       } 
       catch (error) {
@@ -47,8 +47,10 @@ export default function CommentRating(props) {
           rating: currentValue,
           content: text
         };
-        console.log(sending_data);
+        // console.log(sending_data);
         send_comment(sending_data); 
+        window.location.reload();
+
     }
 
 
