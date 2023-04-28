@@ -19,8 +19,8 @@ $birth = $data['user_birthday'];
 $address = $data['user_address'];
 $avatar = 'any';
 $phone = $data['user_phonenumber'];
-$question = '';
-$answer = '';
+$question = $data['user_question'];
+$answer = $data['user_answer'];
 $state = 'true';
 $role = 'admin';
 

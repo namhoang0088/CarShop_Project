@@ -21,9 +21,11 @@ const Form = () => {
     const birth = document.getElementsByName("user_birthday")[0].value;
     const address = document.getElementsByName("user_address")[0].value;
     const phone = document.getElementsByName("user_phonenumber")[0].value;
-    verifyAccount(name, email, password, confirmPassword, birth, address, phone);
+    const question = document.getElementsByName("user_question")[0].value;
+    const answer = document.getElementsByName("user_answer")[0].value;
+    verifyAccount(name, email, password, confirmPassword, birth, address, phone,question, answer);
   };
-  const verifyAccount = (name,email, password, confirmPassword, birth, address, phone) => {
+  const verifyAccount = (name,email, password, confirmPassword, birth, address, phone,question,answer) => {
     var yearAge = parseInt(
       birth.substring(0, 4),
       10)
@@ -32,7 +34,7 @@ const Form = () => {
     let regexPassword = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,32}$/);
     let regexNumPhone = new RegExp(/^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/);
     let regexAnswer = new RegExp(/^.{0,100}$/)
-    if(name===""||email=== "" || password === ""||confirmPassword===""||birth===""||address===""||phone===""){
+    if(name===""||email=== "" || password === ""||confirmPassword===""||birth===""||address===""||phone===""||question==="0"||answer===""){
       setWarning("Hãy nhập đầy đủ thông tin!");
       
     } else if(!regexName.test(name)){
@@ -53,13 +55,15 @@ const Form = () => {
         
     } else if(!regexNumPhone.test(phone)){
       setWarning("Số điện thoại gồm 10 số nếu có nhập số 0 ở đầu tiên còn nếu không nhập 0 thì còn 9 số!");
+    }else if(!regexAnswer.test(answer)){
+      setWarning("Câu trả lời bảo mật không được quá 100 ký tự!");
     } else {
       setWarning("");
-      verifyEmail(name, email, password, confirmPassword, birth, address, phone);
+      verifyEmail(name, email, password, confirmPassword, birth, address, phone, question, answer);
     }
    
   };
-  const verifyEmail = (name, email, password, confirmPassword, birth, address, phone) => {
+  const verifyEmail = (name, email, password, confirmPassword, birth, address, phone, question, answer) => {
     let id = 0;
     for (let i = 0; i < account.length; i++) {
       if(account[i].id > id){
@@ -73,11 +77,21 @@ const Form = () => {
       }
     }
     id += 1;
-    uploadDatabase(id,name, email, password, birth, address, phone);
+    uploadDatabase(id,name, email, password, birth, address, phone, question, answer);
     setWarning("");
   };
-  const uploadDatabase = (id ,name, email, password, birth, address, phone) => {
-      
+  const uploadDatabase = (id ,name, email, password, birth, address, phone, question, answer) => {
+      if(question == '1'){
+        question="Sở thích của bạn là gì";
+      } else if(question == '2'){
+        question="Bạn sống ở đâu";
+      } else if(question == '3'){
+        question = "Biệt danh của bạn là gì";
+      } else if (question == '4'){
+        question = "Bạn đang làm nghề gì"
+      } else {
+        //
+      }
     const data = { // Tạo một object chứa thông tin của tài khoản
       user_id: id,
       user_name: name,
@@ -86,16 +100,22 @@ const Form = () => {
       user_birthday: birth,
       user_address: address,
       user_phonenumber: phone,
+      user_question: question,
+      user_answer: answer,
     };
     axios.post('http://localhost/Model/registerAdmin-data.php', data)
     .then(response => {
       // Xử lý kết quả trả về nếu cần
       alert("Khởi tạo thành công!");
+      navigation();
     })
     .catch(error => {
       // Xử lý lỗi nếu có
       alert(error);
     });
+  }
+  const navigation = () => {   
+    window.location.href = "/contacts";
   }
   return (
     <Box m="20px">
@@ -162,6 +182,25 @@ const Form = () => {
                 type="text"
                 label="Phone"
                 name="user_phonenumber"
+                sx={{ gridColumn: "span 4" }}
+              />
+              <select
+                class="custom-select border-0"
+                id="question"
+                name="user_question"
+              >
+                <option value="0" selected>Select Question</option>
+                <option value="1">Sở thích của bạn là gì</option>
+                <option value="2">Bạn sống ở đâu</option>
+                <option value="3">Biệt danh của bạn là gì</option>
+                <option value="4">Bạn đang làm nghề gì</option>
+              </select>
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Answer"
+                name="user_answer"
                 sx={{ gridColumn: "span 4" }}
               />
               <div role="alert" style={{color: 'red'}}>
