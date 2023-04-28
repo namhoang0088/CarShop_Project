@@ -58,7 +58,7 @@ export default function CommentRating(props) {
     const handleShow = () =>{ 
       // console.log(props.isLogin)
       if(props.customer_id  === "No"){
-        console.log(navigate); 
+        // console.log(navigate); 
         setShow(false);
         navigate('/login')//,{ replace: true })
         

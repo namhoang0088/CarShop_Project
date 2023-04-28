@@ -5,7 +5,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import FormForgotPassword from "./Form/ForgotPassword";
 import FullScreenBackground from "../../component/Background/FullScreenBackground";
 
-function Authentication() {
+function Authentication(props) {
   return (
     <Routes>
       <Route path="/" element={<AuthoMain />} />

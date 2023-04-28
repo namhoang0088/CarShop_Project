@@ -10,7 +10,8 @@ import AuthoMain from '../Authentication/AuthenMain';
 import Account from '../../component/Account/Account';
 import Product from '../../component/Product/Product';
 import Payment from '../../component/Product/Payment';
-
+import FormForgotPassword from '../Authentication/Form/ForgotPassword';
+import FormRegister from '../Authentication/Form/Register';
 function User() {
   const [isLogin, setIslogin] = useState('No');
   const handleLogin = (loginStatus) => {
@@ -37,6 +38,8 @@ function User() {
           <Route exact path="/products/payment" element={<Payment/>} />
         <Route exact path="/cart" element={<Cart userID = {isLogin} />} />
         <Route exact path="/login" element={loginComponent} />
+        <Route path="/register" element={<FormRegister />} />
+        <Route path="/forgotpassword" element={<FormForgotPassword />} />
       </Routes>
       <Footer />
     </div>
