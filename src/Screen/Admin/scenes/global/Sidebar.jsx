@@ -135,13 +135,18 @@ const Sidebar = () => {
             />
             <Item
               title="Tạo Admin"
-              to="/form"
+              to="/formaccount"
               icon={<PersonOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-
-
+            <Item
+              title="Tạo Sản phẩm"
+              to="/formproduct"
+              icon={<PersonOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
           
           </Box>
         </Menu>

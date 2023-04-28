@@ -19,6 +19,7 @@ const Dashboard = () => {
   const [order, setOrder] = useState([]);
   const [comment, setComment] = useState([]);
   const [Cart, setCart] = useState([]);
+  const [CartSum, setCartSum] = useState([]);
   let numClient = 0;
   let numProducts = 0;
   let numOrder = 0;
@@ -60,6 +61,11 @@ const Dashboard = () => {
     useEffect(() => {
       axios.get('http://localhost/Model/Cart-data.php')
         .then(response => setCart(response.data))
+        .catch(error => console.log(error));
+    }, []);
+    useEffect(() => {
+      axios.get('http://localhost/Model/CartSum-data.php')
+        .then(response => setCartSum(response.data))
         .catch(error => console.log(error));
     }, []);
   return (
@@ -147,39 +153,39 @@ const Dashboard = () => {
         </Box>
 
         {/* ROW 2 */}
-        <Box
-          gridColumn="span 8"
-          gridRow="span 4"
-          backgroundColor="#5941BB"
-        >
-          <Box
-            mt="25px"
-            p="0 30px"
-            display="flex "
-            justifyContent="space-between"
-            alignItems="center"
-          >
-            <Box>
-              <Typography
-                variant="h5"
-                fontWeight="600"
-                color={colors.grey[100]}
-              >
-                Biểu đồ doanh thu
-              </Typography>
-              <Typography
-                variant="h3"
-                fontWeight="bold"
-                color={colors.greenAccent[500]}
-              >
-                12,365,799.32$
-              </Typography>
-            </Box>
-          </Box>
-          <Box height="500px" m="-20px 0 0 0">
-            <LineChart isDashboard={true} />
-          </Box>
-        </Box>
+                  <Box
+                  gridColumn="span 8"
+                  gridRow="span 4"
+                  backgroundColor="#5941BB"
+                >
+                  <Box
+                    mt="25px"
+                    p="0 30px"
+                    display="flex "
+                    justifyContent="space-between"
+                    alignItems="center"
+                  >
+                    <Box>
+                      <Typography
+                        variant="h5"
+                        fontWeight="600"
+                        color={colors.grey[100]}
+                      >
+                        Biểu đồ doanh thu
+                      </Typography>
+                      <Typography
+                        variant="h3"
+                        fontWeight="bold"
+                        color={colors.greenAccent[500]}
+                      >
+                        100,000,000,000đ
+                      </Typography>
+                    </Box>
+                  </Box>
+                  <Box height="500px" m="-20px 0 0 0">
+                    <LineChart isDashboard={true} />
+                  </Box>
+                </Box>
 
         <Box
           gridColumn="span 4"
@@ -221,13 +227,13 @@ const Dashboard = () => {
                   {transaction.name}
                 </Typography>
               </Box>
-              <Box color={colors.grey[100]}>{transaction.price}đ</Box>
+              <Box color={colors.grey[100]}>đang duyệt</Box>
               <Box
                 backgroundColor={colors.greenAccent[500]}
                 p="5px 10px"
                 borderRadius="4px"
               >
-                 Xem chi tiết
+                 {transaction.price}đ
               </Box>
             </Box>
           ))}

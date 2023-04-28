@@ -3,7 +3,7 @@ import { Box, Button, TextField } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../../../component/Admin/components/Header";
 import axios from 'axios';
-const Form = () => {
+const FormAccount = () => {
   const [account, setAccount] = useState([]);
   const [Warning, setWarning] = useState([]);
   useEffect(() => {
@@ -107,7 +107,7 @@ const Form = () => {
     .then(response => {
       // Xử lý kết quả trả về nếu cần
       alert("Khởi tạo thành công!");
-      navigation();
+      // navigation();
     })
     .catch(error => {
       // Xử lý lỗi nếu có
@@ -217,4 +217,4 @@ const Form = () => {
 };
 
 
-export default Form;
+export default FormAccount;

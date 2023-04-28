@@ -5,11 +5,12 @@ import Dashboard from "./scenes/dashboard";
 import Team from "./scenes/team";
 import Invoices from "./scenes/invoices";
 import Contacts from "./scenes/contacts";
-import Form from "./scenes/form";
+import FormAccount from "./scenes/form/index";
 import Comments from "./scenes/faq";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import Product from "./scenes/products";
+import FormProduct from "./scenes/addProduct";
 import './Admin.css';
 import AdminHeader from './../../component/Admin/Header/AdminHeader';
 
@@ -33,9 +34,10 @@ function Admin() {
                 <Route path="/team" element={<Team />} />
                 <Route path="/contacts" element={<Contacts />} />
                 <Route path="/invoices" element={<Invoices />} />
-                <Route path="/form" element={<Form />} />
+                <Route path="/formaccount" element={<FormAccount />} />
                 <Route path="/comments" element={<Comments />} />
                 <Route path="/product" element={<Product />} />
+                <Route path="formproduct" element={<FormProduct />} />
               </Routes>
             </main>
           </div>
