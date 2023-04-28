@@ -164,11 +164,11 @@ function CustomCar(props){
 
                     <div className="text-center" id="price"  >
                         <p>Price : {(parseInt(quantity*props.price)).toLocaleString()}vnd</p>
-                        <Link to="/Payment" >
+                        {/* <Link to="/Payment" >
                             <Button style={{width:60,height:60}} type="submit" className="col-md-2 m-2" variant="primary"> 
                             Mua ngay
                             </Button>
-                        </Link> 
+                        </Link>  */}
 
                         <Link to="/cart">
                         <Button style={{width:100,height:60}} type="submit" className="col-md-2 m-2" variant="primary"  onClick={handleAddToCart}>

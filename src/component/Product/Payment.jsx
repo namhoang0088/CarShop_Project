@@ -3,19 +3,21 @@ import { Col, Container, Row , Form, ToggleButton, Button} from "react-bootstrap
 import masterCard from "./mastercard.png"
 import visa from "./visa.jpg"
 import "./payment.css"
-
+import { useNavigate } from "react-router-dom";
 
 
 const monthList = ["01","02","03","04","05","06","07","08","09","10","11","12"];
 const yearList = Array(50);
 
 for(let i = 0 ; i < 50;i++){
-    yearList[i] = 2000 + i;
+    yearList[i] = 2023 + i;
 }
 
 export default function(){
     const[shippingMethod,setShippingMethod] = useState('0');
     const[paymentMethod,setPaymentMethod] = useState('0');
+
+    const navigate = useNavigate();
     const shippingMethods = [
         {method:"Hỏa tốc", value:'0',price: "100"},
         {method:"Nhanh", value:'1', price:"50"}, 
@@ -32,10 +34,12 @@ export default function(){
     const handleChangePayment = e => {
         setPaymentMethod(e.currentTarget.value);
     }
-
+    const handleSumit = () =>{
+        navigate("/");
+    }
     return(
     <Container fluid>
-        <Form action="">
+        <Form onSubmit={handleSumit}>
             <Row>
                 <Col md={6} className="address p-3" >
                         <h2>Địa chỉ giao hàng</h2>

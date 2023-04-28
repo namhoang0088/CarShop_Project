@@ -130,6 +130,7 @@ function Product({...props}){
   };
   const handleDeleteCart = () => {
     deleteCart(props.id);
+    window.location.reload();
   };
     return(
         <div className="row Product">
