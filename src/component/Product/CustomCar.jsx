@@ -5,6 +5,8 @@ import Style2 from './style2.JPG';
 import { useState } from "react";
 import "./CustomCar.css"
 import axios from 'axios';
+import {useNavigate} from "react-router-dom";
+
 
 function addToCart(id, customer_id, car_id, color, wheel, name, price, img) {
     const data = { // Tạo một object chứa thông tin của đơn hàng
@@ -45,10 +47,20 @@ function CustomCar(props){
     const [wheel, setWheel] = useState("style1");
     const [radioWheelValue, setRadioWheelValue] = useState('0');
     const [quantity, setQuantity] = useState(1);
+    const navigate = useNavigate();
 
     const id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     const handleAddToCart = () => {
-        addToCart( id, props.customer_id, props.car_id, color, wheel, props.name, props.price, props.carImg[color][wheel][0].url);
+        console.log(props.customer_id == "No");
+        if(props.customer_id == "No"){
+            console.log("here");
+            
+            navigate("/login");
+        }else{
+
+            addToCart( id, props.customer_id, props.car_id, color, wheel, props.name, props.price, props.carImg[color][wheel][0].url);
+            navigate("/cart");
+        }
     };
 
     const [index, setIndex] = useState(0);
@@ -164,17 +176,15 @@ function CustomCar(props){
 
                     <div className="text-center" id="price"  >
                         <p>Price : {(parseInt(quantity*props.price)).toLocaleString()}vnd</p>
-                        <Link to="/Payment" >
+                        {/* <Link to="/Payment" >
                             <Button style={{width:60,height:60}} type="submit" className="col-md-2 m-2" variant="primary"> 
                             Mua ngay
                             </Button>
-                        </Link> 
+                        </Link>  */}
 
-                        <Link to="/cart">
                         <Button style={{width:100,height:60}} type="submit" className="col-md-2 m-2" variant="primary"  onClick={handleAddToCart}>
-                        Thêm vào giỏ
+                            Thêm vào giỏ
                         </Button>
-                        </Link>
                     </div>
                 </Form>
             </Col>
