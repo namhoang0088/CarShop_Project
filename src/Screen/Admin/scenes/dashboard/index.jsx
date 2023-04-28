@@ -34,7 +34,7 @@ const Dashboard = () => {
       }
     }
     useEffect(() => {
-      axios.get('http://localhost/Model/Car-data.php')
+      axios.get('http://localhost/Model/ProductView-data.php')
         .then(response => setProducts(response.data))
         .catch(error => console.log(error));
     }, []);

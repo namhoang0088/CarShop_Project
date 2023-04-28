@@ -91,7 +91,17 @@ const FormRegister = () => {
       setWarning("");
     }
     const uploadDatabase = (id ,name, email, password, birth, address, phone, question, answer) => {
-      
+      if(question == '1'){
+        question="Sở thích của bạn là gì";
+      } else if(question == '2'){
+        question="Bạn sống ở đâu";
+      } else if(question == '3'){
+        question = "Biệt danh của bạn là gì";
+      } else if (question == '4'){
+        question = "Bạn đang làm nghề gì"
+      } else {
+        //
+      }
       const data = { // Tạo một object chứa thông tin của tài khoản
         user_id: id,
         user_name: name,

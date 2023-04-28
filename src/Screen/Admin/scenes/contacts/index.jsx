@@ -1,17 +1,22 @@
+import React, { useState, useEffect }  from "react";
 import { Box } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { mockDataContacts } from "../../../../component/Admin/data/mockData";
 import Header from "../../../../component/Admin/components/Header";
 import { useTheme } from "@mui/material";
-
+import axios from 'axios';
 const Contacts = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-
+  const [account, setAccount] = useState([]);
+  useEffect(() => {
+    axios.get('http://localhost/Model/Account-data.php')
+      .then(response => setAccount(response.data))
+      .catch(error => console.log(error));
+  }, []);
   const columns = [
-    { field: "id", headerName: "ID", flex: 0.5 },
-    { field: "registrarId", headerName: "Registrar ID" },
+    { field: "id", headerName: "ID", flex: 0.1},
     {
       field: "name",
       headerName: "Name",
@@ -19,21 +24,27 @@ const Contacts = () => {
       cellClassName: "name-column--cell",
     },
     {
-      field: "age",
-      headerName: "Age",
+      field: "email",
+      headerName: "Email",
       type: "number",
       headerAlign: "left",
       align: "left",
+      flex: 1, 
     },
     {
-      field: "phone",
+      field: "password",
+      headerName: "Password",
+      flex: 1,
+    },
+    {
+      field: "phone_number",
       headerName: "Phone Number",
-      flex: 1,
+      flex: 0.5,
     },
     {
-      field: "email",
-      headerName: "Email",
-      flex: 1,
+      field: "birthday",
+      headerName: "Birthday",
+      flex: 0.6,
     },
     {
       field: "address",
@@ -41,21 +52,32 @@ const Contacts = () => {
       flex: 1,
     },
     {
-      field: "city",
-      headerName: "City",
+      field: "avatar",
+      headerName: "Avatar",
+      flex: 1,
+      renderCell: ({ row: { avatar} }) => {
+        return (
+          <a href={avatar} style={{ textDecoration: "none"}}>Hình ảnh</a>
+        );
+      },
+    },
+    {
+      field: "security_question",
+      headerName: "Question",
       flex: 1,
     },
     {
-      field: "zipCode",
-      headerName: "Zip Code",
+      field: "security_answer",
+      headerName: "Answer",
       flex: 1,
     },
+
   ];
 
   return (
     <Box m="20px">
       <Header
-        title="CONTACTS"
+        title="Thông tin tài khoản"
       />
       <Box
         m="40px 0 0 0"
@@ -90,7 +112,7 @@ const Contacts = () => {
         }}
       >
         <DataGrid
-          rows={mockDataContacts}
+          rows={account}
           columns={columns}
         />
       </Box>
