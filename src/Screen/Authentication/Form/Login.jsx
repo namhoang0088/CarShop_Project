@@ -18,7 +18,6 @@ const FormLogin = (props) => {
       const email = document.getElementsByName("user_email")[0].value;
       const password = document.getElementsByName("user_password")[0].value;
       verifyAccount(email, password);
-      navigate(-1);
     };
     const verifyAccount = (email, password) => {
       if(email=== "" || password === ""){
@@ -39,6 +38,8 @@ const FormLogin = (props) => {
             }
             
             setWarning("");
+            navigate(-1);
+
             return;
           }
         }

@@ -26,7 +26,7 @@ export default function Products(props) {
             if (filteredBrands.length > 0) {
               setBrandInfo(filteredBrands[0]);
             }
-            console.log(filteredBrands)
+            // console.log(filteredBrands)
           })
           .catch((error) => console.log(error));
       }, [props.selectedBrand]);
