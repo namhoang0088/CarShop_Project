@@ -1,50 +1,52 @@
+import React, { useState, useEffect }  from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { mockDataInvoices } from "../../../../component/Admin/data/mockData";
 import Header from "../../../../component/Admin/components/Header";
-
+import axios from 'axios';
 const Invoices = () => {
+  const [invoices, setInvoices] = useState([]);
+  useEffect(() => {
+    axios.get('http://localhost/Model/BuyHistoryInvoice-data.php')
+      .then(response => setInvoices(response.data))
+      .catch(error => console.log(error));
+  }, []);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
-    { field: "id", headerName: "ID" },
     {
       field: "name",
       headerName: "Name",
       flex: 1,
       cellClassName: "name-column--cell",
     },
+    { field: "id", headerName: "ID" },
     {
-      field: "phone",
-      headerName: "Phone Number",
+      field: "car_id",
+      headerName: "car ID",
+      flex: 1,
+    },    
+    {
+      field: "car_name",
+      headerName: "Car name",
       flex: 1,
     },
     {
-      field: "email",
-      headerName: "Email",
+      field: "date_time",
+      headerName: "time",
       flex: 1,
     },
     {
-      field: "cost",
+      field: "price",
       headerName: "Cost",
-      flex: 1,
-      renderCell: (params) => (
-        <Typography color={colors.greenAccent[500]}>
-          ${params.row.cost}
-        </Typography>
-      ),
-    },
-    {
-      field: "date",
-      headerName: "Date",
       flex: 1,
     },
   ];
 
   return (
     <Box m="20px">
-      <Header title="INVOICES" subtitle="List of Invoice Balances" />
+      <Header title="Lịch sử giao dịch" />
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -69,12 +71,9 @@ const Invoices = () => {
             borderTop: "none",
             backgroundColor: "#5941BB",
           },
-          "& .MuiCheckbox-root": {
-            color: `${colors.greenAccent[200]} !important`,
-          },
         }}
       >
-        <DataGrid checkboxSelection rows={mockDataInvoices} columns={columns} />
+        <DataGrid rows={invoices} columns={columns} />
       </Box>
     </Box>
   );

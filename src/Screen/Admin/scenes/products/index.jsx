@@ -9,74 +9,83 @@ import LockClockIcon from '@mui/icons-material/LockClock';
 import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import Header from "../../../../component/Admin/components/Header";
 import axios from 'axios';
-const Team = () => {
-  const [account, setAccount] = useState([]);
+const Product = () => {
+  const [product, setProduct] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost/Model/Account-data.php')
-      .then(response => setAccount(response.data))
+    axios.get('http://localhost/Model/ProductView-data.php')
+      .then(response => setProduct(response.data))
       .catch(error => console.log(error));
   }, []);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
-    { field: "id", headerName: "ID", },
+    { field: "id", headerName: "ID", flex: 1, },
     {
       field: "name",
-      headerName: "Tên",
-      flex: 1,
+      headerName: "Name",
       cellClassName: "name-column--cell",
     },
     {
-      field: "phone_number",
-      headerName: "Số điện thoại",
-      flex: 0.6,
+      field: "price",
+      headerName: "Price",
+      flex: 1,
     },
     {
-      field: "email",
-      headerName: "Email",
+      field: "quantity",
+      headerName: "Quantity",
       flex: 1,
     }, 
     {
-      field: "password",
-      headerName: "Password",
+      field: "brand",
+      headerName: "Brand",
       flex: 1,
     }, 
     {
-      field: "role",
-      headerName: "Access Level",
-      flex: 0.7,
-      renderCell: ({ row: { role} }) => {
+      field: "img",
+      headerName: "Image",
+      flex: 1,
+      renderCell: ({ row: { img} }) => {
         return (
-          <Box
-            width="60%"
-            m="0 auto"
-            p="5px"
-            display="flex"
-            justifyContent="center"
-            backgroundColor={
-              role === "admin"
-                ? colors.greenAccent[600]
-                : role === "customer"
-                ? colors.greenAccent[700]
-                : colors.greenAccent[700]
-            }
-            borderRadius="4px"
-          >
-            {role === "admin" && <SecurityOutlinedIcon />}
-            {role === "customer"&& <LockOpenOutlinedIcon />}
-            {role === "blockcustomer"&& <LockClockIcon />}
-            <Typography color={colors.grey[100]} sx={{ ml: "5px" }}>
-              {role}
-            </Typography>
-          </Box>
+          <a href={img} style={{ textDecoration: "none"}}>Hình ảnh</a>
         );
       },
     },
+    {
+      field: "acceleration",
+      headerName: "Acceleration",
+      flex: 1,
+    },
+    {
+      field: "max_speed",
+      headerName: "Max Speed",
+      flex: 1,
+    },
+    {
+      field: "wattage",
+      headerName: "Wattage",
+      flex: 1,
+    },
+    {
+      field: "torque",
+      headerName: "Torque",
+      flex: 1,
+    },
+    {
+      field: "fuel_consumption",
+      headerName: "Fuel Consumption",
+      flex: 1,
+    },
+    {
+      field: "emissions_co2",
+      headerName: "Emissions CO2",
+      flex: 1,
+    },
+    
   ];
 
   return (
     <Box m="20px">
-      <Header title="TEAM"/>
+      <Header title="Sản Phẩm"/>
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -103,10 +112,10 @@ const Team = () => {
           },
         }}
       >
-        <DataGrid rows={account} columns={columns} />
+        <DataGrid rows={product} columns={columns} />
       </Box>
     </Box>
   );
 };
 
-export default Team;
+export default Product;
